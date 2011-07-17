@@ -14,6 +14,7 @@ class user-mindless {
             home    => "/home/mindless",
             ensure  => present,
             require => [
+                        Group["mindless"],
                         Group["infraadmin"],
                         ];
     }

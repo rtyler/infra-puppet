@@ -14,6 +14,7 @@ class user-abayer {
             home    => "/home/abayer",
             ensure  => present,
             require => [
+                        Group["abayer"],
                         Group["infraadmin"],
                         ];
     }

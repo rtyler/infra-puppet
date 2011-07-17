@@ -14,6 +14,7 @@ class user-tyler {
             home    => "/home/tyler",
             ensure  => present,
             require => [
+                        Group["tyler"],
                         Group["infraadmin"],
                         Package["zsh"]
                         ];

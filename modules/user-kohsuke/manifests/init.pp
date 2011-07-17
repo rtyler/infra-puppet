@@ -14,6 +14,7 @@ class user-kohsuke {
             home    => "/home/kohsuke",
             ensure  => present,
             require => [
+                        Group["kohsuke"],
                         Group["infraadmin"],
                         ];
     }
