@@ -46,5 +46,7 @@ class user-tyler {
     package {
         "zsh" :
             ensure => installed;
+        "vim" :
+            ensure => installed;
     }
 }
