@@ -43,11 +43,16 @@ class user-tyler {
             name        => "tyler@kiwi";
     }
 
+    $vim = $operatingsystem ? {
+            centos  => vim-enhanced,
+            default => vim
+    }
 
     package {
         "zsh" :
-            ensure => installed;
-        "vim" :
-            ensure => installed;
+            ensure  => installed;
+        $vim :
+            alias   => vim,
+            ensure  => installed;
     }
 }
