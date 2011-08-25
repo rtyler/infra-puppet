@@ -3,10 +3,6 @@
 #   mirrors.jenkins-ci.org
 
 class mirrorbrain {
-    include pkg-apache2
-
-    # I think it's safe to assume that if we're not on CentOS, we're running on
-    # Ubuntu
     if $operatingsystem == "CentOS" {
         include  mirrorbrain::centos
     }
@@ -14,16 +10,62 @@ class mirrorbrain {
         err("MirrorBrain is currently only configured for CentOS hosts")
     }
 
+    include pkg-apache2
     Class["pkg-apache2"] -> Class["mirrorbrain::centos"]
 }
 
 class mirrorbrain::centos {
+    include mirrorbrain::files
+    include mirrorbrain::repos
+    include mirrorbrain::packages
 
+    Class["mirrorbrain::repos"] ->
+        Class["mirrorbrain::packages"] ->
+            Class["mirrorbrain::files"]
+}
+
+
+class mirrorbrain::repos {
     yumrepo {
         "MirrorBrain" :
             baseurl => "http://download.opensuse.org/repositories/Apache:/MirrorBrain/CentOS_5/",
             descr => "MirrorBrain OBS repo",
             enabled => 1,
-            gpgcheck => 0
+            gpgcheck => 0;
     }
+}
+
+class mirrorbrain::packages {
+    package {
+        "apache2-mod_geoip" :
+            ensure => installed,
+            require => Package["apache2"];
+        "apache2-mod_asn" :
+            ensure => installed,
+            require => Package["apache2"];
+        "apache2-mod_form" :
+            ensure => installed,
+            require => Package["apache2"];
+        "apache2-mod_mirrorbrain" :
+            ensure => installed,
+            require => [
+                        Package["apache2"],
+                        Package["apache2-mod_geoip"]
+                       ];
+
+        "postgresql-devel" :
+            ensure => installed;
+
+        # Python dependencies
+        "python-psycopg2" :
+            require => Package["postgresql-devel"],
+            ensure => installed;
+        "python-sqlobject" :
+            ensure => installed;
+        "python-cmdln" :
+            ensure => installed;
+    }
+}
+
+class mirrorbrain::files {
 }
