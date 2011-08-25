@@ -7,4 +7,5 @@ node /^lettuce$/ {
     include user-kbsingh
 
     include ntpdate
+    include mirrorbrain
 }
