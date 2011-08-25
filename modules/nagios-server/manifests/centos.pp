@@ -1,5 +1,9 @@
 class nagios-server::centos {
     package {
+        "httpd" :
+            alias   => apache2,
+            ensure  => installed;
+
         "perl-libwww-perl" :
             alias   => perl-libwww,
             ensure  => installed;
