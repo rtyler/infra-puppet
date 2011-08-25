@@ -68,4 +68,24 @@ class mirrorbrain::packages {
 }
 
 class mirrorbrain::files {
+    file {
+        "/etc/apache2" :
+            ensure  => directory,
+            require => Class["pkg-apache2"];
+
+        "/etc/apache2/vhosts.d" :
+            ensure  => directory,
+            require => [
+                        Class["pkg-apache2"],
+                        File["/etc/apache2"]
+                       ];
+
+        "/etc/apache2/vhosts.d/mirrors.conf" :
+            ensure  => present,
+            require => [
+                        Class["pkg-apache2"],
+                        File["/etc/apache2/vhosts.d"]
+                       ],
+            source  => "puppet:///modules/mirrorbrain/virtualhost.conf";
+    }
 }
