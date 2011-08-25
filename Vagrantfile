@@ -1,6 +1,6 @@
 Vagrant::Config.run do |config|
-  config.vm.box = "centos-56-64"
-  config.vm.box_url = "http://strongspace.com/rtyler/public/centos-56-64.box"
+  config.vm.box = "centos-56-64.1"
+  config.vm.box_url = "http://strongspace.com/rtyler/public/centos-56-64.1.box"
 
   config.vm.customize do |vm|
     vm.memory_size = 512
