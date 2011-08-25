@@ -5,6 +5,9 @@
 #   This should help streamline setting up new build slaves
 
 class ci-ssh-slave {
+    include pkg-git
+    include pkg-svn
+
     group {
         "jenkins" :
             gid     => 4403,
@@ -18,7 +21,11 @@ class ci-ssh-slave {
             ensure  => present,
             shell   => "/bin/bash",
             home    => "/home/jenkins",
-            require => Group["jenkins"];
+            require => [
+                        Group["jenkins"],
+                        Package["subversion"],
+                        Package["git"],
+                       ];
     }
 
     file {
