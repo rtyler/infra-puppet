@@ -9,4 +9,6 @@ node default {
     include haproxy-main
 
     include ci-ssh-slave
+
+    include mirrorbrain
 }
