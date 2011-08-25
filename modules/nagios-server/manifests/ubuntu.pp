@@ -1,9 +1,7 @@
 class nagios-server::ubuntu {
-    package {
-        "apache2" :
-            alias   => apache2,
-            ensure  => installed;
+    require pkg-apache2
 
+    package {
         "libwww-perl" :
             alias   => perl-libwww,
             ensure  => installed;
