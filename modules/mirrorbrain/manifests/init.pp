@@ -44,18 +44,6 @@ class mirrorbrain::packages {
         "mod_geoip" :
             ensure => installed,
             require => Package["apache2"];
-        #"apache2-mod_asn" :
-        #    ensure => installed,
-        #    require => Package["apache2"];
-        #"apache2-mod_form" :
-        #    ensure => installed,
-        #    require => Package["apache2"];
-        #"apache2-mod_mirrorbrain" :
-        #    ensure => installed,
-        #    require => [
-        #                Package["apache2"],
-        #                Package["apache2-mod_geoip"]
-        #               ];
 
         "postgresql-devel" :
             ensure => installed;
@@ -117,33 +105,36 @@ class mirrorbrain::files {
 }
 
 class mirrorbrain::cron {
-    cron {
-        "mirrorprobe" :
-            command => "mirrorprobe",
-            user    => root,
-            minute  => 30,
-            ensure  => present;
+    # These crontabs temporarily disabled since this manifest isn't properly
+    # taking care of installing the actual mirrorbrain package. Sadness
 
-        "mb scan" :
-            command => "mb scan --quiet --jobs 4 --al",
-            user    => root,
-            minute  => 45,
-            ensure  => present;
+    #cron {
+    #    "mirrorprobe" :
+    #        command => "mirrorprobe",
+    #        user    => root,
+    #        minute  => 30,
+    #        ensure  => present;
 
-        "mb vacuum" :
-            command => "mb db vacuum",
-            user    => root,
-            minute  => 30,
-            hour    => 1,
-            weekday => Monday,
-            ensure  => present;
+    #    "mb scan" :
+    #        command => "mb scan --quiet --jobs 4 --al",
+    #        user    => root,
+    #        minute  => 45,
+    #        ensure  => present;
 
-        #"geoip-lite-update" :
-        #    command => "geoip-lite-update",
-        #    user    => root,
-        #    minute  => 45,
-        #    hour    => 4,
-        #    weekday => Tuesday,
-        #    ensure  => present;
-    }
+    #    "mb vacuum" :
+    #        command => "mb db vacuum",
+    #        user    => root,
+    #        minute  => 30,
+    #        hour    => 1,
+    #        weekday => Monday,
+    #        ensure  => present;
+
+    #    #"geoip-lite-update" :
+    #    #    command => "geoip-lite-update",
+    #    #    user    => root,
+    #    #    minute  => 45,
+    #    #    hour    => 4,
+    #    #    weekday => Tuesday,
+    #    #    ensure  => present;
+    #}
 }
