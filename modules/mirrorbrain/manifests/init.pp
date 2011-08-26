@@ -16,12 +16,14 @@ class mirrorbrain {
 
 class mirrorbrain::centos {
     include mirrorbrain::files
+    include mirrorbrain::tree
     include mirrorbrain::repos
     include mirrorbrain::packages
 
     Class["mirrorbrain::repos"] ->
         Class["mirrorbrain::packages"] ->
-            Class["mirrorbrain::files"]
+            Class["mirrorbrain::tree"] ->
+                Class["mirrorbrain::files"]
 }
 
 
@@ -67,7 +69,7 @@ class mirrorbrain::packages {
     }
 }
 
-class mirrorbrain::files {
+class mirrorbrain::tree {
     file {
         "/etc/apache2" :
             ensure  => directory,
@@ -80,12 +82,27 @@ class mirrorbrain::files {
                         File["/etc/apache2"]
                        ];
 
+        "/etc/sysconfig/apache2" :
+            ensure => directory,
+            require => [
+                        Class["pkg-apache2"]
+                       ];
+    }
+}
+
+class mirrorbrain::files {
+    file {
         "/etc/apache2/vhosts.d/mirrors.conf" :
+            ensure  => present,
+            require => Class["pkg-apache2"],
+            source  => "puppet:///modules/mirrorbrain/virtualhost.conf";
+
+        "/etc/sysconfig/apache2/geoip.conf" :
             ensure  => present,
             require => [
                         Class["pkg-apache2"],
-                        File["/etc/apache2/vhosts.d"]
+                        File["/etc/sysconfig/apache2"]
                        ],
-            source  => "puppet:///modules/mirrorbrain/virtualhost.conf";
+            source  => "puppet:///modules/mirrorbrain/geoip.conf";
     }
 }
