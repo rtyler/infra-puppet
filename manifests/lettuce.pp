@@ -5,7 +5,9 @@
 node /^lettuce$/ {
     include users-core
     include user-kbsingh
+    include user-aheriter
 
     include ntpdate
-    include mirrorbrain
+    # Temporarily disable
+    #include mirrorbrain
 }
