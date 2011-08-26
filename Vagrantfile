@@ -3,7 +3,7 @@ Vagrant::Config.run do |config|
   config.vm.box_url = "http://strongspace.com/rtyler/public/centos-56-64.1.box"
 
   config.vm.customize do |vm|
-    vm.memory_size = 512
+    vm.memory_size = 768
     vm.name = "Jenkins Puppet VM"
   end
 
