@@ -61,6 +61,11 @@ class mirrorbrain::packages {
             ensure => installed;
 
         # Python dependencies
+
+        # Needed to build the stupid mb tools
+        "python-devel" :
+            ensure => installed;
+
         "python-psycopg2" :
             require => Package["postgresql-devel"],
             ensure => installed;
