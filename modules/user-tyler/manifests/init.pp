@@ -1,4 +1,12 @@
 class user-tyler {
+    if $operatingsystem == "CentOS" {
+        $zshpath = "/bin/zsh"
+    }
+    else {
+        $zshpath = "/usr/bin/zsh"
+    }
+
+
     group {
         "tyler" :
             gid     => 5501,
@@ -10,7 +18,7 @@ class user-tyler {
             uid     => 5500,
             gid     => 5501,
             groups  => "infraadmin",
-            shell   => "/usr/bin/zsh",
+            shell   => $zshpath,
             home    => "/home/tyler",
             ensure  => present,
             require => [
