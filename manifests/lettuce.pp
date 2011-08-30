@@ -5,7 +5,7 @@
 node /^lettuce$/ {
     include users-core
     include user-kbsingh
-    include user-aheriter
+    include user-aheritier
 
     include ntpdate
     # Temporarily disable
