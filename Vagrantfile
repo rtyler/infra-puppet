@@ -1,15 +1,11 @@
 Vagrant::Config.run do |config|
-  config.vm.box = "centos-56-64.1"
-  config.vm.box_url = "http://strongspace.com/rtyler/public/centos-56-64.1.box"
+  config.vm.box = "lucid64"
+  config.vm.box_url = "http://files.vagrantup.com/lucid64.box"
 
   config.vm.customize do |vm|
     vm.memory_size = 768
     vm.name = "Jenkins Puppet VM"
   end
-
-  # The url from where the 'config.vm.box' box will be fetched if it
-  # doesn't already exist on the user's system.
-  # config.vm.box_url = "http://domain.com/path/to/above.box"
 
   # Boot with a GUI so you can see the screen. (Default is headless)
   # config.vm.boot_mode = :gui
