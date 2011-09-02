@@ -1,6 +1,6 @@
 Vagrant::Config.run do |config|
-  config.vm.box = "lucid64"
-  config.vm.box_url = "http://files.vagrantup.com/lucid64.box"
+  config.vm.box = "lucid32"
+  config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
 
   config.vm.customize do |vm|
     vm.memory_size = 768
