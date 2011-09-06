@@ -5,13 +5,11 @@
 node /^lettuce$/ {
     $sudo_role = "standard"
 
-    include users-core
+    include base
+
     include user-kbsingh
     include user-aheritier
 
-    include sudo
-
-    include ntpdate
 
     # Temporarily disable
     #include mirrorbrain
