@@ -3,6 +3,8 @@
 #
 
 node /^cabbage$/ {
+    $sudo_role = "standard"
+
     include users-core
 
     include ntpdate
