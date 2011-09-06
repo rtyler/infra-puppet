@@ -9,6 +9,8 @@ node /^lettuce$/ {
     include user-kbsingh
     include user-aheritier
 
+    include sudo
+
     include ntpdate
 
     # Temporarily disable
