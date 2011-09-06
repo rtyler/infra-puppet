@@ -3,8 +3,6 @@
 #
 
 node /^cabbage$/ {
-    $sudo_role = "standard"
-
     include base
 }
 

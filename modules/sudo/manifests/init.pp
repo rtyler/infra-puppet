@@ -1,5 +1,5 @@
 
-class sudo {
+class sudo($sudo_role = "standard"){
 
     package {
         sudo:

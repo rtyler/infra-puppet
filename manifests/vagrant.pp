@@ -1,6 +1,4 @@
 node /^lucid32$/ {
-    $sudo_role = "standard"
-
     include base
 
     #include user-kbsingh
