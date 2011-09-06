@@ -3,8 +3,6 @@ node /^lucid32$/ {
 
     include base
 
-    include autoupdate
-
     #include user-kbsingh
     #include nagios-server
     #include ci-ssh-slave

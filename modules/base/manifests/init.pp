@@ -11,6 +11,7 @@ class base {
     include sudo
 
     include ntpdate
+    include autoupdate
 
     package {
         "git-core" :
