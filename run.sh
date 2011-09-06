@@ -9,7 +9,4 @@ sleep 5
 echo
 echo "==> Generating log file: ${LOGFILE}"
 
-exec &> $LOGFILE
-
-
-git pull --rebase && puppet apply --modulepath=modules --verbose manifests/${HOSTNAME}.pp
+git pull --rebase >> ${LOGFILE} 2>&1 && puppet apply --modulepath=modules --verbose manifests/${HOSTNAME}.pp >> ${LOGFILE} 2>&1
