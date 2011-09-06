@@ -14,3 +14,7 @@ node /^lettuce$/ {
     # Temporarily disable
     #include mirrorbrain
 }
+
+Exec {
+    path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ]
+}
