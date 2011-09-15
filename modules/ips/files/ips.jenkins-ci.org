@@ -1,0 +1,40 @@
+# This file is maintained by Puppet
+<VirtualHost *:80>
+        ServerName ips.jenkins-ci.org
+
+        <Proxy *>
+            Order allow,deny
+            Allow from all
+        </Proxy>
+
+        DocumentRoot	/var/www/ips.jenkins-ci.org
+
+        <Directory /var/www/ips.jenkins-ci.org>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride All
+                Order allow,deny
+                allow from all
+        </Directory>
+
+        ProxyPass        /ips/ http://localhost:8060/
+        ProxyPassReverse /ips/ http://localhost:8060/
+
+        ProxyPass        /ips-stable/ http://localhost:8061/
+        ProxyPassReverse /ips-stable/ http://localhost:8061/
+
+        ProxyPass        /ips-rc/ http://localhost:8062/
+        ProxyPassReverse /ips-rc/ http://localhost:8062/
+
+        ProxyPass        /ips-stable-rc/ http://localhost:8063/
+        ProxyPassReverse /ips-stable-rc/ http://localhost:8063/
+
+
+        ErrorLog /var/log/apache2/error.log
+
+        # Possible values include: debug, info, notice, warn, error, crit,
+        # alert, emerg.
+        LogLevel warn
+
+        CustomLog "|/usr/sbin/rotatelogs /var/log/apache2/ips.jenkins-ci.org/access.log.%Y%m%d%H%M%S 604800" combined
+
+</VirtualHost>
