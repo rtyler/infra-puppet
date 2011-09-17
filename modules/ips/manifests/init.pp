@@ -2,10 +2,7 @@
 #   Run pkg.depotd servers for
 #   mirrors.jenkins-ci.org
 #
-# TODO: /var/www/ips.jenkins-ci.org and its contents
-# TODO: a2enmod proxy_http
-# TODO: splitting off the ProxyPass in the config file as a separate file so that it can be folded into ips::repository
-# TODO: restart services
+# TODO: restart services -> exec with subscribe
 
 class ips::repository($name,$port) {
     # empty place holder for the repository
@@ -14,6 +11,11 @@ class ips::repository($name,$port) {
         mode => 755;
         owner  => "ips";
     }
+
+    # reverse proxy configuration
+    file { "/etc/apache2/sites-available/ips$name.conf":
+        owner => "ips";
+        content = template("ips/reverse-proxy.conf.erb")
 
     # upstart script
     file { "/etc/init/pkg.depotd$name":
@@ -70,6 +72,13 @@ class ips {
 
         "/etc/apache2/sites-enabled/ips.jenkins-ci.org":
             ensure      => "../sites-available/ips.jenkins-ci.org"
+
+        "/var/www/ips.jenkins-ci.org":
+            source      => "puppet:///modules/ips/www/index.html";
+    }
+
+    exec {
+        "a2enmod proxy_http":
     }
 
     ssh_authorized_key {

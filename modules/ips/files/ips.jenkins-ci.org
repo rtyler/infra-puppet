@@ -16,18 +16,8 @@
                 allow from all
         </Directory>
 
-        ProxyPass        /ips/ http://localhost:8060/
-        ProxyPassReverse /ips/ http://localhost:8060/
-
-        ProxyPass        /ips-stable/ http://localhost:8061/
-        ProxyPassReverse /ips-stable/ http://localhost:8061/
-
-        ProxyPass        /ips-rc/ http://localhost:8062/
-        ProxyPassReverse /ips-rc/ http://localhost:8062/
-
-        ProxyPass        /ips-stable-rc/ http://localhost:8063/
-        ProxyPassReverse /ips-stable-rc/ http://localhost:8063/
-
+        # include the reverse proxy fragment settings
+        Include /etc/apache2/sites-available/ips-*.conf
 
         ErrorLog /var/log/apache2/error.log
 
