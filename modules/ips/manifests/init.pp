@@ -2,7 +2,6 @@
 #   Run pkg.depotd servers for
 #   mirrors.jenkins-ci.org
 #
-# TODO: restart services -> exec with subscribe
 
 class ips::repository($name,$port) {
     # empty place holder for the repository
@@ -22,6 +21,15 @@ class ips::repository($name,$port) {
         owner => "root";
         group => "root";
         content = template("ips/pkg.depotd.conf.erb")
+    }
+
+    # SysV init compatibility layer
+    file { "/etc/init.d/pkg.depotd$name":
+        ensure => "/lib/init/upstart-job";
+    }
+
+    service { "pkg.depotd$name":
+        ensure => "running";
     }
 }
 
