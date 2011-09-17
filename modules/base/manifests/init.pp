@@ -17,4 +17,9 @@ class base {
         "git-core" :
             ensure => present,
     }
+
+    group {
+        "puppet" :
+            ensure => present,
+    }
 }
