@@ -14,6 +14,7 @@ define ips::repository($name,$port) {
     # reverse proxy configuration
     file { "/etc/apache2/sites-available/ips$name.conf":
         owner => "ips",
+        notify => Exec["reload-apache2"],
         content => template("ips/reverse-proxy.conf.erb");
     }
 
@@ -47,8 +48,8 @@ define ips::repository($name,$port) {
 
 class ips {
     # this service uses Apache as a frontend
-    include pkg-apache2
-    Class["pkg-apache2"] -> Class["ips"]
+    include apache2
+    Class["apache2"] -> Class["ips"]
 
     package {
         "ips" :
@@ -103,11 +104,12 @@ class ips {
             source      => "puppet:///modules/ips/ips.jenkins-ci.org";
 
         "/etc/apache2/sites-enabled/ips.jenkins-ci.org":
+            notify      => Exec["reload-apache2"],
             ensure      => "../sites-available/ips.jenkins-ci.org";
 
         "/var/www/ips.jenkins-ci.org/":
             ensure      => "directory";
-        
+
         "/var/www/ips.jenkins-ci.org/index.html":
             source      => "puppet:///modules/ips/www/index.html";
 
@@ -115,8 +117,10 @@ class ips {
             source      => "puppet:///modules/ips/www/headshot.png";
     }
 
-    exec {
-        "a2enmod proxy_http":
+
+    enable-apache-mod {
+        "proxy_http" :
+            mod_name => "proxy_http";
     }
 
     ssh_authorized_key {
@@ -130,8 +134,7 @@ class ips {
     }
 
     include ips::repositories
-    include ips::reload_apache
-    Class["ips"] -> Class["ips::repositories"] -> Class["ips::reload_apache"]
+    Class["ips"] -> Class["ips::repositories"]
 }
 
 class ips::repositories {
@@ -149,11 +152,5 @@ class ips::repositories {
         "stable-rc":
             name => "-stable-rc",
             port => 8063;
-    }
-}
-
-class ips::reload_apache {
-    # have the config file changes in Apache to reload
-    exec { "sudo /etc/init.d/apache2 reload":
     }
 }
