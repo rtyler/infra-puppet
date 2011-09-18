@@ -120,7 +120,7 @@ class ips {
 
     enable-apache-mod {
         "proxy_http" :
-            mod_name => "proxy_http";
+            name => "proxy_http";
     }
 
     ssh_authorized_key {

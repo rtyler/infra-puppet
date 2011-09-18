@@ -31,25 +31,48 @@ class apache2::functions {
     }
 }
 
-define enable-apache-mod($mod_name) {
+define enable-apache-mod($name) {
     include apache2::functions
 
-    $availible_file_path = "/etc/apache2/mods-available/${mod_name}.load"
-    $enabled_file_path = "/etc/apache2/mods-enabled/${mod_name}.load"
+    $available_file_path = "/etc/apache2/mods-available/${name}.load"
+    $enabled_file_path = "/etc/apache2/mods-enabled/${name}.load"
 
     file {
-        $availible_file_path :
+        $available_file_path :
             ensure => present,
     }
 
     exec {
-        "enable-${mod_name}" :
+        "enable-${name}" :
             require => [
                            Package["apache2"],
-                           File[$availible_file_path],
+                           File[$available_file_path],
                        ],
             unless => "test -f ${enabled_file_path}",
-            command => "a2enmod ${mod_name}",
+            command => "a2enmod ${name}",
+            notify => Exec["reload-apache2"];
+    }
+}
+
+define enable-apache-site($name) {
+    include apache2::functions
+
+    $available_file_path = "/etc/apache2/sites-available/${name}.load"
+    $enabled_file_path = "/etc/apache2/sites-enabled/${name}.load"
+
+    file {
+        $available_file_path :
+            ensure => present,
+    }
+
+    exec {
+        "enable-${name}" :
+            require => [
+                           Package["apache2"],
+                           File[$available_file_path],
+                       ],
+            unless => "test -f ${enabled_file_path}",
+            command => "a2ensite ${name}",
             notify => Exec["reload-apache2"];
     }
 }

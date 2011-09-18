@@ -28,12 +28,20 @@ class mirrorbrain::ubuntu {
 
     enable-apache-mod {
         "mirrorbrain":
-            mod_name => "mirrorbrain",
+            name => "mirrorbrain",
             require => Class["mirrorbrain::packages"];
 
         "geoip" :
-            mod_name => "geoip",
-            require => Class["mirrorbrain::packages"];
+            name => "geoip",
+            require => [
+                        Class["mirrorbrain::packages"],
+                        Class["mirrorbrain::files"],
+                        ];
+
+        # Required for mirrorbrain to access postgresql
+        "dbd" :
+            name => "dbd",
+            require => Package["apache2"];
     }
 }
 
