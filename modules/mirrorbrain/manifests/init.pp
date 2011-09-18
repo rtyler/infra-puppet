@@ -8,8 +8,8 @@ class mirrorbrain {
     }
 
     include mirrorbrain::ubuntu
-    include pkg-apache2
-    Class["pkg-apache2"] -> Class["mirrorbrain::ubuntu"]
+    include apache2
+    Class["apache2"] -> Class["mirrorbrain::ubuntu"]
 }
 
 class mirrorbrain::ubuntu {
@@ -111,12 +111,12 @@ class mirrorbrain::tree {
     file {
         "/etc/httpd" :
             ensure  => directory,
-            require => Class["pkg-apache2"];
+            require => Class["apache2"];
 
         "/etc/httpd/conf.d" :
             ensure  => directory,
             require => [
-                        Class["pkg-apache2"],
+                        Class["apache2"],
                         File["/etc/httpd"]
                        ];
     }
@@ -126,13 +126,13 @@ class mirrorbrain::files {
     file {
         "/etc/httpd/conf.d/mirrors.conf" :
             ensure  => present,
-            require => Class["pkg-apache2"],
+            require => Class["apache2"],
             source  => "puppet:///modules/mirrorbrain/virtualhost.conf";
 
         "/etc/httpd/conf.d/geoip.conf" :
             ensure  => present,
             require => [
-                        Class["pkg-apache2"]
+                        Class["apache2"]
                        ],
             source  => "puppet:///modules/mirrorbrain/geoip.conf";
 

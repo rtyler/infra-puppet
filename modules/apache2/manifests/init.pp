@@ -1,7 +1,7 @@
 
-class pkg-apache2 {
+class apache2 {
     if $operatingsystem != "Ubuntu" {
-        err("pkg-apache2 is not configured for $operatingsystem")
+        err("The apache2 module is not configured for $operatingsystem")
     }
     else {
         package {
