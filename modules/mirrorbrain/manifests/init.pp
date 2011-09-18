@@ -3,18 +3,16 @@
 #   mirrors.jenkins-ci.org
 
 class mirrorbrain {
-    if $operatingsystem == "CentOS" {
-        include  mirrorbrain::centos
-    }
-    else {
-        err("MirrorBrain is currently only configured for CentOS hosts")
+    if $operatingsystem != "Ubuntu" {
+        err("The mirrorbrain module is currently only functional for Ubuntu hosts")
     }
 
+    include mirrorbrain::ubuntu
     include pkg-apache2
-    Class["pkg-apache2"] -> Class["mirrorbrain::centos"]
+    Class["pkg-apache2"] -> Class["mirrorbrain::ubuntu"]
 }
 
-class mirrorbrain::centos {
+class mirrorbrain::ubuntu {
     include mirrorbrain::cron
     include mirrorbrain::files
     include mirrorbrain::tree
@@ -30,32 +28,77 @@ class mirrorbrain::centos {
 
 
 class mirrorbrain::repos {
-    yumrepo {
-        "MirrorBrain" :
-            baseurl => "http://download.opensuse.org/repositories/Apache:/MirrorBrain/CentOS_5/",
-            descr => "MirrorBrain OBS repo",
-            enabled => 1,
-            gpgcheck => 0;
+    file {
+        "/etc/apt/sources.list.d" :
+            ensure => directory;
+
+        "/etc/apt/sources.list.d/mirrorbrain.list" :
+            ensure => present,
+            notify => [
+                        Exec["install-key"],
+                        Exec["refresh-apt"],
+                      ],
+            source => "puppet:///modules/mirrorbrain/apt.list",
+    }
+
+    file {
+        "/root/mirrorbrain.key" :
+            source => "puppet:///modules/mirrorbrain/Release.key",
+            ensure => present;
+    }
+
+    exec {
+        "refresh-apt" :
+            refreshonly => true,
+            require => [
+                        File["/etc/apt/sources.list.d/mirrorbrain.list"],
+                        Exec["install-key"],
+                       ],
+            command => "apt-get update";
+
+        "install-key" :
+            notify => Exec["refresh-apt"],
+            require => [
+                        File["/etc/apt/sources.list.d/mirrorbrain.list"],
+                        File["/root/mirrorbrain.key"],
+                       ],
+            command => "/usr/bin/apt-key add /root/mirrorbrain.key";
     }
 }
 
 class mirrorbrain::packages {
     package {
-        "mod_geoip" :
+        "libapache2-mod-geoip" :
             ensure => installed,
             require => Package["apache2"];
 
-        "postgresql-devel" :
+        "libapache2-mod-mirrorbrain" :
+            ensure => installed,
+            require => Package["apache2"];
+
+        "mirrorbrain" :
+            ensure => installed;
+
+        "mirrorbrain-scanner" :
+            ensure => installed;
+
+        "mirrorbrain-tools" :
+            ensure => installed;
+
+        "postgresql-server-dev-8.4" :
+            ensure => installed;
+
+        "mirmon" :
             ensure => installed;
 
         # Python dependencies
 
         # Needed to build the stupid mb tools
-        "python-devel" :
+        "python-dev" :
             ensure => installed;
 
         "python-psycopg2" :
-            require => Package["postgresql-devel"],
+            require => Package["postgresql-server-dev-8.4"],
             ensure => installed;
         "python-sqlobject" :
             ensure => installed;
