@@ -3,7 +3,7 @@
 #   mirrors.jenkins-ci.org
 #
 
-class ips::repository($name,$port) {
+define ips::repository($name,$port) {
     # empty place holder for the repository
     file { "/srv/ips/ips$name":
         ensure => directory,
@@ -97,24 +97,22 @@ class ips {
             require     => File["/srv/ips/.ssh"],
             key         => "AAAAB3NzaC1yc2EAAAABIwAAAQEArSave9EBJ2rP3Hm5PFyiOpfGsPhJwjqdyaVEwQruM0Fa8nWstla7cdSTSs/ClHn7I1uUzQvX+/+6m/HTVy/WIr0cIIxLDm8hXVLfCLddtvxnXx47fJY3ongasYJ4TarIGkMMX/Vg1JpP7XIkMczUSNRyeHg/bGfV+YCPFuSW+cj2M5yMOE1KyIVQQL/JZu7lu80Ara5+RWSITObdiHRpnNzvBdIyhkSCrG0N7QStIBnEaLU//K2AB5GbK/65+k7sklutcH18wSGridQCNJm4ODUxov+vVr2OH3oiv7gyHEE9TypRI9vS0HUmsD+moPq3O8y0xyP8xaJWkz2LKe8/5Q==",
             type        => "rsa",
-            name        => "kohsuke@unicore.2010";
+            name        => "kohsuke@unicorn.2010/ips";
     }
 
     # repository definitions
-    class { "ips::repository":
-        name => "",
-        port => 8060;
-    }
-    class { "ips::repository":
-        name => "-stable",
-        port => 8061;
-    }
-    class { "ips::repository":
-        name => "-rc",
-        port => 8062;
-    }
-    class { "ips::repository":
-        name => "-stable-rc",
-        port => 8063;
+    ips::repository {
+        "main":
+            name => "",
+            port => 8060;
+        "stable":
+            name => "-stable",
+            port => 8061;
+        "rc":
+            name => "-rc",
+            port => 8062;
+        "stable-rc":
+            name => "-stable-rc",
+            port => 8063;
     }
 }
