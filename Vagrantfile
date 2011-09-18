@@ -4,7 +4,7 @@ Vagrant::Config.run do |config|
 
   config.vm.customize do |vm|
     vm.memory_size = 768
-    vm.name = "Jenkins Puppet VM"
+    vm.name = "jenkins-puppet-vm"
   end
 
   # Boot with a GUI so you can see the screen. (Default is headless)
