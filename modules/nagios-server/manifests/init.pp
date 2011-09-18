@@ -2,14 +2,11 @@
 class nagios-server {
     group {
         "nagios" :
-            gid     => 4001,
             ensure  => present;
     }
 
     user {
         "nagios" :
-            uid     => 4001,
-            gid     => 4001,
             ensure  => present,
             require => [
                         File["/etc/nagios"],
