@@ -18,7 +18,7 @@ define ips::repository($name,$port) {
     }
 
     # upstart script
-    file { "/etc/init/pkg.depotd$name":
+    file { "/etc/init/pkg.depotd$name.conf":
         owner => "root",
         group => "root",
         content => template("ips/pkg.depotd.conf.erb");
@@ -56,6 +56,7 @@ class ips {
             shell   => "/usr/bin/zsh",
             home    => "/srv/ips",
             ensure  => present,
+            gid     => "ips",
             require => [
                 Package["zsh"]
             ];

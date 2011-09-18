@@ -1,6 +1,6 @@
 node /^lucid32$/ {
     include base
-
+    include ips
     #include user-kbsingh
     #include nagios-server
     #include ci-ssh-slave
