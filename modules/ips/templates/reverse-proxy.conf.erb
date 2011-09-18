@@ -1,0 +1,9 @@
+# redirect the image to the headshot
+ProxyPass   /ips<%= name %>/_themes/pkg-block-logo.png !
+Alias       /ips<%= name %>/_themes/pkg-block-logo.png /var/www/ips.jenkins-ci.org/headshot.png
+
+
+# this file generated and maintained by Puppet
+ProxyPass        /ips<%= name %>/ http://localhost:<%= port %>/
+ProxyPassReverse /ips<%= name %>/ http://localhost:<%= port %>/
+

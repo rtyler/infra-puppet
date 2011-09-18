@@ -8,6 +8,7 @@ node /^lettuce$/ {
     include user-kbsingh
     include user-aheritier
 
+    include ips
 
     # Temporarily disable
     #include mirrorbrain
