@@ -9,6 +9,11 @@ class apache2 {
                 alias => "apache2",
                 ensure  => installed;
         }
+
+        service {
+            "apache2" :
+                enable => true;
+        }
     }
 }
 
