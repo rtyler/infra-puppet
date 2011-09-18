@@ -21,12 +21,14 @@ define ips::repository($name,$port) {
     file { "/etc/init/pkg.depotd$name.conf":
         owner => "root",
         group => "root",
-        content => template("ips/pkg.depotd.conf.erb");
+        content => template("ips/pkg.depotd.conf.erb"),
+        notify => Service["pkg.depotd$name"];
     }
 
     # SysV init compatibility layer
     file { "/etc/init.d/pkg.depotd$name":
-        ensure => "/lib/init/upstart-job";
+        ensure => "/lib/init/upstart-job",
+        notify => Service["pkg.depotd$name"];
     }
 
     # seed the initial empty repository if there's no data
@@ -103,8 +105,14 @@ class ips {
         "/etc/apache2/sites-enabled/ips.jenkins-ci.org":
             ensure      => "../sites-available/ips.jenkins-ci.org";
 
-        "/var/www/ips.jenkins-ci.org":
+        "/var/www/ips.jenkins-ci.org/":
+            ensure      => "directory";
+        
+        "/var/www/ips.jenkins-ci.org/index.html":
             source      => "puppet:///modules/ips/www/index.html";
+
+        "/var/www/ips.jenkins-ci.org/headshot.png":
+            source      => "puppet:///modules/ips/www/headshot.png";
     }
 
     exec {
@@ -122,7 +130,8 @@ class ips {
     }
 
     include ips::repositories
-    Class["ips"] -> Class["ips::repositories"]
+    include ips::reload_apache
+    Class["ips"] -> Class["ips::repositories"] -> Class["ips::reload_apache"]
 }
 
 class ips::repositories {
@@ -140,5 +149,11 @@ class ips::repositories {
         "stable-rc":
             name => "-stable-rc",
             port => 8063;
+    }
+}
+
+class ips::reload_apache {
+    # have the config file changes in Apache to reload
+    exec { "sudo /etc/init.d/apache2 reload":
     }
 }

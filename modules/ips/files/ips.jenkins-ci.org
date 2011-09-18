@@ -17,7 +17,7 @@
         </Directory>
 
         # include the reverse proxy fragment settings
-        Include /etc/apache2/sites-available/ips-*.conf
+        Include /etc/apache2/sites-available/ips*.conf
 
         ErrorLog /var/log/apache2/error.log
 
