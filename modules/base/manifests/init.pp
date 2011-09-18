@@ -13,6 +13,8 @@ class base {
     include ntpdate
     include autoupdate
 
+    stage {"pre": before => Stage["main"]}
+
     package {
         "git-core" :
             ensure => present,
@@ -21,5 +23,19 @@ class base {
     group {
         "puppet" :
             ensure => present,
+    }
+
+    class {
+        "base::pre" :
+            stage => "pre";
+    }
+}
+
+class base::pre {
+    # It's generally useful to make sure our package meta-data is always up to
+    # date prior to running just about everything else
+    exec {
+        "apt-get update" :
+            command => "apt-get update",
     }
 }
