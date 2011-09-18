@@ -41,7 +41,10 @@ class mirrorbrain::ubuntu {
         # Required for mirrorbrain to access postgresql
         "dbd" :
             name => "dbd",
-            require => Package["apache2"];
+            require => [
+                        Package["apache2"],
+                        Class["mirrorbrain::files"],
+                       ];
     }
 }
 
@@ -164,6 +167,14 @@ class mirrorbrain::files {
                         Class["apache2"]
                        ],
             source  => "puppet:///modules/mirrorbrain/geoip.conf";
+
+        "/etc/apache2/mods-available/dbd.conf" :
+            ensure => present,
+            require => Class["apache2"],
+            source => [
+                        "puppet:///modules/mirrorbrain/dbd.conf.private",
+                        "puppet:///modules/mirrorbrain/dbd.conf",
+                      ];
 
 
         "/etc/mirmon.conf" :
