@@ -57,13 +57,8 @@ define enable-apache-mod($name) {
 define enable-apache-site($name) {
     include apache2::functions
 
-    $available_file_path = "/etc/apache2/sites-available/${name}.load"
-    $enabled_file_path = "/etc/apache2/sites-enabled/${name}.load"
-
-    file {
-        $available_file_path :
-            ensure => present,
-    }
+    $available_file_path = "/etc/apache2/sites-available/${name}"
+    $enabled_file_path = "/etc/apache2/sites-enabled/${name}"
 
     exec {
         "enable-${name}" :
