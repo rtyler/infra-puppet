@@ -24,6 +24,17 @@ class mirrorbrain::ubuntu {
             Class["mirrorbrain::tree"] ->
                 Class["mirrorbrain::files"] ->
                     Class["mirrorbrain::cron"]
+
+
+    enable-apache-mod {
+        "mirrorbrain":
+            mod_name => "mirrorbrain",
+            require => Class["mirrorbrain::packages"];
+
+        "geoip" :
+            mod_name => "geoip",
+            require => Class["mirrorbrain::packages"];
+    }
 }
 
 
