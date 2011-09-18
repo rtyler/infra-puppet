@@ -6,21 +6,22 @@
 class ips::repository($name,$port) {
     # empty place holder for the repository
     file { "/srv/ips/ips$name":
-        ensure => directory;
-        mode => 755;
+        ensure => directory,
+        mode => 755,
         owner  => "ips";
     }
 
     # reverse proxy configuration
     file { "/etc/apache2/sites-available/ips$name.conf":
-        owner => "ips";
-        content = template("ips/reverse-proxy.conf.erb")
+        owner => "ips",
+        content => template("ips/reverse-proxy.conf.erb");
+    }
 
     # upstart script
     file { "/etc/init/pkg.depotd$name":
-        owner => "root";
-        group => "root";
-        content = template("ips/pkg.depotd.conf.erb")
+        owner => "root",
+        group => "root",
+        content => template("ips/pkg.depotd.conf.erb");
     }
 
     # SysV init compatibility layer
@@ -62,24 +63,24 @@ class ips {
 
     file {
         "/srv/ips/.ssh" :
-            ensure      => directory;
-            recurse     => true
+            ensure      => directory,
+            recurse     => true,
             owner       => "ips",
             group       => "ips";
 
         "/var/log/apache2/ips.jenkins-ci.org":
-            ensure      => directory;
-            owner       => "root";
+            ensure      => directory,
+            owner       => "root",
             group       => "root";
 
         "/etc/apache2/sites-available/ips.jenkins-ci.org":
-            ensure      => directory;
-            owner       => "root";
-            group       => "root";
+            ensure      => directory,
+            owner       => "root",
+            group       => "root",
             source      => "puppet:///modules/ips/ips.jenkins-ci.org";
 
         "/etc/apache2/sites-enabled/ips.jenkins-ci.org":
-            ensure      => "../sites-available/ips.jenkins-ci.org"
+            ensure      => "../sites-available/ips.jenkins-ci.org";
 
         "/var/www/ips.jenkins-ci.org":
             source      => "puppet:///modules/ips/www/index.html";
@@ -100,20 +101,20 @@ class ips {
     }
 
     # repository definitions
-    class { ips::repository:
-        name => "";
+    class { "ips::repository":
+        name => "",
         port => 8060;
     }
-    class { ips::repository:
-        name => "-stable";
+    class { "ips::repository":
+        name => "-stable",
         port => 8061;
     }
-    class { ips::repository:
-        name => "-rc";
+    class { "ips::repository":
+        name => "-rc",
         port => 8062;
     }
-    class { ips::repository:
-        name => "-stable-rc";
+    class { "ips::repository":
+        name => "-stable-rc",
         port => 8063;
     }
 }
