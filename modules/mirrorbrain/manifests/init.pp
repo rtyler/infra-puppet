@@ -111,7 +111,7 @@ class mirrorbrain::packages {
             ensure => installed;
 
         # Python dependencies
-
+        ######################################
         # Needed to build the stupid mb tools
         "python-dev" :
             ensure => installed;
@@ -128,27 +128,30 @@ class mirrorbrain::packages {
 
 class mirrorbrain::tree {
     file {
-        "/etc/httpd" :
-            ensure  => directory,
-            require => Class["apache2"];
+        # Make sure the directory tree for MirrorBrain to mirror exists
+        "/srv" :
+            ensure => directory;
+        "/srv/releases" :
+            ensure => directory;
+        "/srv/releases/jenkins" :
+            ensure => directory;
 
-        "/etc/httpd/conf.d" :
-            ensure  => directory,
-            require => [
-                        Class["apache2"],
-                        File["/etc/httpd"]
-                       ];
+        "/var/log/apache2" :
+            ensure => directory;
+        "/var/log/apache2/mirrors.jenkins-ci.org" :
+            ensure => directory,
+            require => File["/var/log/apache2"];
     }
 }
 
 class mirrorbrain::files {
     file {
-        "/etc/httpd/conf.d/mirrors.conf" :
+        "/etc/apache2/sites-available/mirrors.jenkins-ci.org" :
             ensure  => present,
             require => Class["apache2"],
             source  => "puppet:///modules/mirrorbrain/virtualhost.conf";
 
-        "/etc/httpd/conf.d/geoip.conf" :
+        "/etc/apache2/mods-available/geoip.conf" :
             ensure  => present,
             require => [
                         Class["apache2"]
@@ -163,5 +166,11 @@ class mirrorbrain::files {
         "/etc/mirrorbrain.conf" :
             ensure  => present,
             source  => "puppet:///modules/mirrorbrain/mirrorbrain.conf";
+    }
+
+    enable-apache-site {
+        "mirrors.jenkins-ci.org" :
+            name => "mirrors.jenkins-ci.org",
+            require => File["/etc/apache2/sites-available/mirrors.jenkins-ci.org"];
     }
 }
