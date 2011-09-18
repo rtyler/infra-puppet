@@ -29,8 +29,17 @@ define ips::repository($name,$port) {
         ensure => "/lib/init/upstart-job";
     }
 
+    # seed the initial empty repository if there's no data
+    exec {  "seed$name":
+        command => "tar xvzf ../empty-repo.tgz",
+        cwd => "/srv/ips/ips$name",
+        unless => "test -f /srv/ips/ips$name/cfg_cache"
+    }
+
+    # for some reason, the following doesn't do anything
     service { "pkg.depotd$name":
-        ensure => "running";
+        ensure => "running",
+        status => "status pkg.depotd$name | grep -q 'running'"
     }
 }
 
@@ -41,8 +50,9 @@ class ips {
 
     package {
         "ips" :
+            provider => "dpkg",
             ensure => installed,
-            source => "puppet:///modules/ips/ips_2.3.54-0_all.deb";
+            source => "/srv/ips/ips.deb";
     }
 
     group {
@@ -63,11 +73,21 @@ class ips {
     }
 
     file {
-        "/srv/ips/.ssh" :
+        "/srv/ips/" :
             ensure      => directory,
-            recurse     => true,
             owner       => "ips",
             group       => "ips";
+
+        "/srv/ips/.ssh" :
+            ensure      => directory,
+            owner       => "ips",
+            group       => "ips";
+
+        "/srv/ips/empty-repo.tgz" :
+            source      => "puppet:///modules/ips/empty-repo.tgz";
+
+        "/srv/ips/ips.deb" :
+            source      => "puppet:///modules/ips/ips_2.3.54-0_all.deb";
 
         "/var/log/apache2/ips.jenkins-ci.org":
             ensure      => directory,
@@ -101,6 +121,11 @@ class ips {
             name        => "kohsuke@unicorn.2010/ips";
     }
 
+    include ips::repositories
+    Class["ips"] -> Class["ips::repositories"]
+}
+
+class ips::repositories {
     # repository definitions
     ips::repository {
         "main":
