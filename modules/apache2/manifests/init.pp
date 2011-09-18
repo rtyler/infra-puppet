@@ -6,12 +6,15 @@ class apache2 {
     else {
         package {
             "apache2" :
-                alias => "apache2",
                 ensure  => installed;
         }
 
         service {
             "apache2" :
+                ensure => running,
+                hasstatus => true,
+                hasrestart => true,
+                require => Package["apache2"],
                 enable => true;
         }
     }
