@@ -136,6 +136,13 @@ class mirrorbrain::tree {
         "/srv/releases/jenkins" :
             ensure => directory;
 
+
+        "/srv/releases/jenkins/index.html" :
+            ensure => present,
+            source => "puppet:///modules/mirrorbrain/index.html",
+            require => File["/srv/releases/jenkins"];
+
+
         "/var/log/apache2" :
             ensure => directory;
         "/var/log/apache2/mirrors.jenkins-ci.org" :
