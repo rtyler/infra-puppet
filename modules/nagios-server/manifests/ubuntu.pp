@@ -1,6 +1,12 @@
 class nagios-server::ubuntu {
-    require pkg-apache2
+    include apache2
+    include nagios-server::ubuntu::packages
 
+    Class["apache2"] -> Class["nagios-server::ubuntu::packages"]
+}
+
+
+class nagios-server::ubuntu::packages {
     package {
         "libwww-perl" :
             alias   => perl-libwww,

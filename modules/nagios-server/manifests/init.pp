@@ -27,10 +27,8 @@ class nagios-server {
     }
 
 
-    # I think it's safe to assume that if we're not on CentOS, we're running on
-    # Ubuntu
-    if $operatingsystem == "CentOS" {
-        include  nagios-server::centos
+    if $operatingsystem != "Ubuntu" {
+        err("The nagios-server module isn't supported for $operatingsystem")
     }
     else {
         include  nagios-server::ubuntu
