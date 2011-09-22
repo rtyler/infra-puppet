@@ -53,6 +53,7 @@ class user-tyler {
 
     $vim = $operatingsystem ? {
             centos  => vim-enhanced,
+            redhat  => vim-enhanced,
             default => vim
     }
 
