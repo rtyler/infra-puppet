@@ -12,11 +12,9 @@ class nagios-server::ubuntu {
 class nagios-server::ubuntu::packages {
     package {
         "libwww-perl" :
-            alias   => perl-libwww,
             ensure  => installed;
 
         "libcrypt-ssleay-perl" :
-            alias   => perl-crypt-ssleay,
             ensure  => installed;
 
         "nagios3" :
@@ -38,6 +36,6 @@ class nagios-server::ubuntu::install {
         "nagios3" :
             ensure => running,
             enable => true,
-            require => Package["nagios3"];
+            require => Package["nagios"];
     }
 }
