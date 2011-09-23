@@ -1,9 +1,10 @@
 class user-tyler {
-    if $operatingsystem == "CentOS" {
-        $zshpath = "/bin/zsh"
+    if $operatingsystem == "Ubuntu" {
+        $zshpath = "/usr/bin/zsh"
     }
     else {
-        $zshpath = "/usr/bin/zsh"
+        # Assuming that all "else" will be Redhat-based
+        $zshpath = "/bin/zsh"
     }
 
 
