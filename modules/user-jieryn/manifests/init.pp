@@ -1,14 +1,11 @@
 class user-jieryn {
     group {
         "jieryn" :
-            gid     => 5508,
             ensure  => present;
     }
 
     user {
         "jieryn" :
-            uid     => 5507,
-            gid     => 5508,
             groups  => "infraadmin",
             shell   => "/bin/bash",
             home    => "/home/jieryn",
