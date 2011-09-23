@@ -7,6 +7,7 @@ node default {
     include base
 
     include ci-ssh-slave
+    include user-jieryn
 }
 
 Exec {
