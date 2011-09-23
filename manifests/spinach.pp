@@ -8,6 +8,7 @@
 
 node default {
     include users-core
+    include user-jieryn
 
     include ntpdate
 
