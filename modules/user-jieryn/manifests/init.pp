@@ -6,6 +6,7 @@ class user-jieryn {
 
     user {
         "jieryn" :
+            gid     => "jieryn",
             groups  => "infraadmin",
             shell   => "/bin/bash",
             home    => "/home/jieryn",
