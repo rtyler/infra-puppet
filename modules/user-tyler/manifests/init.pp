@@ -10,14 +10,12 @@ class user-tyler {
 
     group {
         "tyler" :
-            gid     => 5501,
             ensure  => present;
     }
 
     user {
         "tyler" :
-            uid     => 5500,
-            gid     => 5501,
+            gid     => "tyler",
             groups  => "infraadmin",
             shell   => $zshpath,
             home    => "/home/tyler",

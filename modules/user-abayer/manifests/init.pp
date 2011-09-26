@@ -1,14 +1,12 @@
 class user-abayer {
     group {
         "abayer" :
-            gid     => 5503,
             ensure  => present;
     }
 
     user {
         "abayer" :
-            uid     => 5502,
-            gid     => 5503,
+            gid     => "abayer",
             groups  => "infraadmin",
             shell   => "/bin/bash",
             home    => "/home/abayer",

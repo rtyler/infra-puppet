@@ -1,14 +1,12 @@
 class user-mindless {
     group {
         "mindless" :
-            gid     => 5504,
             ensure  => present;
     }
 
     user {
         "mindless" :
-            uid     => 5503,
-            gid     => 5504,
+            gid     => "mindless",
             groups  => "infraadmin",
             shell   => "/bin/bash",
             home    => "/home/mindless",

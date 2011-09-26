@@ -1,14 +1,12 @@
 class user-kbsingh {
     group {
         "kbsingh" :
-            gid     => 5505,
             ensure  => present;
     }
 
     user {
         "kbsingh" :
-            uid     => 5504,
-            gid     => 5505,
+            gid     => "kbsingh",
             groups  => "infraadmin",
             shell   => "/bin/bash",
             home    => "/home/kbsingh",

@@ -1,14 +1,12 @@
 class user-aheritier {
     group {
         "aheritier" :
-            gid     => 5506,
             ensure  => present;
     }
 
     user {
         "aheritier" :
-            uid     => 5505,
-            gid     => 5506,
+            gid     => "aheritier",
             groups  => "infraadmin",
             shell   => "/bin/bash",
             home    => "/home/aheritier",

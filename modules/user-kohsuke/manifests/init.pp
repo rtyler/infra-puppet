@@ -1,14 +1,12 @@
 class user-kohsuke {
     group {
         "kohsuke" :
-            gid     => 5502,
             ensure  => present;
     }
 
     user {
         "kohsuke" :
-            uid     => 5501,
-            gid     => 5502,
+            gid     => "kohsuke",
             groups  => "infraadmin",
             shell   => "/bin/bash",
             home    => "/home/kohsuke",
