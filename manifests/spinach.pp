@@ -7,10 +7,7 @@
 # reason
 
 node default {
-    include users-core
+    include base
     include user-jieryn
-
-    include ntpdate
-
     include ci-ssh-slave
 }
