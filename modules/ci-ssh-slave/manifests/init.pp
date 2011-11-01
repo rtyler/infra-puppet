@@ -10,14 +10,12 @@ class ci-ssh-slave {
 
     group {
         "jenkins" :
-            gid     => 4403,
             ensure  => present;
     }
 
     user {
         "jenkins" :
-            uid     => 4403,
-            gid     => 4403,
+            gid     => "jenkins",
             ensure  => present,
             shell   => "/bin/bash",
             home    => "/home/jenkins",
