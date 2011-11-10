@@ -1,7 +1,6 @@
 class users-core {
     group {
         "infraadmin" :
-            gid     => 5500,
             ensure  => present;
     }
 
@@ -9,4 +8,5 @@ class users-core {
     include user-kohsuke
     include user-abayer
     include user-mindless
+    include user-jieryn
 }
