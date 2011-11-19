@@ -3,9 +3,5 @@
 #
 
 node /^cucumber$/ {
-    include users-core
-
-    include ntpdate
-
-    include haproxy-main
+    include base
 }
