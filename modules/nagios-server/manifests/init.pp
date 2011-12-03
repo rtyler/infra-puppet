@@ -1,20 +1,29 @@
 
 class nagios-server {
+    include nagios-server::packages
+
     group {
         "nagios" :
-            gid     => 4001,
             ensure  => present;
     }
 
     user {
         "nagios" :
-            uid     => 4001,
-            gid     => 4001,
+            gid     => nagios,
             ensure  => present,
             require => [
                         File["/etc/nagios"],
                         Group["nagios"]
                        ];
+    }
+
+    service {
+        "nagios3" :
+          ensure  => running,
+          alias   => "nagios",
+          hasstatus       => true,
+          hasrestart      => true,
+          require => Class["nagios-server::packages"],
     }
 
 
@@ -23,19 +32,26 @@ class nagios-server {
             ensure  => directory,
             require => [
                         Group["nagios"],
-                        Package["nagios"],
-                        Package["nagios-plugins"],
-                        Package["nagios-nrpe"]
+                        Class["nagios-server::packages"],
                        ]
     }
+}
 
+class nagios-server::packages {
+    package {
+        "libwww-perl" :
+            ensure  => installed;
 
-    # I think it's safe to assume that if we're not on CentOS, we're running on
-    # Ubuntu
-    if $operatingsystem == "CentOS" {
-        include  nagios-server::centos
-    }
-    else {
-        include  nagios-server::ubuntu
+        "libcrypt-ssleay-perl" :
+            ensure  => installed;
+
+        "nagios3" :
+            ensure  => installed;
+
+        "nagios-plugins-extra" :
+            ensure  => installed;
+
+        "nagios-nrpe-plugin" :
+            ensure  => installed;
     }
 }
