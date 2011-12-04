@@ -27,15 +27,20 @@ define basic-nagios-host($name, $full_name, $os = "ubuntu") {
             target => "${cfg_root}/${name}_hostextinfo.cfg",
     }
 
-    nagios_service {
-        "check_ping_${name}":
-            target              => "${cfg_root}/${name}_service.cfg",
-            notify              => Service["nagios"],
-            ensure              => present,
-            service_description => "Ping",
-            check_command       => "check-host-alive",
-            host_name           => "$full_name",
-            use                 => "generic-service",
+    # Disable ping checks for cucumber. It has unmanaged iptable rules that
+    # drop all inbound ICMP traffic. I'd rather fix those iptable rules once
+    # cucumber is more properly managed by puppet
+    if ($name != "cucumber") {
+        nagios_service {
+            "check_ping_${name}":
+                target              => "${cfg_root}/${name}_service.cfg",
+                notify              => Service["nagios"],
+                ensure              => present,
+                service_description => "Ping",
+                check_command       => "check-host-alive",
+                host_name           => "$full_name",
+                use                 => "generic-service",
+        }
     }
 
     nagios_service {
