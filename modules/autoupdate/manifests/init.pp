@@ -19,7 +19,7 @@ class autoupdate {
 
         # Might as well clean these up at some point
         "clean up old puppet logs" :
-            command     => "rm -f /root/puppet.*.log",
+            command     => "rm -f /root/infra-puppet/puppet.*.log",
             user        => root,
             hour        => 11,
             minute      => 30,
