@@ -1,6 +1,7 @@
 
 class nagios-server {
     include apache2
+    include nagios-client
     class {
         "nagios-server::packages": ;
         "nagios-server::service" : ;
@@ -8,25 +9,14 @@ class nagios-server {
         "nagios-server::perms"   : ;
     }
 
-    Class["nagios-server::packages"] ->
-        Class["nagios-server"] ->
-            Class["nagios-server::clients"] ->
-                Class["nagios-server::perms"]
+    # nagios-client should always get run first since it will create the nagios
+    # user and set up some basic permissions
+    Class["nagios-client"] ->
+        Class["nagios-server::packages"] ->
+            Class["nagios-server"] ->
+                Class["nagios-server::clients"] ->
+                    Class["nagios-server::perms"]
 
-
-    group {
-        "nagios" :
-            ensure  => present;
-    }
-
-    user {
-        "nagios" :
-            gid     => nagios,
-            ensure  => present,
-            require => [
-                        Group["nagios"]
-                       ];
-    }
 
     file {
         "/etc/nagios3/conf.d/jenkins" :
@@ -75,9 +65,6 @@ class nagios-server::packages {
             ensure  => installed;
 
         "nagios3" :
-            ensure  => installed;
-
-        "nagios-plugins-extra" :
             ensure  => installed;
 
         "nagios-nrpe-plugin" :

@@ -7,6 +7,7 @@
 
 class base {
     include autoupdate
+    include nagios-client
     include ntpdate
     include sudo
     include users-core
