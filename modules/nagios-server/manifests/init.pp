@@ -1,7 +1,7 @@
 
 class nagios-server {
+    include apache2
     class {
-        "apache2" : ;
         "nagios-server::packages": ;
         "nagios-server::service" : ;
         "nagios-server::clients" : ;
