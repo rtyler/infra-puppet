@@ -12,7 +12,10 @@ class apache2 {
 
         service {
             "apache2" :
-                enable => true;
+                require => Package["apache2"],
+                hasstatus       => true,
+                hasrestart      => true,
+                enable  => true;
         }
     }
 }
@@ -71,3 +74,4 @@ define enable-apache-site($name) {
             notify => Exec["reload-apache2"];
     }
 }
+# vim: shiftwidth=4 expandtab tabstop=4

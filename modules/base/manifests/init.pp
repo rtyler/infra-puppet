@@ -6,18 +6,20 @@
 #   not be loaded on every machine, then it should go elsewhere
 
 class base {
-    # Every single machine should have users-core and ntpdate
-    include users-core
-    include sudo
-
-    include ntpdate
     include autoupdate
+    include ntpdate
+    include sudo
+    include users-core
+
 
     stage {"pre": before => Stage["main"]}
 
     package {
         "git-core" :
-            ensure => present,
+            ensure => present;
+        # htop(1) is generally handy, and I like having it around :)
+        "htop" :
+            ensure => present;
     }
 
     group {
@@ -39,3 +41,4 @@ class base::pre {
             command => "apt-get update",
     }
 }
+# vim: shiftwidth=4 expandtab tabstop=4
