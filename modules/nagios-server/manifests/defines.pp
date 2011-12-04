@@ -29,10 +29,24 @@ define basic-nagios-host($name, $full_name, $os = "ubuntu") {
 
     nagios_service {
         "check_ping_${name}":
-            notify => Service["nagios"],
-            check_command => "check_ping",
-            target => "${cfg_root}/${name}_service.cfg",
-            host_name => "$full_name",
+            target              => "${cfg_root}/${name}_service.cfg",
+            notify              => Service["nagios"],
+            ensure              => present,
+            service_description => "Ping",
+            check_command       => "check-host-alive",
+            host_name           => "$full_name",
+            use                 => "generic-service",
+    }
+
+    nagios_service {
+        "check_ssh_${name}":
+            target              => "${cfg_root}/${name}_service.cfg",
+            notify              => Service["nagios"],
+            ensure              => present,
+            service_description => "SSH",
+            check_command       => "check_ssh_4",
+            host_name           => "$full_name",
+            use                 => "generic-service",
     }
 
     #nagios_service {
