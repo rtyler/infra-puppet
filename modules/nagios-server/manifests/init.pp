@@ -7,6 +7,7 @@ class nagios-server {
         "nagios-server::service" : ;
         "nagios-server::clients" : ;
         "nagios-server::perms"   : ;
+        "nagios-server::checks"  : ;
     }
 
     # nagios-client should always get run first since it will create the nagios
@@ -15,7 +16,8 @@ class nagios-server {
         Class["nagios-server::packages"] ->
             Class["nagios-server"] ->
                 Class["nagios-server::clients"] ->
-                    Class["nagios-server::perms"]
+                    Class["nagios-server::perms"] ->
+                        Class["nagios-server::checks"]
 
 
     file {
