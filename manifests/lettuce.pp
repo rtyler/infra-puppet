@@ -9,6 +9,7 @@ node /^lettuce$/ {
     include user-aheritier
 
     include ips
+    include nagios-server
 
     # Temporarily disable
     #include mirrorbrain
