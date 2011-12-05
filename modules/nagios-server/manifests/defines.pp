@@ -42,7 +42,7 @@ define basic-nagios-host($name, $full_name, $os = "ubuntu") {
                 service_description   => "Ping",
                 check_command         => "check-host-alive",
                 host_name             => "$full_name",
-                notification_interval => 10,
+                notification_interval => 5,
                 use                   => "generic-service",
         }
     }
@@ -56,50 +56,8 @@ define basic-nagios-host($name, $full_name, $os = "ubuntu") {
             service_description   => "SSH",
             check_command         => "check_ssh_4",
             host_name             => "$full_name",
-            notification_interval => 10,
+            notification_interval => 5,
             use                   => "generic-service",
     }
-
-    #nagios_service {
-    #    "check_users_${name}":
-    #        use => "remote-nrpe-users",
-    #        target => "${cfg_root}/${name}_host.cfg",
-    #        host_name => "$full_name",
-    #}
-
-    #nagios_service {
-    #    "check_load_${name}":
-    #        use => "remote-nrpe-load",
-    #        target => "${cfg_root}/${name}_host.cfg",
-    #        host_name => "$full_name",
-    #}
-
-    #nagios_service {
-    #    "check_zombie_procs_${name}":
-    #        use => "remote-nrpe-zombie-procs",
-    #        target => "${cfg_root}/${name}_host.cfg",
-    #        host_name => "$full_name",
-    #}
-
-    #nagios_service {
-    #    "check_total_procs_${name}":
-    #        use => "remote-nrpe-total-procs",
-    #        target => "${cfg_root}/${name}_host.cfg",
-    #        host_name => "$full_name",
-    #}
-
-    #nagios_service {
-    #    "check_swap_${name}":
-    #        use => "remote-nrpe-swap",
-    #        target => "${cfg_root}/${name}_host.cfg",
-    #        host_name => "$full_name",
-    #}
-
-    #nagios_service {
-    #    "check_all_disks_${name}":
-    #        use => "remote-nrpe-all-disks",
-    #        target => "${cfg_root}/${name}_host.cfg",
-    #        host_name => "$full_name",
-    #}
 }
 # vim: shiftwidth=4 expandtab tabstop=4

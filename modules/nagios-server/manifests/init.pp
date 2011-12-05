@@ -34,7 +34,6 @@ class nagios-server {
         "/etc/nagios3/htpasswd.users" :
             ensure => present,
             require => [
-                        Class["apache2"],
                         Class["nagios-server::packages"],
             ],
             source => "puppet:///modules/nagios-server/nagios.htpasswd";
@@ -42,7 +41,6 @@ class nagios-server {
         "/etc/nagios3/cgi.cfg" :
             ensure => present,
             require => [
-                        Class["apache2"],
                         Class["nagios-server::packages"],
             ],
             source => "puppet:///modules/nagios-server/nagios.cgi.cfg";
@@ -50,7 +48,6 @@ class nagios-server {
         "/etc/nagios3/nagios.cfg" :
             ensure => present,
             require => [
-                        Class["apache2"],
                         Class["nagios-server::packages"],
             ],
             source => "puppet:///modules/nagios-server/nagios.cfg";
@@ -59,7 +56,6 @@ class nagios-server {
             ensure => directory,
             mode   => 751,
             require => [
-                        Class["apache2"],
                         Class["nagios-server::packages"],
             ];
 
@@ -68,7 +64,6 @@ class nagios-server {
             group   => "www-data",
             mode    => 2710,
             require => [
-                        Class["apache2"],
                         Class["nagios-server::packages"],
             ];
 
@@ -80,9 +75,30 @@ class nagios-server {
             ],
             source => "puppet:///modules/nagios-server/apache2.conf";
 
+
+        # Nagios Pager Duty integration
+        # Thanks pagerduty.com for the gratis account!
+        "/usr/local/bin/pagerduty_nagios.pl" :
+            ensure => present,
+            mode   => 755,
+            source => "puppet:///modules/nagios-server/pagerduty_nagios.pl";
+
+        # Commented out, this file is dropped onto the host directly as it
+        # contains the API key
+        #"/etc/nagios3/conf.d/pagerduty_nagios.cfg" :
+        #    ensure => present,
+        #    require => [
+        #                Class["nagios-server::packages"],
+        #    ],
+        #    source => "puppet:///modules/nagios-server/pagerduty_nagios.cfg";
     }
 
-
+    cron {
+        "pagerduty_flush" :
+            command => "/usr/local/bin/pagerduty_nagios.pl",
+            require => File["/usr/local/bin/pagerduty_nagios.pl"],
+            user    => nagios;
+    }
 }
 
 class nagios-server::packages {

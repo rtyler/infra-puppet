@@ -20,7 +20,7 @@ class nagios-server::contacts {
             notify            => Service["nagios"],
             contactgroup_name => "core-admins",
             alias             => "Nagios Core Admins",
-            members           => "rtyler",
+            members           => "rtyler,pagerduty",
             target            => "${nagios_config_root}/contact_groups.cfg";
 
     }
