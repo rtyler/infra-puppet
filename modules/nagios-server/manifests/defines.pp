@@ -10,11 +10,13 @@ define basic-nagios-host($name, $full_name, $os = "ubuntu") {
 
     nagios_host {
         $full_name :
-            ensure => present,
-            alias  => $name,
-            target => "${cfg_root}/${name}_host.cfg",
-            notify => Service["nagios"],
-            use    => "generic-host";
+            ensure         => present,
+            alias          => $name,
+            contact_groups => "core-admins",
+            check_command  => "check_ssh_4",
+            target         => "${cfg_root}/${name}_host.cfg",
+            notify         => Service["nagios"],
+            use            => "generic-host";
     }
 
     nagios_hostextinfo {
@@ -33,25 +35,29 @@ define basic-nagios-host($name, $full_name, $os = "ubuntu") {
     if ($name != "cucumber") {
         nagios_service {
             "check_ping_${name}":
-                target              => "${cfg_root}/${name}_service.cfg",
-                notify              => Service["nagios"],
-                ensure              => present,
-                service_description => "Ping",
-                check_command       => "check-host-alive",
-                host_name           => "$full_name",
-                use                 => "generic-service",
+                target                => "${cfg_root}/${name}_service.cfg",
+                notify                => Service["nagios"],
+                ensure                => present,
+                contact_groups        => "core-admins",
+                service_description   => "Ping",
+                check_command         => "check-host-alive",
+                host_name             => "$full_name",
+                notification_interval => 10,
+                use                   => "generic-service",
         }
     }
 
     nagios_service {
         "check_ssh_${name}":
-            target              => "${cfg_root}/${name}_service.cfg",
-            notify              => Service["nagios"],
-            ensure              => present,
-            service_description => "SSH",
-            check_command       => "check_ssh_4",
-            host_name           => "$full_name",
-            use                 => "generic-service",
+            target                => "${cfg_root}/${name}_service.cfg",
+            notify                => Service["nagios"],
+            ensure                => present,
+            contact_groups        => "core-admins",
+            service_description   => "SSH",
+            check_command         => "check_ssh_4",
+            host_name             => "$full_name",
+            notification_interval => 10,
+            use                   => "generic-service",
     }
 
     #nagios_service {

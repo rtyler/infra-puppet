@@ -47,6 +47,31 @@ class nagios-server {
             ],
             source => "puppet:///modules/nagios-server/nagios.cgi.cfg";
 
+        "/etc/nagios3/nagios.cfg" :
+            ensure => present,
+            require => [
+                        Class["apache2"],
+                        Class["nagios-server::packages"],
+            ],
+            source => "puppet:///modules/nagios-server/nagios.cfg";
+
+        "/var/lib/nagios3" :
+            ensure => directory,
+            mode   => 751,
+            require => [
+                        Class["apache2"],
+                        Class["nagios-server::packages"],
+            ];
+
+        "/var/lib/nagios3/rw" :
+            ensure  => directory,
+            group   => "www-data",
+            mode    => 2710,
+            require => [
+                        Class["apache2"],
+                        Class["nagios-server::packages"],
+            ];
+
         "/etc/apache2/sites-enabled/nagios.jenkins-ci.org" :
             ensure  => present,
             require => [
