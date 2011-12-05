@@ -3,7 +3,8 @@
 #
 
 node /^eggplant$/ {
-    include users-core
-
-    include ntpdate
+    include base
+}
+Exec {
+    path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ]
 }
