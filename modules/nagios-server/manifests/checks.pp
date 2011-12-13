@@ -25,7 +25,7 @@ class nagios-server::checks {
     $nagios_config_root = "/etc/nagios3/conf.d/jenkins"
     nagios_command {
         "check_disk_by_ssh":
-            command_line    => "$USER1$/check_by_ssh -H $HOSTADDRESS$ -C \"/usr/lib/nagios/plugins/check_disk -w $ARG1$ -c $ARG2$\"",
+            command_line    => "\$USER1\$/check_by_ssh -H \$HOSTADDRESS\$ -C \"/usr/lib/nagios/plugins/check_disk -w \$ARG1\$ -c \$ARG2\$\"",
             notify          => Service["nagios"],
             target          => "${nagios_config_root}/check_disk_by_ssh.cfg",
             ensure          => present
