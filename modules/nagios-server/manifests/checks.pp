@@ -36,6 +36,8 @@ class nagios-server::checks {
             name => "eggplant";
         "cabbage" :
             name => "cabbage";
+        "spinach" :
+            name => "spinach";
     }
 }
 
