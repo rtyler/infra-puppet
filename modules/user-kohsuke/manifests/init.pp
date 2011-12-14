@@ -46,5 +46,14 @@ class user-kohsuke {
             key         => "AAAAB3NzaC1yc2EAAAABIwAAAQEAv2C9H4ZadOCu1rDmou5xgTpWF+cEFHGfwIIkB3fIzjsMfKUjofjXeAf5XrS9oTsQlrr++LRriYKDCCE7l9IPilDJpeua/21S0nktU+2iXKqgiPCVTlVd6qMksqz8j+9oRPZc2AWzp955Kc67MiKHAuZBpuIl7DBTvxL8OLYz/qyh6XnF+kcvNr8xnZ2qYn8lmh1VFnVscEs/5XtKpKQjnwOW4PmJ4YUcZV+Jeg8Si2jDes/BOvVOPBDt5jgNSsUvvVZSKdBiz5ioIZGbqOrnOqCeuZvFemOjeeSKfJUJOBTGisRgsEfcJPFKlgsUDiekvIfqQiVIC3N+0qskKDNWTw==",
             type        => "rsa",
             name        => "hudson@sol";
+
+        "kohsuke_3" :
+            user        => "kohsuke",
+            ensure      => present,
+            require     => File["/home/kohsuke/.ssh"],
+            key         => "AAAAB3NzaC1yc2EAAAABIwAAAQEA5tp6PrxFN9ecF2si/d+Vk5fqlXdXCCynNMObJwXMXAcqtqIKdVtRE2D4WR+q+IgkZAePaQGI2zojHjqUTRGgv3Jk8MUg8Vi/AgZaE4pWljrayYyw7qiEnx3sjmm3/CMOD4okCkQ32P1adoPVLrBSwDQTRomS40BnYlSjPqrU2khqyx/UzrPB6KB+PN6KEyDaKBQwwyJh8gceFN5TkMi+h6ZL2K7m1CPTBv/VaxiEBZ7PLJscOJJB/hIxPnvjnfKBxaszT6l8SObT3wyrHiN57BCKULAYnGge+GLtVqcjd0BoDl/FpEMbynGve5b3CQtqaw2yGYGBEeOe8eV4MSgL+Q==",
+            type        => "rsa",
+            name        => "root@cucumber";
+
     }
 }
