@@ -34,6 +34,8 @@ class nagios-server::checks {
     nagios-check-disk {
         "eggplant" :
             name => "eggplant";
+        "cabbage" :
+            name => "cabbage";
     }
 }
 
