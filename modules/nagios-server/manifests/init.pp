@@ -83,14 +83,17 @@ class nagios-server {
             mode   => 755,
             source => "puppet:///modules/nagios-server/pagerduty_nagios.pl";
 
-        # Commented out, this file is dropped onto the host directly as it
+        # This file is dropped onto the host directly as it
         # contains the API key
-        #"/etc/nagios3/conf.d/pagerduty_nagios.cfg" :
-        #    ensure => present,
-        #    require => [
-        #                Class["nagios-server::packages"],
-        #    ],
-        #    source => "puppet:///modules/nagios-server/pagerduty_nagios.cfg";
+        "/etc/nagios3/conf.d/pagerduty_nagios.cfg" :
+            ensure => present,
+            require => [
+                        Class["nagios-server::packages"],
+            ],
+            source => [
+                        "puppet:///modules/nagios-server/pagerduty_nagios.cfg",
+                        "puppet:///modules/nagios-server/pagerduty_nagios.cfg.dummy",
+                    ];
     }
 
     cron {

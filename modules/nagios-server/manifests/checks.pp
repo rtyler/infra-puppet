@@ -38,17 +38,20 @@ class nagios-server::checks {
             name => "cabbage";
         "spinach" :
             name => "spinach";
+        "cucumber" :
+            name   => "cucumber",
+            ensure => absent;
     }
 }
 
-define nagios-check-http ($name) {
+define nagios-check-http ($name, $ensure = present) {
     $nagios_config_root = "/etc/nagios3/conf.d/jenkins"
 
     nagios_service {
         "http check $name" :
             target              => "${nagios_config_root}/http_services.cfg",
             notify              => Service["nagios"],
-            ensure              => present,
+            ensure              => $ensure,
             contact_groups      => "core-admins",
             service_description => "HTTP",
             check_command       => "check_http_4",
@@ -57,14 +60,14 @@ define nagios-check-http ($name) {
     }
 }
 
-define nagios-check-https ($name) {
+define nagios-check-https ($name, $ensure = present) {
     $nagios_config_root = "/etc/nagios3/conf.d/jenkins"
 
     nagios_service {
         "https check ${name}" :
             target              => "${nagios_config_root}/http_services.cfg",
             notify              => Service["nagios"],
-            ensure              => present,
+            ensure              => $ensure,
             contact_groups      => "core-admins",
             service_description => "HTTPs",
             check_command       => "check_https_4",
@@ -74,14 +77,14 @@ define nagios-check-https ($name) {
 }
 
 # set up the disk monitoring service for the given host
-define nagios-check-disk ($name) {
+define nagios-check-disk ($name, $ensure = present) {
     $nagios_config_root = "/etc/nagios3/conf.d/jenkins"
 
     nagios_service {
         "disk check $name" :
             target              => "${nagios_config_root}/disk.cfg",
             notify              => Service["nagios"],
-            ensure              => present,
+            ensure              => $ensure,
             contact_groups      => "core-admins",
             service_description => "Disk availability",
             check_command       => "check_disk_by_ssh!1500!750",  # Unit is MB (otherwise use 10%, etc)
