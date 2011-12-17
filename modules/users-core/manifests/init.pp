@@ -9,4 +9,5 @@ class users-core {
     include user-abayer
     include user-mindless
     include user-jieryn
+    include user-aheritier
 }
