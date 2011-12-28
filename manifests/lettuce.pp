@@ -15,6 +15,13 @@ node /^lettuce$/ {
 
     # Temporarily disable
     #include mirrorbrain
+
+    firewall {
+      "100 accept inbound HTTP requests" :
+        proto  => 'tcp',
+        port   => 80,
+        action => 'accept';
+    }
 }
 
 Exec {

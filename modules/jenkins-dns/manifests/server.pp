@@ -41,5 +41,16 @@ class jenkins-dns::server {
             require => Package['bind'],
             name    => 'bind9';
     }
+
+    firewall {
+        "900 accept tcp DNS queries" :
+            proto  => "tcp",
+            port   => 53,
+            action => "accept";
+        "901 accept udp DNS queries" :
+            proto  => "udp",
+            port   => 53,
+            action => "accept";
+    }
 }
 # vim: shiftwidth=4 expandtab tabstop=4

@@ -14,7 +14,12 @@ class base {
     include users-core
 
 
-    stage {"pre": before => Stage["main"]}
+    stage {
+        "pre" :
+            before => Stage["main"];
+        "post" :
+            require => Stage["main"];
+    }
 
     package {
         "git-core" :
@@ -32,6 +37,20 @@ class base {
     class {
         "base::pre" :
             stage => "pre";
+        "base::post" :
+            stage => "post";
+    }
+
+    firewall {
+        "000 accept all icmp requests" :
+            proto  => "icmp",
+            action => "accept";
+
+        "001 accept inbound ssh requests" :
+            proto  => "tcp",
+            port   => 22,
+            action => "accept";
+
     }
 }
 
@@ -41,6 +60,13 @@ class base::pre {
     exec {
         "apt-get update" :
             command => "apt-get update",
+    }
+}
+
+class base::post {
+    firewall {
+        "999 drop all other requests":
+            action => "drop";
     }
 }
 # vim: shiftwidth=4 expandtab tabstop=4
