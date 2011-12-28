@@ -52,7 +52,7 @@ meetings    3600    IN    CNAME    cucumber
 mirrors2    3600    IN    CNAME    lettuce
 ips         3600    IN    CNAME    lettuce
 nagios      3600    IN    CNAME    lettuce
-kale        3600    IN    CNAME    ec2-184-73-58-254.compute-1.amazonaws.com
+kale        3600    IN    CNAME    ec2-184-73-58-254.compute-1.amazonaws.com.
 
 
 ; MX Records
