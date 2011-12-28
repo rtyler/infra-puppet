@@ -11,7 +11,7 @@ node /^lettuce$/ {
     include ips
     include nagios-server
 
-    include temp-dns
+    include jenkins-dns::server
 
     # Temporarily disable
     #include mirrorbrain
