@@ -1,7 +1,7 @@
 ; Domain: jenkins-ci.org
 
 ; SOA Record
-JENKINS-CI.ORG.    3600    IN    SOA    ns.example.com hostmaster.example.com (
+JENKINS-CI.ORG.    3600    IN    SOA    ns1.jenkins-ci.org tyler.monkeypox.org (
                 2011120401
                 28800
                 7200
@@ -10,43 +10,58 @@ JENKINS-CI.ORG.    3600    IN    SOA    ns.example.com hostmaster.example.com (
                 )
 
 ; A Records
-@    3600    IN    A    63.246.20.93
+@           3600    IN    A    63.246.20.93
+
+; VM at OSUOSL
 eggplant    3600    IN    A    140.211.15.101
+
+; Primary at Contegix
 cucumber    3600    IN    A    63.246.20.93
-spinach    3600    IN    A    173.203.60.151
-lettuce    3600    IN    A    140.211.15.121
-cabbage    3600    IN    A    140.211.15.130
-lists    3600    IN    A    140.211.166.34
+
+; VM at Rackspace
+spinach     3600    IN    A    173.203.60.151
+
+; Hosts at OSUOSL
+lettuce     3600    IN    A    140.211.15.121
+cabbage     3600    IN    A    140.211.15.130
+
+lists       3600    IN    A    140.211.166.34
+ns1         3600    IN    A    140.211.15.121
+ns2         3600    IN    A    140.211.15.121
+
+;-----------------------------------
 
 ; CNAME Records
-issues    3600    IN    CNAME    eggplant
-wiki    3600    IN    CNAME    eggplant
-updates    3600    IN    CNAME    cucumber
-downloads    3600    IN    CNAME    cucumber
-fisheye    3600    IN    CNAME    cucumber
-l10n    3600    IN    CNAME    cucumber
-javadoc    3600    IN    CNAME    cucumber
-mirrors    3600    IN    CNAME    cucumber
-pkg    3600    IN    CNAME    cucumber
-usage    3600    IN    CNAME    cucumber
-stacktrace    3600    IN    CNAME    cucumber
+www         3600    IN    CNAME    @
+issues      3600    IN    CNAME    eggplant
+wiki        3600    IN    CNAME    eggplant
+updates     3600    IN    CNAME    cucumber
+downloads   3600    IN    CNAME    cucumber
+fisheye     3600    IN    CNAME    cucumber
+l10n        3600    IN    CNAME    cucumber
+javadoc     3600    IN    CNAME    cucumber
+mirrors     3600    IN    CNAME    cucumber
+pkg         3600    IN    CNAME    cucumber
+usage       3600    IN    CNAME    cucumber
+stacktrace  3600    IN    CNAME    cucumber
 sorcerer    3600    IN    CNAME    cucumber
-maven    3600    IN    CNAME    cucumber
-ci    3600    IN    CNAME    cucumber
-svn    3600    IN    CNAME    cucumber
+maven       3600    IN    CNAME    cucumber
+ci          3600    IN    CNAME    cucumber
+svn         3600    IN    CNAME    cucumber
 meetings    3600    IN    CNAME    cucumber
 mirrors2    3600    IN    CNAME    lettuce
-ips    3600    IN    CNAME    lettuce
-kale    3600    IN    CNAME    ec2-184-73-58-254.compute-1.amazonaws.com
-nagios    3600    IN    CNAME    lettuce
-www    3600    IN    CNAME    @
+ips         3600    IN    CNAME    lettuce
+nagios      3600    IN    CNAME    lettuce
+kale        3600    IN    CNAME    ec2-184-73-58-254.compute-1.amazonaws.com
+
 
 ; MX Records
-;@    3600    IN    MX    0    cucumber
-;lists    3600    IN    MX    0    smtp2.osuosl.org
-;lists    3600    IN    MX    0    smtp1.osuosl.org
-;lists    3600    IN    MX    0    smtp3.osuosl.org
-;lists    3600    IN    MX    0    smtp4.osuosl.org
+@          3600    IN    MX    0    cucumber
+lists      3600    IN    MX    0    smtp2.osuosl.org
+lists      3600    IN    MX    0    smtp1.osuosl.org
+lists      3600    IN    MX    0    smtp3.osuosl.org
+lists      3600    IN    MX    0    smtp4.osuosl.org
 
 ; NS Records
-@    3600    IN    NS    lettuce
+@           3600    IN    NS    ns1.
+@           3600    IN    NS    ns2.
