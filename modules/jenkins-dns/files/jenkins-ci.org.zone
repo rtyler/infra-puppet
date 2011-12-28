@@ -1,77 +1,52 @@
 ; Domain: jenkins-ci.org
-; Exported (y-m-d hh:mm:ss): 2011-12-26 21:36:45
-;
-; This file is intended for use for informational and archival
-; purposes ONLY and MUST be edited before use on a production
-; DNS server.
-;
-; In particular, you must update the SOA record with the correct
-; authoritative name server and contact e-mail address information,
-; and add the correct NS records for the name servers which will
-; be authoritative for this domain.
-;
-; For further information, please consult the BIND documentation
-; located on the following website:
-;
-; http://www.isc.org/
-;
-; And RFC 1035:
-;
-; http://www.ietf.org/rfc/rfc1035.txt
-;
-; Please note that we do NOT offer technical support for any use
-; of this zone data, the BIND name server, or any other third-
-; party DNS software.
-;
-; Use at your own risk.
 
 ; SOA Record
-JENKINS-CI.ORG.	3600	IN	SOA	ns67.domaincontrol.com.	dns.jomax.net (
-				2011120401
-				28800
-				7200
-				604800
-				3600
-				)
+JENKINS-CI.ORG.    3600    IN    SOA    ns.example.com hostmaster.example.com (
+                2011120401
+                28800
+                7200
+                604800
+                3600
+                )
 
 ; A Records
-@	3600	IN	A	63.246.20.93
-eggplant	3600	IN	A	140.211.15.101
-cucumber	3600	IN	A	63.246.20.93
-spinach	3600	IN	A	173.203.60.151
-lettuce	3600	IN	A	140.211.15.121
-cabbage	3600	IN	A	140.211.15.130
-lists	3600	IN	A	140.211.166.34
+@    3600    IN    A    63.246.20.93
+eggplant    3600    IN    A    140.211.15.101
+cucumber    3600    IN    A    63.246.20.93
+spinach    3600    IN    A    173.203.60.151
+lettuce    3600    IN    A    140.211.15.121
+cabbage    3600    IN    A    140.211.15.130
+lists    3600    IN    A    140.211.166.34
 
 ; CNAME Records
-issues	3600	IN	CNAME	eggplant
-wiki	3600	IN	CNAME	eggplant
-updates	3600	IN	CNAME	cucumber
-downloads	3600	IN	CNAME	cucumber
-fisheye	3600	IN	CNAME	cucumber
-l10n	3600	IN	CNAME	cucumber
-javadoc	3600	IN	CNAME	cucumber
-mirrors	3600	IN	CNAME	cucumber
-pkg	3600	IN	CNAME	cucumber
-usage	3600	IN	CNAME	cucumber
-stacktrace	3600	IN	CNAME	cucumber
-sorcerer	3600	IN	CNAME	cucumber
-maven	3600	IN	CNAME	cucumber
-ci	3600	IN	CNAME	cucumber
-svn	3600	IN	CNAME	cucumber
-meetings	3600	IN	CNAME	cucumber
-mirrors2	3600	IN	CNAME	lettuce
-ips	3600	IN	CNAME	lettuce
-kale	3600	IN	CNAME	ec2-184-73-58-254.compute-1.amazonaws.com
-nagios	3600	IN	CNAME	lettuce
-www	3600	IN	CNAME	@
+issues    3600    IN    CNAME    eggplant
+wiki    3600    IN    CNAME    eggplant
+updates    3600    IN    CNAME    cucumber
+downloads    3600    IN    CNAME    cucumber
+fisheye    3600    IN    CNAME    cucumber
+l10n    3600    IN    CNAME    cucumber
+javadoc    3600    IN    CNAME    cucumber
+mirrors    3600    IN    CNAME    cucumber
+pkg    3600    IN    CNAME    cucumber
+usage    3600    IN    CNAME    cucumber
+stacktrace    3600    IN    CNAME    cucumber
+sorcerer    3600    IN    CNAME    cucumber
+maven    3600    IN    CNAME    cucumber
+ci    3600    IN    CNAME    cucumber
+svn    3600    IN    CNAME    cucumber
+meetings    3600    IN    CNAME    cucumber
+mirrors2    3600    IN    CNAME    lettuce
+ips    3600    IN    CNAME    lettuce
+kale    3600    IN    CNAME    ec2-184-73-58-254.compute-1.amazonaws.com
+nagios    3600    IN    CNAME    lettuce
+www    3600    IN    CNAME    @
 
 ; MX Records
-;@	3600	IN	MX	0	cucumber
-;lists	3600	IN	MX	0	smtp2.osuosl.org
-;lists	3600	IN	MX	0	smtp1.osuosl.org
-;lists	3600	IN	MX	0	smtp3.osuosl.org
-;lists	3600	IN	MX	0	smtp4.osuosl.org
+;@    3600    IN    MX    0    cucumber
+;lists    3600    IN    MX    0    smtp2.osuosl.org
+;lists    3600    IN    MX    0    smtp1.osuosl.org
+;lists    3600    IN    MX    0    smtp3.osuosl.org
+;lists    3600    IN    MX    0    smtp4.osuosl.org
 
 ; NS Records
-@	3600	IN	NS	lettuce
+@    3600    IN    NS    lettuce
