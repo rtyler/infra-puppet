@@ -14,16 +14,16 @@ class autoupdate {
         "pull puppet updates" :
             command     => "(cd /root/infra-puppet && sh run.sh)",
             user        => root,
-            minute      => 30,
+            minute      => 15,
             ensure      => present;
 
         # Might as well clean these up at some point
         "clean up old puppet logs" :
             command     => "rm -f /root/infra-puppet/puppet.*.log",
             user        => root,
-            hour        => 11,
+            hour        => 4,
             minute      => 30,
-            weekday     => 2,
+            weekday     => '*',
             ensure      => present;
     }
 }
