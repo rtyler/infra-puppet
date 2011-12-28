@@ -4,7 +4,9 @@ node /^lucid32$/ {
 
     #include ips
     #include user-kbsingh
-    include nagios-server
+    include jenkins-dns
+    include jenkins-dns::server
+    #include nagios-server
     #include ci-ssh-slave
     #include haproxy-main
     #include mirrorbrain
