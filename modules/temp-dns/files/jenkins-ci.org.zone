@@ -1,0 +1,88 @@
+; Domain: jenkins-ci.org
+; Exported (y-m-d hh:mm:ss): 2011-12-26 21:36:45
+;
+; This file is intended for use for informational and archival
+; purposes ONLY and MUST be edited before use on a production
+; DNS server.
+;
+; In particular, you must update the SOA record with the correct
+; authoritative name server and contact e-mail address information,
+; and add the correct NS records for the name servers which will
+; be authoritative for this domain.
+;
+; For further information, please consult the BIND documentation
+; located on the following website:
+;
+; http://www.isc.org/
+;
+; And RFC 1035:
+;
+; http://www.ietf.org/rfc/rfc1035.txt
+;
+; Please note that we do NOT offer technical support for any use
+; of this zone data, the BIND name server, or any other third-
+; party DNS software.
+;
+; Use at your own risk.
+
+; SOA Record
+JENKINS-CI.ORG.	3600	IN	SOA	ns67.domaincontrol.com.	dns.jomax.net (
+				2011120401
+				28800
+				7200
+				604800
+				3600
+				)
+
+; A Records
+@	3600	IN	A	63.246.20.93
+eggplant	3600	IN	A	140.211.15.101
+cucumber	3600	IN	A	63.246.20.93
+spinach	3600	IN	A	173.203.60.151
+lettuce	3600	IN	A	140.211.15.121
+cabbage	3600	IN	A	140.211.15.130
+lists	3600	IN	A	140.211.166.34
+
+; CNAME Records
+issues	3600	IN	CNAME	eggplant.jenkins-ci.org
+wiki	3600	IN	CNAME	eggplant.jenkins-ci.org
+updates	3600	IN	CNAME	cucumber.jenkins-ci.org
+downloads	3600	IN	CNAME	cucumber.jenkins-ci.org
+fisheye	3600	IN	CNAME	cucumber.jenkins-ci.org
+l10n	3600	IN	CNAME	cucumber.jenkins-ci.org
+javadoc	3600	IN	CNAME	cucumber.jenkins-ci.org
+mirrors	3600	IN	CNAME	cucumber.jenkins-ci.org
+pkg	3600	IN	CNAME	cucumber.jenkins-ci.org
+usage	3600	IN	CNAME	cucumber.jenkins-ci.org
+stacktrace	3600	IN	CNAME	cucumber.jenkins-ci.org
+sorcerer	3600	IN	CNAME	cucumber.jenkins-ci.org
+maven	3600	IN	CNAME	cucumber.jenkins-ci.org
+ci	3600	IN	CNAME	cucumber.jenkins-ci.org
+svn	3600	IN	CNAME	cucumber.jenkins-ci.org
+meetings	3600	IN	CNAME	cucumber.jenkins-ci.org
+mirrors2	3600	IN	CNAME	lettuce.jenkins-ci.org
+ips	3600	IN	CNAME	lettuce.jenkins-ci.org
+kale	3600	IN	CNAME	ec2-184-73-58-254.compute-1.amazonaws.com
+nagios	3600	IN	CNAME	lettuce.jenkins-ci.org
+www	3600	IN	CNAME	@
+mobilemail	3600	IN	CNAME	mobilemail-v01.prod.mesa1.secureserver.net
+pda	3600	IN	CNAME	mobilemail-v01.prod.mesa1.secureserver.net
+email	3600	IN	CNAME	email.secureserver.net
+imap	3600	IN	CNAME	imap.secureserver.net
+mail	3600	IN	CNAME	pop.secureserver.net
+pop	3600	IN	CNAME	pop.secureserver.net
+smtp	3600	IN	CNAME	smtp.secureserver.net
+ftp	3600	IN	CNAME	@
+webmail	3600	IN	CNAME	webmail.secureserver.net
+e	3600	IN	CNAME	email.secureserver.net
+
+; MX Records
+@	3600	IN	MX	0	cucumber.jenkins-ci.org
+lists	3600	IN	MX	0	smtp2.osuosl.org
+lists	3600	IN	MX	0	smtp1.osuosl.org
+lists	3600	IN	MX	0	smtp3.osuosl.org
+lists	3600	IN	MX	0	smtp4.osuosl.org
+
+; NS Records
+@	3600	IN	NS	ns67.domaincontrol.com
+@	3600	IN	NS	ns68.domaincontrol.com
