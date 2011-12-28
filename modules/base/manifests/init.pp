@@ -7,6 +7,7 @@
 
 class base {
     include autoupdate
+    include jenkins-dns
     include nagios-client
     include ntpdate
     include sudo
