@@ -1,8 +1,8 @@
 ; Domain: jenkins-ci.org
 
 ; SOA Record
-JENKINS-CI.ORG.    3600    IN    SOA    ns1.jenkins-ci.org tyler.monkeypox.org (
-                2011120401
+JENKINS-CI.ORG.    3600    IN    SOA    ns1.jenkins-ci.org. tyler.monkeypox.org. (
+                2011122901
                 28800
                 7200
                 604800
@@ -57,10 +57,10 @@ kale        3600    IN    CNAME    ec2-184-73-58-254.compute-1.amazonaws.com.
 
 ; MX Records
 @          3600    IN    MX    0    cucumber
-lists      3600    IN    MX    0    smtp1.osuosl.org
-lists      3600    IN    MX    0    smtp2.osuosl.org
-lists      3600    IN    MX    0    smtp3.osuosl.org
-lists      3600    IN    MX    0    smtp4.osuosl.org
+lists      3600    IN    MX    0    smtp1.osuosl.org.
+lists      3600    IN    MX    0    smtp2.osuosl.org.
+lists      3600    IN    MX    0    smtp3.osuosl.org.
+lists      3600    IN    MX    0    smtp4.osuosl.org.
 
 ; NS Records
 @           3600    IN    NS    ns1
