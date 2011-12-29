@@ -52,8 +52,15 @@ class base {
             action => "accept";
 
         "002 accept local traffic" :
+            # traffic within localhost is OK
             iniface => "lo",
             action => "accept";
+
+        "003 allow established connections":
+            # this is needed to make outbound connections work, such as database connection
+            state => ['RELATED','ESTABLISHED'],
+            action => "accept";
+
     }
 }
 
