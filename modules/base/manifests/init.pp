@@ -51,6 +51,9 @@ class base {
             port   => 22,
             action => "accept";
 
+        "002 accept local traffic" :
+            iniface => "lo",
+            action => "accept";
     }
 }
 
