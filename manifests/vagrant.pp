@@ -12,6 +12,10 @@ node /^lucid32$/ {
     #include mirrorbrain
 }
 
+node default {
+    include base
+}
+
 Exec {
-    path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ]
+    path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ]
 }

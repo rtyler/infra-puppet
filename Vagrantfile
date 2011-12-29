@@ -1,6 +1,11 @@
 Vagrant::Config.run do |config|
-  config.vm.box = "lucid32"
-  config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
+  if ENV['REDHAT'] == '1'
+    config.vm.box     = 'centos-6-x86_64'
+    config.vm.box_url = 'http://dl.dropbox.com/u/1627760/centos-6.0-x86_64.box'
+  else
+    config.vm.box     = "lucid32"
+    config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
+  end
 
   config.vm.customize do |vm|
     vm.memory_size = 768

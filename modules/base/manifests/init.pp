@@ -8,25 +8,40 @@
 class base {
     include autoupdate
     include jenkins-dns
-    include nagios-client
     include ntpdate
     include sudo
     include users-core
 
-
-    stage {
-        "pre" :
-            before => Stage["main"];
-        "post" :
-            require => Stage["main"];
+    # Unfortunately this module only supports Ubuntu
+    if ($operatingsystem == 'Ubuntu') {
+        include nagios-client
     }
 
-    package {
-        "git-core" :
-            ensure => present;
-        # htop(1) is generally handy, and I like having it around :)
-        "htop" :
-            ensure => present;
+
+    stage {
+        'pre' :
+            before => Stage['main'];
+        'post' :
+            require => Stage['main'];
+    }
+
+
+    if ($operatingsystem =~ /(RedHat|CentOS)/) {
+        package {
+            'git' :
+                alias  => 'git-core',
+                ensure => present;
+        }
+    }
+    else {
+        package {
+            'git-core' :
+                ensure => present;
+
+            # htop(1) is generally handy, and I like having it around :)
+            'htop' :
+                ensure => present;
+        }
     }
 
     group {
@@ -67,9 +82,19 @@ class base {
 class base::pre {
     # It's generally useful to make sure our package meta-data is always up to
     # date prior to running just about everything else
+    if ($operatingsystem == 'Ubuntu') {
+        $command = 'apt-get update'
+    }
+    elsif ($operatingsystem =~ /(RedHat|CentOS)/) {
+        $command = 'yum makecache'
+    }
+    else {
+        err('Unsupported platform!')
+    }
+
     exec {
-        "apt-get update" :
-            command => "apt-get update",
+        'pre-update packages' :
+            command => $command;
     }
 }
 
