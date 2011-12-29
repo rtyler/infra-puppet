@@ -7,5 +7,5 @@ node /^cabbage$/ {
 }
 
 Exec {
-    path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ]
+    path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ]
 }

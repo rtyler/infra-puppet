@@ -17,7 +17,7 @@ node /^lettuce$/ {
     #include mirrorbrain
 
     firewall {
-      "100 accept inbound HTTP requests" :
+      '100 accept inbound HTTP requests' :
         proto  => 'tcp',
         port   => 80,
         action => 'accept';
@@ -25,5 +25,5 @@ node /^lettuce$/ {
 }
 
 Exec {
-    path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ]
+    path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ]
 }

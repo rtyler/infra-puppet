@@ -6,27 +6,27 @@ node /^cucumber$/ {
     include base
 
     firewall {
-      "100 accept inbound HTTP requests" :
+      '100 accept inbound HTTP requests' :
         proto  => 'tcp',
         port   => 80,
         action => 'accept';
 
-      "101 accept inbound HTTPs requests" :
+      '101 accept inbound HTTPs requests' :
         proto  => 'tcp',
         port   => 443,
         action => 'accept';
 
-      "102 accept inbound rsync requests" :
+      '102 accept inbound rsync requests' :
         proto  => 'tcp',
         port   => 873,
         action => 'accept';
 
-      "103 accept inbound Subversion requests" :
+      '103 accept inbound Subversion requests' :
         proto  => 'tcp',
         port   => 3690,
         action => 'accept';
 
-      "104 accept inbound requests to Nexus" :
+      '104 accept inbound requests to Nexus' :
         proto  => 'tcp',
         port   => 8081,
         action => 'accept';
@@ -34,5 +34,5 @@ node /^cucumber$/ {
     }
 }
 Exec {
-    path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ]
+    path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ]
 }

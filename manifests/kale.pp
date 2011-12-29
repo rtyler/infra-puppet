@@ -7,9 +7,8 @@ node default {
     include base
 
     include ci-ssh-slave
-    include user-jieryn
 }
 
 Exec {
-    path => [ "/bin/", "/sbin/" , "/usr/bin/", "/usr/sbin/" ]
+    path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ]
 }

@@ -30,36 +30,36 @@ class base {
     }
 
     group {
-        "puppet" :
+        'puppet' :
             ensure => present,
     }
 
     class {
-        "base::pre" :
-            stage => "pre";
-        "base::post" :
-            stage => "post";
+        'base::pre' :
+            stage => 'pre';
+        'base::post' :
+            stage => 'post';
     }
 
     firewall {
-        "000 accept all icmp requests" :
-            proto  => "icmp",
-            action => "accept";
+        '000 accept all icmp requests' :
+            proto  => 'icmp',
+            action => 'accept';
 
-        "001 accept inbound ssh requests" :
-            proto  => "tcp",
+        '001 accept inbound ssh requests' :
+            proto  => 'tcp',
             port   => 22,
-            action => "accept";
+            action => 'accept';
 
-        "002 accept local traffic" :
+        '002 accept local traffic' :
             # traffic within localhost is OK
-            iniface => "lo",
-            action => "accept";
+            iniface => 'lo',
+            action => 'accept';
 
-        "003 allow established connections":
+        '003 allow established connections':
             # this is needed to make outbound connections work, such as database connection
             state => ['RELATED','ESTABLISHED'],
-            action => "accept";
+            action => 'accept';
 
     }
 }
@@ -75,8 +75,8 @@ class base::pre {
 
 class base::post {
     firewall {
-        "999 drop all other requests":
-            action => "drop";
+        '999 drop all other requests':
+            action => 'drop';
     }
 }
 # vim: shiftwidth=4 expandtab tabstop=4
