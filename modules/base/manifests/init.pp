@@ -25,23 +25,10 @@ class base {
             require => Stage['main'];
     }
 
-
-    if ($operatingsystem =~ /(RedHat|CentOS)/) {
-        package {
-            'git' :
-                alias  => 'git-core',
-                ensure => present;
-        }
-    }
-    else {
-        package {
-            'git-core' :
-                ensure => present;
-
-            # htop(1) is generally handy, and I like having it around :)
-            'htop' :
-                ensure => present;
-        }
+    package {
+        # htop(1) is generally handy, and I like having it around :)
+        'htop' :
+            ensure => present;
     }
 
     group {
@@ -52,8 +39,11 @@ class base {
     class {
         'base::pre' :
             stage => 'pre';
+
         'base::post' :
             stage => 'post';
+
+        'packages::git' :  ;
     }
 
     firewall {
