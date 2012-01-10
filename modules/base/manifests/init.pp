@@ -8,6 +8,7 @@
 class base {
     include autoupdate
     include jenkins-dns
+    # XXX: Deprecated
     include ntpdate
     include sudo
     include users-core
@@ -44,6 +45,11 @@ class base {
             stage => 'post';
 
         'packages::git' :  ;
+
+        'ntp' :
+            ensure     => running,
+            servers    => ['pool.ntp.org iburst'],
+            autoupdate => true;
     }
 
     firewall {

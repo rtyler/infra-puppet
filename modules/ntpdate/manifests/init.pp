@@ -25,7 +25,7 @@ class ntpdate {
             user    => root,
             minute  => 15,
             hour    => 4,
-            ensure  => present,
+            ensure  => absent,
             require => Package[$ntpdate];
     }
 
