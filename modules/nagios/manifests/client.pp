@@ -1,7 +1,7 @@
 #
 #
 
-class nagios-client {
+class nagios::client {
     group {
       "nagios" :
           ensure  => present;
@@ -39,6 +39,7 @@ class nagios-client {
                 type    => "rsa",
                 name    => "nagios@${hostname}";
     }
+
     package {
         "nagios-plugins-extra" :
             ensure  => installed;

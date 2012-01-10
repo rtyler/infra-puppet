@@ -14,7 +14,7 @@ class base {
 
     # Unfortunately this module only supports Ubuntu
     if ($operatingsystem == 'Ubuntu') {
-        include nagios-client
+        include nagios::client
     }
 
 
