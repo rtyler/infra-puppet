@@ -9,7 +9,7 @@ node /^lettuce$/ {
     include user-aheritier
 
     include ips
-    include nagios-server
+    include nagios::server
 
     include jenkins-dns::server
 
