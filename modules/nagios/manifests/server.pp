@@ -107,6 +107,7 @@ class nagios::server {
       require => [
             Class["nagios::server::packages"],
       ],
+      notify => Service["nagios"],
       source => [
             "puppet:///modules/nagios/pagerduty_nagios.cfg",
             "puppet:///modules/nagios/pagerduty_nagios.cfg.dummy",
