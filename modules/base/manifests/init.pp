@@ -10,6 +10,7 @@ class base {
     include jenkins-dns
     # XXX: Deprecated
     include ntpdate
+    include sshd
     include sudo
     include users-core
 
@@ -26,17 +27,6 @@ class base {
             require => Stage['main'];
     }
 
-    package {
-        # htop(1) is generally handy, and I like having it around :)
-        'htop' :
-            ensure => present;
-    }
-
-    group {
-        'puppet' :
-            ensure => present,
-    }
-
     class {
         'base::pre' :
             stage => 'pre';
@@ -50,6 +40,26 @@ class base {
             ensure     => running,
             servers    => ['pool.ntp.org iburst'],
             autoupdate => true;
+    }
+
+
+    package {
+        # htop(1) is generally handy, and I like having it around :)
+        'htop' :
+            ensure => present;
+    }
+
+    group {
+        'puppet' :
+            ensure => present,
+    }
+
+    sshd::config {
+        'PermitRootLogin' :
+            value => 'no';
+
+        'PasswordAuthentication' :
+            value => 'no';
     }
 
     firewall {
