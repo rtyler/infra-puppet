@@ -20,6 +20,8 @@ class nagios::server::hosts {
       full_name => "cucumber.jenkins-ci.org";
     "eggplant" :
       full_name => "eggplant.jenkins-ci.org";
+    'kale' :
+      full_name => 'kale.jenkins-ci.org';
     }
 }
 
