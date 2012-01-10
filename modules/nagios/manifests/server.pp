@@ -121,7 +121,7 @@ class nagios::server {
   }
 
 
-  define basic-host($name, $full_name, $os = 'ubuntu') {
+  define basic-host($full_name, $os = 'ubuntu') {
     nagios_host {
       $full_name :
         ensure     => present,

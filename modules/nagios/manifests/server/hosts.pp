@@ -11,19 +11,14 @@ class nagios::server::hosts {
 
   nagios::server::basic-host {
     "lettuce" :
-      name      => "lettuce",
       full_name => "lettuce.jenkins-ci.org";
     "cabbage" :
-      name      => "cabbage",
       full_name => "cabbage.jenkins-ci.org";
     "spinach" :
-      name      => "spinach",
       full_name => "spinach.jenkins-ci.org";
     "cucumber" :
-      name      => "cucumber",
       full_name => "cucumber.jenkins-ci.org";
     "eggplant" :
-      name      => "eggplant",
       full_name => "eggplant.jenkins-ci.org";
     }
 }
