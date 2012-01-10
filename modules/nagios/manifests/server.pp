@@ -153,22 +153,27 @@ class nagios::server {
     # Disable ping checks for cucumber. It has unmanaged iptable rules that
     # drop all inbound ICMP traffic. I'd rather fix those iptable rules once
     # cucumber is more properly managed by puppet
-    if ($name != "cucumber") {
-      nagios_service {
-        "check_ping_${name}":
-          target        => "${nagios::server::jenkins_cfg_dir}/${name}_check_ping_service.cfg",
-          notify     => [
-                    Service["nagios"],
-                    Class['nagios::server::permissions']
-          ],
-          ensure        => present,
-          contact_groups    => "core-admins",
-          service_description   => "Ping",
-          check_command     => "check-host-alive",
-          host_name       => "$full_name",
-          notification_interval => 5,
-          use           => "generic-service",
-      }
+    if ( ($name != "cucumber") or ($name != 'kale') ) {
+      $ping_status = 'absent'
+    }
+    else {
+      $ping_status = 'present'
+    }
+
+    nagios_service {
+      "check_ping_${name}":
+        target        => "${nagios::server::jenkins_cfg_dir}/${name}_check_ping_service.cfg",
+        notify     => [
+                  Service["nagios"],
+                  Class['nagios::server::permissions']
+        ],
+        ensure        => $ping_status,
+        contact_groups    => "core-admins",
+        service_description   => "Ping",
+        check_command     => "check-host-alive",
+        host_name       => "$full_name",
+        notification_interval => 5,
+        use           => "generic-service",
     }
 
     nagios_service {
