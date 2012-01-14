@@ -31,6 +31,10 @@ node /^cucumber$/ {
         port   => 8081,
         action => 'accept';
 
+      '105 accept all requests from eggplant' :
+        proto  => 'tcp',
+        source => 'hudson-java.osuosl.org',
+        action => 'accept';
     }
 }
 Exec {
