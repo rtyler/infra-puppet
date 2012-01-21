@@ -7,15 +7,12 @@ Vagrant::Config.run do |config|
     config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
   end
 
-  config.vm.customize do |vm|
-    vm.memory_size = 768
-    vm.name = "jenkins-puppet-vm"
-  end
+  config.vm.customize ["modifyvm", :id, "--memory", "768"]
 
   # Boot with a GUI so you can see the screen. (Default is headless)
   # config.vm.boot_mode = :gui
 
-  config.vm.forward_port "http", 80, 18080
+  config.vm.forward_port 80, 18080
 
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
