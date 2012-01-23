@@ -35,6 +35,7 @@ class base {
             stage => 'post';
 
         'packages::git' :  ;
+        'packages::wget':  ;
 
         'ntp' :
             ensure     => running,

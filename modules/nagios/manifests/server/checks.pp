@@ -5,6 +5,43 @@
 class nagios::server::checks($config_dir) {
   include nagios::server
 
+  # Simple mirrorbrain check
+  $mirrorbrain_file = "/usr/local/bin/check_mirrorbrain.sh"
+  file {
+    $mirrorbrain_file :
+      ensure => present,
+      owner  => root,
+      mode   => 0755,
+      source => "puppet:///modules/nagios/check_mirrorbrain.sh";
+  }
+  nagios_command {
+    "check_mirrorbrain" :
+      target       => "${nagios::server::jenkins_cfg_dir}/mirrorbrain_command.cfg",
+      notify       => [
+                      Service["nagios"],
+                      Class["nagios::server::permissions"],
+                      ],
+      ensure       => present,
+      #use         => "generic-command",
+      command_line => $mirrorbrain_file;
+  }
+  nagios_service {
+    "mirrorbrain check" :
+      target => "${nagios::server::jenkins_cfg_dir}/mirrorbrain_check.cfg",
+      notify     => [
+                Service["nagios"],
+                Class['nagios::server::permissions'],
+                File[$mirrorbrain_file],
+                Nagios_Command["check_mirrorbrain"],
+      ],
+      ensure              => present,
+      contact_groups      => "core-admins",
+      service_description => "MirrorBrain",
+      host_name           => "cucumber.jenkins-ci.org",
+      use                 => "generic-service",
+      check_command       => "check_mirrorbrain";
+  }
+
   nagios::server::check-http {
     "cucumber" :
       # Runs: www, mirrors, updates
