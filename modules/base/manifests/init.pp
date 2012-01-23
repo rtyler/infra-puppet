@@ -8,8 +8,6 @@
 class base {
     include autoupdate
     include jenkins-dns
-    # XXX: Deprecated
-    include ntpdate
     include sshd
     include sudo
     include users-core
