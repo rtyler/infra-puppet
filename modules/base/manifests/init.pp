@@ -10,6 +10,7 @@ class base {
     include jenkins-dns
     include sshd
     include sudo
+    include stdlib
     include users-core
 
     # Unfortunately this module only supports Ubuntu
