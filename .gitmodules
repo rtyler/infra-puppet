@@ -10,3 +10,6 @@
 [submodule "modules/sshd"]
 	path = modules/sshd
 	url = git://github.com/jenkinsci/puppet-sshd.git
+[submodule "modules/concat"]
+	path = modules/concat
+	url = git://github.com/ripienaar/puppet-concat.git
