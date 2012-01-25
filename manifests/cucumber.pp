@@ -4,6 +4,7 @@
 
 node /^cucumber$/ {
     include base
+    include haproxy
 
     firewall {
       '100 accept inbound HTTP requests' :
