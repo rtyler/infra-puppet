@@ -21,6 +21,7 @@ class nagios::server::hosts {
     "eggplant" :
       full_name => "eggplant.jenkins-ci.org";
     'kale' :
+      os        => 'redhat',
       full_name => 'kale.jenkins-ci.org';
     }
 }

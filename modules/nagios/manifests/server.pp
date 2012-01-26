@@ -121,8 +121,15 @@ class nagios::server {
 
 
   define basic-host($full_name, $os = 'ubuntu') {
+    if ($os == 'ubuntu') {
+      $disk_status = 'present'
+    }
+    else {
+      $disk_status = 'absent'
+    }
     nagios::server::check-disk {
-      $name : ;
+      $name :
+        ensure => $disk_status;
     }
 
     nagios_host {
@@ -152,10 +159,10 @@ class nagios::server {
         target => "${nagios::server::jenkins_cfg_dir}/${name}_hostextinfo.cfg",
     }
 
-    # Disable ping checks for cucumber. It has unmanaged iptable rules that
+    # Disable ping checks for kale. It has unmanaged iptable rules that
     # drop all inbound ICMP traffic. I'd rather fix those iptable rules once
-    # cucumber is more properly managed by puppet
-    if ( ($name == "cucumber") or ($name == 'kale') ) {
+    # kale is more properly managed by puppet
+    if ($name == 'kale') {
       $ping_status = 'absent'
     }
     else {
@@ -191,15 +198,22 @@ class nagios::server {
         host_name       => "$full_name",
         notification_interval => 5,
         use           => "generic-service";
+    }
 
-
+    if ($os == 'ubuntu') {
+      $puppet_ensure = 'present'
+    }
+    else {
+      $puppet_ensure = 'absent'
+    }
+    nagios_service {
       "check_puppet_run_${name}" :
         target        => "${nagios::server::jenkins_cfg_dir}/${name}_check_puppet_run_service.cfg",
         notify     => [
                   Service["nagios"],
                   Class['nagios::server::permissions']
         ],
-        ensure        => present,
+        ensure        => $puppet_ensure,
         contact_groups    => "core-admins",
         service_description   => "Puppet",
         check_command     => "check_puppet_run_by_ssh",
