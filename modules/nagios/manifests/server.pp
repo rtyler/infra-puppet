@@ -8,13 +8,11 @@ class nagios::server {
   class {
     "nagios::server::packages"  : ;
     "nagios::server::service"   : ;
+    "nagios::server::commands"  : ;
     "nagios::server::hosts"     : ;
-    "nagios::server::checks"    :
-      config_dir => $jenkins_cfg_dir;
-    "nagios::server::permissions" :
-      config_dir => $jenkins_cfg_dir;
-    "nagios::server::contacts"  :
-      config_dir => $jenkins_cfg_dir;
+    "nagios::server::checks"    : ;
+    "nagios::server::permissions": ;
+    "nagios::server::contacts"  : ;
   }
 
   ## nagios-client should always get run first since it will create the nagios
@@ -123,6 +121,10 @@ class nagios::server {
 
 
   define basic-host($full_name, $os = 'ubuntu') {
+    nagios::server::check-disk {
+      $name : ;
+    }
+
     nagios_host {
       $full_name :
         ensure     => present,
@@ -173,10 +175,9 @@ class nagios::server {
         check_command     => "check-host-alive",
         host_name       => "$full_name",
         notification_interval => 5,
-        use           => "generic-service",
-    }
+        use           => "generic-service";
 
-    nagios_service {
+
       "check_ssh_${name}":
         target        => "${nagios::server::jenkins_cfg_dir}/${name}_check_ssh_service.cfg",
         notify     => [
@@ -189,11 +190,26 @@ class nagios::server {
         check_command     => "check_ssh_4",
         host_name       => "$full_name",
         notification_interval => 5,
-        use           => "generic-service",
+        use           => "generic-service";
+
+
+      "check_puppet_run_${name}" :
+        target        => "${nagios::server::jenkins_cfg_dir}/${name}_check_puppet_run_service.cfg",
+        notify     => [
+                  Service["nagios"],
+                  Class['nagios::server::permissions']
+        ],
+        ensure        => present,
+        contact_groups    => "core-admins",
+        service_description   => "Puppet",
+        check_command     => "check_puppet_run_by_ssh",
+        host_name       => "$full_name",
+        notification_interval => 5,
+        use           => "generic-service";
     }
   }
 
-  define check-http($name, $ensure = present) {
+  define check-http($ensure = present) {
     nagios_service {
       "http check $name" :
         target        => "${nagios::server::jenkins_cfg_dir}/http_${name}_service.cfg",
@@ -210,7 +226,7 @@ class nagios::server {
     }
   }
 
-  define check-https($name, $ensure = present) {
+  define check-https($ensure = present) {
     nagios_service {
       "https check ${name}" :
         target        => "${nagios::server::jenkins_cfg_dir}/http_${name}_service.cfg",
@@ -227,7 +243,7 @@ class nagios::server {
     }
   }
 
-  define check-disk($name, $ensure = present) {
+  define check-disk($ensure = present) {
     nagios_service {
       "disk check $name" :
         target        => "${nagios::server::jenkins_cfg_dir}/${name}_disk.cfg",

@@ -1,4 +1,4 @@
-class nagios::server::contacts($config_dir) {
+class nagios::server::contacts() {
   nagios_contactgroup {
     "admins" :
       notify            => [
@@ -8,7 +8,7 @@ class nagios::server::contacts($config_dir) {
       contactgroup_name => "core-admins",
       alias             => "Nagios Core Admins",
       members           => "pagerduty",
-      target            => "${config_dir}/pagerduty_contact_group.cfg";
+      target            => "${nagios::server::jenkins_cfg_dir}/pagerduty_contact_group.cfg";
   }
 }
 # vim: shiftwidth=2 expandtab tabstop=2
