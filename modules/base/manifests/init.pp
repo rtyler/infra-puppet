@@ -60,6 +60,9 @@ class base {
 
         'PasswordAuthentication' :
             value => 'no';
+
+        'UseDNS' :
+            value => 'no';
     }
 
     firewall {
