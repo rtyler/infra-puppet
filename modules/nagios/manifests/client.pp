@@ -11,6 +11,7 @@ class nagios::client {
         "nagios" :
             ensure  => present,
             gid     => nagios,
+            shell   => "/bin/sh",
             home    => "/var/lib/nagios",
             require => [
                         Group["nagios"]
