@@ -6,6 +6,11 @@ node /^cucumber$/ {
     include base
     include haproxy
 
+    class {
+      'postgres' :
+        version => '8.4';
+    }
+
     firewall {
       '100 accept inbound HTTP requests' :
         proto  => 'tcp',
