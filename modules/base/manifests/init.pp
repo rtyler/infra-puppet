@@ -51,6 +51,14 @@ class base {
         'hiera' :
             ensure   => present,
             provider => 'gem';
+
+        'hiera-gpg' :
+            ensure   => present,
+            require  => Package['gnupg'],
+            provider => 'gem';
+
+        'gnupg' :
+            ensure  => present;
     }
 
     group {
