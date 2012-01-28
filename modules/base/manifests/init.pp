@@ -35,6 +35,8 @@ class base {
 
         'packages::git' :  ;
         'packages::wget':  ;
+        'packages::ruby':  ;
+        'packages::hiera': ;
 
         'ntp' :
             ensure     => running,
@@ -42,23 +44,27 @@ class base {
             autoupdate => true;
     }
 
+    file {
+        '/etc/puppet' :
+            ensure => directory,
+            owner  => root,
+            group  => root;
+
+        '/etc/puppet/hiera' :
+            ensure  => directory,
+            owner   => root,
+            group   => root,
+            require => [
+                        File['/etc/puppet'],
+                        Class['packages::hiera'],
+            ];
+    }
+
 
     package {
         # htop(1) is generally handy, and I like having it around :)
         'htop' :
             ensure => present;
-
-        'hiera' :
-            ensure   => present,
-            provider => 'gem';
-
-        'hiera-gpg' :
-            ensure   => present,
-            require  => Package['gnupg'],
-            provider => 'gem';
-
-        'gnupg' :
-            ensure  => present;
     }
 
     group {
