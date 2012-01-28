@@ -15,4 +15,4 @@
 	url = git://github.com/ripienaar/puppet-concat.git
 [submodule "modules/postgres"]
 	path = modules/postgres
-	url = git://github.com/KrisBuytaert/puppet-postgres.git
+	url = git://github.com/jenkinsci/puppet-postgres.git
