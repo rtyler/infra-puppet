@@ -47,6 +47,10 @@ class base {
         # htop(1) is generally handy, and I like having it around :)
         'htop' :
             ensure => present;
+
+        'hiera' :
+            ensure   => present,
+            provider => 'gem';
     }
 
     group {
