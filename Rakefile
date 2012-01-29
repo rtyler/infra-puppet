@@ -1,14 +1,9 @@
 
 
-task :lint do
-  puts "Linting manifests"
-  puts "-----------------"
+def each_manifest(&block)
   Dir.glob("manifests/*.pp") do |filename|
-    sh "puppet-lint --with-filename '#{filename}'"
+    yield filename
   end
-  puts "-----------------"
-  puts
-
   ##
   ## We're going to ignore all the submodules, since we don't really care how
   #crappy their code is
@@ -32,7 +27,23 @@ task :lint do
     end
 
     unless found
-      sh "puppet-lint --with-filename '#{filename}'"
+      yield filename
     end
+  end
+end
+
+task :lint do
+  puts "Linting manifests"
+  puts "-----------------"
+
+  each_manifest do |filename|
+    sh "puppet-lint --with-filename '#{filename}'"
+  end
+  puts "-----------------"
+end
+
+task :validate do
+  each_manifest do |filename|
+    sh "puppet parser validate '#{filename}'"
   end
 end
