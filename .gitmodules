@@ -16,3 +16,6 @@
 [submodule "modules/postgres"]
 	path = modules/postgres
 	url = git://github.com/jenkinsci/puppet-postgres.git
+[submodule "modules/haproxy"]
+	path = modules/haproxy
+	url = git://github.com/jenkinsci/puppet-haproxy.git
