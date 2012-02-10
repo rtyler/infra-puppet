@@ -57,6 +57,7 @@ nagios      3600    IN    CNAME    lettuce
 kale        3600    IN    CNAME    ec2-184-73-58-254.compute-1.amazonaws.com.
 ; Artifactory hosted by JFrog
 repo        3600    IN    CNAME    jenkins-ci.artifactoryonline.com.
+maven2      3600    IN    CNAME    cucumber
 
 
 ; MX Records
