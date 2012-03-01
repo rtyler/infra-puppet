@@ -47,6 +47,11 @@ node /^cucumber$/ {
         source => 'repo.jenkins-ci.org',
         port   => 636,
         action => 'accept';
+
+      '107 PoC experiment to reverse proxy to repo.jenkins-ci.org' :
+        proto  => 'tcp',
+        port   => 8082,
+        action => 'accept';
     }
 }
 Exec {
