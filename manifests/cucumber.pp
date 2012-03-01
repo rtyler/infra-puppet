@@ -44,7 +44,8 @@ node /^cucumber$/ {
 
       '106 accept inbound LDAPS request from hosted Artifactory by JFrog' :
         proto  => 'tcp',
-        source => 'repo.jenkins-ci.org',
+        # source => 'repo.jenkins-ci.org',
+        source => '50.19.229.208',
         port   => 636,
         action => 'accept';
 
