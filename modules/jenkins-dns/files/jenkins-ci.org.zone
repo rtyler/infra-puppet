@@ -29,8 +29,6 @@ lists       3600    IN    A    140.211.166.34
 ns1         3600    IN    A    140.211.15.121
 ns2         3600    IN    A    140.211.15.121
 
-; Artifactory hosted by JFrog
-repo        3600    IN    A    50.16.203.43
 
 ;-----------------------------------
 
@@ -59,6 +57,7 @@ ips         3600    IN    CNAME    lettuce
 nagios      3600    IN    CNAME    lettuce
 javanet2    3600    IN    CNAME    cucumber
 kale        3600    IN    CNAME    ec2-184-73-58-254.compute-1.amazonaws.com.
+repo        3600    IN    CNAME    jenkinsci.jfrog.org.      ; Artifactory hosted by JFrog
 
 
 ; MX Records
