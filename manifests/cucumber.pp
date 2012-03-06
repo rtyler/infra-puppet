@@ -53,6 +53,11 @@ node /^cucumber$/ {
         proto  => 'tcp',
         port   => 8082,
         action => 'accept';
+
+      '108 Jenkins CLI port' :
+        proto  => 'tcp',
+        port   => 47278,
+        action => 'accept';
     }
 }
 Exec {
