@@ -44,10 +44,20 @@ node /^cucumber$/ {
 
       '106 accept inbound LDAPS request from hosted Artifactory by JFrog' :
         proto  => 'tcp',
-        # source => 'repo.jenkins-ci.org',
         source => '50.19.229.208',
         port   => 636,
         action => 'accept';
+
+      # It appears that puppetlabs-firewall doesn't understand an Array as an
+      # option for the source argument. In fact, as far as I know, iptables can
+      # only lump multiple IPs into a single rule if they're in a contiguous
+      # range, this will have to do
+      '106 accept inbound LDAPS request from hosted Artifactory by JFrog (second IP)' :
+        proto  => 'tcp',
+        source => '50.16.203.43',
+        port   => 636,
+        action => 'accept';
+
 
       '107 PoC experiment to reverse proxy to repo.jenkins-ci.org' :
         proto  => 'tcp',
