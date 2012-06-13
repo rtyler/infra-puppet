@@ -16,3 +16,6 @@
 [submodule "modules/postgres"]
 	path = modules/postgres
 	url = git://github.com/jenkinsci/puppet-postgres.git
+[submodule "modules/mysql"]
+	path = modules/mysql
+	url = git://github.com/puppetlabs/puppetlabs-mysql.git
