@@ -1,0 +1,3 @@
+CONFLUENCE_USER=wiki
+CONFLUENCE_GROUP=wiki
+export JAVA_HOME=/usr/lib/jvm/java-6-openjdk

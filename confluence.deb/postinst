@@ -1,0 +1,54 @@
+#!/bin/bash -e
+# postinst script for confluence
+
+# summary of how this script can be called:
+#        * <postinst> `configure' <most-recently-configured-version>
+#        * <old-postinst> `abort-upgrade' <new version>
+#        * <conflictor's-postinst> `abort-remove' `in-favour' <package>
+#          <new-version>
+#        * <postinst> `abort-remove'
+#        * <deconfigured's-postinst> `abort-deconfigure' `in-favour'
+#          <failed-install-package> <version> `removing'
+#          <conflicting-package> <version>
+# for details, see http://www.debian.org/doc/debian-policy/ or
+# the debian-policy package
+
+
+case "$1" in
+    configure)
+    
+        [ -r /etc/default/confluence ] && . /etc/default/confluence
+        : ${CONFLUENCE_USER:=wiki}
+        : ${CONFLUENCE_GROUP:=wiki}
+        
+        grep \^${CONFLUENCE_GROUP}: /etc/group > /dev/null || groupadd $CONFLUENCE_GROUP
+
+        # Create confluence user if it doesn't exist.
+        if ! id $CONFLUENCE_USER > /dev/null 2>&1 ; then
+            adduser --system --home /srv/wiki --no-create-home \
+                --ingroup $CONFLUENCE_GROUP --disabled-password --shell /bin/bash \
+                $CONFLUENCE_USER
+        fi
+	
+        # directories needed for jenkins
+        # we don't do -R because it can take a long time on big installation
+        chown -R $CONFLUENCE_USER:$CONFLUENCE_GROUP /srv/wiki
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+
+if [ -x "/etc/init.d/confluence" ]; then
+	update-rc.d confluence defaults >/dev/null
+	invoke-rc.d confluence start || exit $?
+fi
+
+exit 0
+
+
