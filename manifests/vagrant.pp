@@ -1,7 +1,8 @@
 # modify this file to locally try the puppet manifest with vagrant
 node /^lucid32$/ {
     include base
-
+    
+    include confluence
     #include ips
     #include mirrorbrain
     #include haproxy
