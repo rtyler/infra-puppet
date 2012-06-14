@@ -1,5 +1,5 @@
 <VirtualHost *:443>
-	ServerName wiki.jenkins-ci.org
+	ServerName wiki2.jenkins-ci.org
 
 	SSLEngine On
 
@@ -22,7 +22,7 @@
 	ProxyPassReverse / http://localhost:8090/
 
 
-	CustomLog "|/usr/sbin/rotatelogs /var/log/apache2/wiki.jenkins-ci.org/access.log.%Y%m%d%H%M%S 86400" combined
+	CustomLog "|/usr/sbin/rotatelogs /var/log/apache2/wiki2.jenkins-ci.org/access.log.%Y%m%d%H%M%S 86400" combined
 	ErrorLog /var/log/apache2/error.log
 
 	# Possible values include: debug, info, notice, warn, error, crit,
@@ -30,8 +30,8 @@
 	LogLevel warn
 </VirtualHost>
 <VirtualHost *:80>
-        ServerName wiki.jenkins-ci.org
-        Redirect permanent / https://wiki.jenkins-ci.org/
+        ServerName wiki2.jenkins-ci.org
+        Redirect permanent / https://wiki2.jenkins-ci.org/
 
         Customlog /dev/null combined
 </VirtualHost>

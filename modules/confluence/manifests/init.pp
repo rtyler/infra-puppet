@@ -25,11 +25,11 @@ class confluence {
         mode    => 644,
         source  => "puppet:///modules/confluence/${deb}"
     }
-    
-    # user and group created by debian package
+
     package { "openjdk-6-jre":
         ensure  => present,
     }
+    # user and group created by debian package
     package { "atlassian-confluence":
         # ensure      => "4.2.4",
         provider    => dpkg,
@@ -46,8 +46,10 @@ class confluence {
     }
     
     # how do I default $name to $title?
-    enable-apache-virtual-host { "wiki.jenkins-ci.org":
-        name => "wiki.jenkins-ci.org",
+    enable-apache-virtual-host { "wiki2.jenkins-ci.org":
+        name => "wiki2.jenkins-ci.org",
         source => "puppet:///modules/confluence/wiki.jenkins-ci.org"
     }
+
+    # TODO: stage https key files
 }
