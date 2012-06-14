@@ -39,4 +39,8 @@ class confluence {
     file { "/etc/confluence/WEB-INF-classes/confluence-init.properties":
         source => "puppet:///modules/confluence/confluence-init.properties"
     }
+
+    file { "/etc/confluence/conf/server.xml":
+        source => "puppet:///modules/confluence/server.xml"
+    }
 }
