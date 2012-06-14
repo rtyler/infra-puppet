@@ -2,6 +2,7 @@
 	ServerName wiki2.jenkins-ci.org
 
 	SSLEngine On
+	SSLCertificateFile /etc/apache2/server.crt
 
 	<Proxy *>
 	    Order allow,deny

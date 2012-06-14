@@ -36,15 +36,32 @@ class confluence {
         ensure      => latest,
         source      => "/tmp/${deb}",
     }
-    
-    file { "/etc/confluence/WEB-INF-classes/confluence-init.properties":
+
+    # confluence configuration files
+    file {
+    "/etc/confluence/WEB-INF-classes/confluence-init.properties":
         source => "puppet:///modules/confluence/confluence-init.properties"
+        ;
+    "/etc/confluence/conf/server.xml":
+        source => "puppet:///modules/confluence/server.xml"
+        ;
     }
 
-    file { "/etc/confluence/conf/server.xml":
-        source => "puppet:///modules/confluence/server.xml"
+    # needed to run 'make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/apache2/snakeoil.crt'
+    # to get the snake-oil certificate generated
+
+    enable-apache-mod {
+    "ssl":
+        name    => "ssl"
+        ;
+    "proxy":
+        name    => "proxy"
+        ;
+    "proxy_http":
+        name    => "proxy_http"
+        ;
     }
-    
+
     # how do I default $name to $title?
     enable-apache-virtual-host { "wiki2.jenkins-ci.org":
         name => "wiki2.jenkins-ci.org",

@@ -91,6 +91,13 @@ define enable-apache-virtual-host($name,$source) {
         ensure  => "../sites-available/${name}",
         notify  => Exec["reload-apache2"],
     }
+
+    # directory to house log files
+    file { "/var/log/apache2/${name}":
+        ensure  => directory,
+        owner   => root,
+        mode    => 700
+    }
 }
 
 # vim: shiftwidth=4 expandtab tabstop=4
