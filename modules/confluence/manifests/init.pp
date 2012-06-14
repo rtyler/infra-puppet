@@ -2,6 +2,8 @@ class confluence {
     include mysql
     include apache2
 
+    include apache2::log-rotation
+
     class { 'mysql::server':
         # TODO: how to correctly protect a password?
         config_hash => { 'root_password' => 'changeme' }
