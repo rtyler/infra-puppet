@@ -75,4 +75,22 @@ define enable-apache-site($name) {
             notify => Exec["reload-apache2"];
     }
 }
+
+# TODO: how do I default $name to $title?
+define enable-apache-virtual-host($name,$source) {
+    include apache2::functions
+
+    file { "/etc/apache2/sites-available/${name}":
+        owner   => root,
+        group   => root,
+        mode    => 644,
+        source  => $source,
+        require => Package["apache2"],
+    }
+    file { "/etc/apache2/sites-enabled/${name}":
+        ensure  => "../sites-available/${name}",
+        notify  => Exec["reload-apache2"],
+    }
+}
+
 # vim: shiftwidth=4 expandtab tabstop=4

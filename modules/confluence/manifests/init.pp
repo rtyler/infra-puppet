@@ -1,5 +1,6 @@
 class confluence {
     include mysql
+    include apache2
 
     class { 'mysql::server':
         # TODO: how to correctly protect a password?
@@ -42,5 +43,11 @@ class confluence {
 
     file { "/etc/confluence/conf/server.xml":
         source => "puppet:///modules/confluence/server.xml"
+    }
+    
+    # how do I default $name to $title?
+    enable-apache-virtual-host { "wiki.jenkins-ci.org":
+        name => "wiki.jenkins-ci.org",
+        source => "puppet:///modules/confluence/wiki.jenkins-ci.org"
     }
 }
