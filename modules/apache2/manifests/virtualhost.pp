@@ -7,6 +7,7 @@ define apache2::virtualhost($source) {
     mode  => 644,
     source  => $source,
     require => Package["apache2"],
+    notify  => Exec["reload-apache2"],
   }
   file { "/etc/apache2/sites-enabled/${name}":
     ensure  => "../sites-available/${name}",
