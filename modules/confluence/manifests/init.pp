@@ -47,6 +47,12 @@ class confluence {
     "/etc/confluence/conf/server.xml":
         source => "puppet:///modules/confluence/server.xml"
         ;
+    "/srv/wiki/.my.cnf":
+        source => "puppet:///modules/confluence/my.cnf"
+        ;
+    "/srv/wiki/convert-to-innodb.sh":
+        source => "puppet:///modules/confluence/convert-to-innodb.sh"
+        ;
     }
 
     # needed to run 'make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/apache2/snakeoil.crt'
