@@ -37,6 +37,7 @@ www         3600    IN    CNAME    @
 issues      3600    IN    CNAME    eggplant
 newissues   3600    IN    CNAME    cabbage
 wiki        3600    IN    CNAME    eggplant
+wiki2       3600    IN    CNAME    cabbage
 updates     3600    IN    CNAME    cucumber
 downloads   3600    IN    CNAME    cucumber
 fisheye     3600    IN    CNAME    cucumber
