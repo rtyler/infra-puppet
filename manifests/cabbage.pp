@@ -2,24 +2,24 @@
 #   Root manifest to be run on cabbage
 #
 
-node /^cabbage$/ {
-    include base
+node default {
+  include base
 
-    include confluence
+  include confluence
 
-    firewall {
-      '100 accept inbound HTTP requests' :
-        proto  => 'tcp',
-        port   => 80,
-        action => 'accept';
+  firewall {
+    '100 accept inbound HTTP requests' :
+    proto  => 'tcp',
+    port   => 80,
+    action => 'accept';
 
-      '101 accept inbound HTTPs requests' :
-        proto  => 'tcp',
-        port   => 443,
-        action => 'accept';
-    }
+    '101 accept inbound HTTPs requests' :
+    proto  => 'tcp',
+    port   => 443,
+    action => 'accept';
+  }
 }
 
 Exec {
-    path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ]
+  path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ]
 }
