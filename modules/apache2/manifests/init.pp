@@ -102,6 +102,10 @@ define enable-apache-virtual-host($name,$source) {
 
 # run compress-log.rb periodically to compress old log files
 class apache2::log-rotation {
+    include apache2
+    Class["apache2::log-rotation"] ->
+        Class["apache2"]
+
     file { "/var/log/apache2/compress-log.rb":
         source  => "puppet:///modules/apache2/compress-log.rb",
         mode    => "700",
