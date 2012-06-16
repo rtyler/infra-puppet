@@ -1,12 +1,13 @@
 class confluence {
     include mysql
     include apache2
-
     include apache2::log-rotation
+    include confluence::config
 
     Class["apache2"] ->
         Class["mysql::server"] ->
-            Class["confluence"]
+            Class["confluence"] ->
+                Class["confluence::config"]
 
     class { 'mysql::server':
         # TODO: how to correctly protect a password?
@@ -24,6 +25,7 @@ class confluence {
     # TODO: figure out where to get the debian package
     
     $deb = 'atlassian-confluence_4.2.4-0_all.deb'
+    # $deb = 'atlassian-confluence_3.5.16-0_all.deb'
     
     file { "/tmp/${deb}":
         owner   => root,
@@ -42,7 +44,9 @@ class confluence {
         ensure      => latest,
         source      => "/tmp/${deb}",
     }
+}
 
+class confluence::config {
     # confluence configuration files
     file {
     "/etc/confluence/WEB-INF-classes/confluence-init.properties":
@@ -57,10 +61,18 @@ class confluence {
     "/srv/wiki/convert-to-innodb.sh":
         source => "puppet:///modules/confluence/convert-to-innodb.sh"
         ;
+
+    "/srv/wiki/tail-log.sh":
+        source => "puppet:///modules/confluence/tail-log.sh"
     }
 
     # needed to run 'make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/apache2/snakeoil.crt'
     # to get the snake-oil certificate generated
+    exec {
+    "/etc/apache2/server.crt":
+        command => "make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/apache2/server.crt",
+        unless => "test -f /etc/apache2/server.crt",
+    }
 
     enable-apache-mod {
     "ssl":
