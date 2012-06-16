@@ -5,8 +5,6 @@
 node default {
   include base
 
-  include confluence
-
   firewall {
     '100 accept inbound HTTP requests' :
     proto  => 'tcp',
