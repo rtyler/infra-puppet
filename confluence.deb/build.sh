@@ -3,12 +3,16 @@
 # based on http://tldp.org/HOWTO/html_single/Debian-Binary-Package-Building-HOWTO/
 
 # Confluence version to package 
-ver=4.2.4
+#ver=4.2.4
+archive=atlalssian-confluence-4.2.4
+
+ver=3.5.16
+archive=confluence-3.5.16-std
 
 # debian revision
 rev=0
 
-wget -N http://www.atlassian.com/software/confluence/downloads/binary/atlassian-confluence-${ver}.tar.gz 
+wget -N http://www.atlassian.com/software/confluence/downloads/binary/$archive.tar.gz 
 
 base=$PWD
 
@@ -35,9 +39,9 @@ cp $base/postinst DEBIAN/postinst
 # main binary
 mkdir -p srv/wiki
 pushd srv/wiki
-  tar xzf $base/atlassian-confluence-$ver.tar.gz
+  tar xzf $base/$archive.tar.gz
   # symlink to the current version
-  ln -s atlassian-confluence-$ver current
+  ln -s $archive current
 popd
 
 # init script
@@ -68,7 +72,7 @@ popd
 pushd srv/wiki/current/confluence/WEB-INF/classes
   files="$(ls *.properties *.xml)"
   for f in $files; do
-    echo /srv/wiki/atlassian-confluence-$ver/confluence/WEB-INF/classes/$f >> $root/DEBIAN/conffiles
+    echo /srv/wiki/$archive/confluence/WEB-INF/classes/$f >> $root/DEBIAN/conffiles
   done
 popd
 
