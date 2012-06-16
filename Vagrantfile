@@ -15,6 +15,8 @@ Vagrant::Config.run do |config|
   config.vm.forward_port 80, 8080
   config.vm.forward_port 443, 8443
 
+  config.vm.network :hostonly, "192.168.50.4"
+
   # config.vm.share_folder "work", "/work", "work"
 
   # Share an additional folder to the guest VM. The first argument is
