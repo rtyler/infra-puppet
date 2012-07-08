@@ -1,4 +1,4 @@
-<VirtualHost *:8888 *:443>
+<VirtualHost *:8888>
 	ServerName jekyll.jenkins-ci.org
 
 	DocumentRoot /srv/jekyll
