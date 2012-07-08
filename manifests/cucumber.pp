@@ -17,6 +17,20 @@ node /^cucumber$/ {
         require => Class['postgres'];
     }
 
+    file {
+      '/srv/jekyll' :
+        ensure => directory;
+
+      '/etc/apache2/sites-available/jekyll.jenkins-ci.org' :
+        ensure  => present,
+        source  => 'puppet:///modules/apache2/vhost-jekyll.jenkins-ci.org';
+
+      '/etc/apache2/sites-enabled/jekyll.jenkins-ci.org' :
+        ensure  => link,
+        require => File['/etc/apache2/sites-available/jekyll.jenkins-ci.org'],
+        target  => '/etc/apache2/sites-available/jekyll.jenkins-ci.org';
+    }
+
     firewall {
       '100 accept inbound HTTP requests' :
         proto  => 'tcp',
