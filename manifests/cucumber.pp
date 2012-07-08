@@ -11,6 +11,12 @@ node /^cucumber$/ {
         version => '8.4';
     }
 
+    package {
+      'libpq-dev':
+        ensure  => present,
+        require => Class['postgres'];
+    }
+
     firewall {
       '100 accept inbound HTTP requests' :
         proto  => 'tcp',
