@@ -6,6 +6,7 @@ node default {
   include base
 
   include confluence
+  include host-git-repositories
 
   firewall {
     '100 accept inbound HTTP requests' :
