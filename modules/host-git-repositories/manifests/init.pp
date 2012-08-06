@@ -21,6 +21,7 @@ class host-git-repositories {
 
     package {
         "gitweb" :
+            ensure      => installed
     }
 
     file {
@@ -36,8 +37,7 @@ class host-git-repositories {
 
 # create one Git repository
 define git::repository($description) {
-    # TODO: how do I do module-local or global variable?
-    $gitrepo_dir="/var/www/git.jenkins-ci.org"
+    $gitrepo_dir=$host-git-repositories::gitrepo_dir
 
     exec {
         "create repository ${name}" :
