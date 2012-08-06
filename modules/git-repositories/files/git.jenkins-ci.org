@@ -1,0 +1,47 @@
+<VirtualHost *:8888 *:80>
+	ServerName git.jenkins-ci.org
+
+	DocumentRoot /var/www/git.jenkins-ci.org
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+	<Directory /var/www/git.jenkins-ci.org>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride All
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	ErrorLog /var/log/apache2/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog "|/usr/sbin/rotatelogs /var/log/apache2/git.jenkins-ci.org/access.log.%Y%m%d%H%M%S 604800" combined
+
+	SetEnv GIT_PROJECT_ROOT /var/www/git.jenkins-ci.org
+	SetEnv GIT_HTTP_EXPORT_ALL
+
+    ## this is for running without GitWeb
+	#ScriptAlias / /usr/lib/git-core/git-http-backend/
+
+    ## this is for running with GitWeb
+    Alias /gitweb /usr/share/gitweb
+	ScriptAliasMatch \
+		"(?x)^/(.*/(HEAD | \
+				info/refs | \
+				objects/(info/[^/]+ | \
+					 [0-9a-f]{2}/[0-9a-f]{38} | \
+					 pack/pack-[0-9a-f]{40}\.(pack|idx)) | \
+				git-(upload|receive)-pack))$" \
+		/usr/lib/git-core/git-http-backend/$1
+	ScriptAlias / /usr/lib/cgi-bin/gitweb.cgi/
+
+    # prohibit push
+	<LocationMatch "^/.*/git-receive-pack$">
+		Deny from all
+		Allow from none
+	</LocationMatch>
+</VirtualHost>
