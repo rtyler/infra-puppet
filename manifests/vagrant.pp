@@ -7,7 +7,21 @@ node /^lucid32$/ {
     ##      - once provisioned, run 'make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/apache2/snakeoil.crt'
     ##        from inside the VM to generate a self-signed certificate named 'wiki2.jenkins-ci.org'
     ##      - add 'wiki2.jenkins-ci.org' to /etc/hosts as 127.0.0.1
-    include confluence
+    # include confluence
+
+    # include host-git-repositories
+
+    firewall {
+      '100 accept inbound HTTP requests' :
+        proto  => 'tcp',
+        port   => 80,
+        action => 'accept';
+
+      '101 accept inbound HTTPs requests' :
+        proto  => 'tcp',
+        port   => 443,
+        action => 'accept';
+    }
 }
 
 node default {
