@@ -1,7 +1,7 @@
 #
 # Hosts read-only Git repositories and expose it via Apache
 #
-class host-git-repositories {
+class git-repositories {
     include apache2
     include apache2::log-rotation
 
@@ -26,18 +26,18 @@ class host-git-repositories {
 
     file {
         "/etc/gitweb.conf":
-            source => 'puppet:///modules/host-git-repositories/gitweb.conf';
+            source => 'puppet:///modules/git-repositories/gitweb.conf';
     }
 
     apache2::virtualhost {
         'git.jenkins-ci.org' :
-            source => 'puppet:///modules/host-git-repositories/git.jenkins-ci.org';
+            source => 'puppet:///modules/git-repositories/git.jenkins-ci.org';
     }
 }
 
 # create one Git repository
 define git::repository($description) {
-    $gitrepo_dir=$host-git-repositories::gitrepo_dir
+    $gitrepo_dir=$git-repositories::gitrepo_dir
 
     exec {
         "create repository ${name}" :
