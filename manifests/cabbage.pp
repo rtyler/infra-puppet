@@ -11,7 +11,7 @@ node default {
 
   gitrepo::repo {
     'all' :
-      description => 'One repository that contains all Jenkins CI github repositories. "git clone http://git.jenkins-ci.org/all.git' to clone this repository.';
+      description => 'One repository that contains all Jenkins CI github repositories. "git clone http://git.jenkins-ci.org/all.git" to clone this repository.';
   }
 
   firewall {
