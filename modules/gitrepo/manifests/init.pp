@@ -23,6 +23,9 @@ class gitrepo {
   file {
     "/etc/gitweb.conf":
       source => 'puppet:///modules/gitrepo/gitweb.conf';
+
+    "/var/www/git.jenkins-ci.org/indextext.html":
+      source => 'puppet:///modules/gitrepo/indextext.html';
   }
 
   apache2::virtualhost {
