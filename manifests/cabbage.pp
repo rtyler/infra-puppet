@@ -7,6 +7,7 @@ node default {
 
   #include confluence
   include gitrepo
+  include groovy  # promote this into base when ready
 
   gitrepo::repo {
     'all' :
