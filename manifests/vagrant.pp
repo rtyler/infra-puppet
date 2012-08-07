@@ -9,7 +9,12 @@ node /^lucid32$/ {
     ##      - add 'wiki2.jenkins-ci.org' to /etc/hosts as 127.0.0.1
     # include confluence
 
-    include git-repositories
+    include gitrepo
+
+    gitrepo::repo {
+      'all' :
+        description => 'Hi';
+    }
 
     firewall {
       '100 accept inbound HTTP requests' :

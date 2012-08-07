@@ -6,7 +6,12 @@ node default {
   include base
 
   include confluence
-  include git-repositories
+  include gitrepo
+
+  gitrepo::repo {
+    'all' :
+      description => 'Hi';
+  }
 
   firewall {
     '100 accept inbound HTTP requests' :
