@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Forcing the gems path to take priority so we can use the Puppet/Facter
+# installed by gems if it's available
+export PATH=/var/lib/gems/1.8/bin:$PATH
+
 HOSTNAME=`hostname -s`
 LOGFILE="puppet.`date "+%s"`.log"
 ERROR_FILE="last_run_failed"
