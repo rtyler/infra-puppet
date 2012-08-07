@@ -32,6 +32,7 @@ def each_manifest(&block)
   end
 end
 
+desc "Run puppet-lint on all manifests"
 task :lint do
   puts "Linting manifests"
   puts "-----------------"
@@ -42,6 +43,8 @@ task :lint do
   puts "-----------------"
 end
 
+
+desc "Validate the Puppet syntax of all manifests"
 task :validate do
   each_manifest do |filename|
     sh "puppet parser validate '#{filename}'"
