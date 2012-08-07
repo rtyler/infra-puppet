@@ -5,7 +5,7 @@
 node default {
   include base
 
-  include confluence
+  #include confluence
   include gitrepo
 
   gitrepo::repo {
