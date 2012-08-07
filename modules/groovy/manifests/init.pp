@@ -9,6 +9,8 @@ class groovy {
   package {
     "unzip" :
       ensure    => installed;
+    "openjdk-6-jdk":  # Groovy needs JDK. Any version of JDK would do.
+      ensure    => installed;
   }
 
   exec {
