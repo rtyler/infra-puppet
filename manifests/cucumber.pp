@@ -1,7 +1,6 @@
 #
 #   Root manifest to be run on cucumber
 #
-
 node default {
     include base
     include haproxy
@@ -10,6 +9,52 @@ node default {
     class {
       'postgres' :
         version => '8.4';
+    }
+
+    cron {
+      "time sync" :
+        command => '/usr/sbin/ntpdate pool.ntp.org',
+        minute  => 15;
+
+      "compress logs" :
+        command => 'cd /var/log/apache2 && ./compress-log.rb && cd mirrors.hudson-labs.org && ../compress-log.rb',
+        minute  => 5;
+
+      'ping the mirrors' :
+        command => '/usr/bin/mirrorprobe',
+        minute  => 30;
+
+      'scan the mirrors' :
+        command => '/usr/bin/mb scan --quiet --jobs 2 --all',
+        minute  => '*/30';
+
+      'cleanup the mirror db' :
+        command => '/usr/bin/mb db vacuum',
+        hour    => 1,
+        minute  => 30,
+        weekday => 'Monday';
+
+      'update the Geo IP database' :
+        command => '/usr/bin/geoip-lite-update',
+        hour    => 4,
+        minute  => 50,
+        weekday => 'Monday';
+
+      'update the time for mirror sync checks' :
+        command => '/root/update_mirror_time.sh',
+        minute  => 0;
+
+      'update mirmon status page' :
+        command => '/usr/bin/mirmon -q -get update -c /etc/mirmon.conf',
+        minute  => 45;
+
+      'copy wiki logs from eggplant to save space' :
+        command => 'cd /var/log/apache2/wiki.jenkins-ci.org && ./pull.sh',
+        minute  => 5;
+
+      'copy jira logs from eggplant to save space' :
+        command => 'cd /var/log/apache2/issues.jenkins-ci.org && ./pull.sh',
+        minute  => 10;
     }
 
     package {
