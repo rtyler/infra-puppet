@@ -2,7 +2,7 @@
 #   Root manifest to be run on cucumber
 #
 
-node /^cucumber$/ {
+node default {
     include base
     include haproxy
     include apache2
