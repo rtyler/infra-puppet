@@ -29,6 +29,10 @@ node /^cucumber$/ {
         ensure  => link,
         require => File['/etc/apache2/sites-available/jekyll.jenkins-ci.org'],
         target  => '/etc/apache2/sites-available/jekyll.jenkins-ci.org';
+
+      '/etc/php5/apache2/php.ini' :
+        ensure => present,
+        source => 'puppet:///modules/apache2/php.ini';
     }
 
     firewall {
