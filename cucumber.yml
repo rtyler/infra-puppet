@@ -1,1 +1,6 @@
-default: --format pretty --tags ~@wip
+<%
+opts = "--format pretty --format junit --out features/reports"
+%>
+
+default: <%= opts %> --tags ~@wip
+wip: <%= opts %> --tags @wip
