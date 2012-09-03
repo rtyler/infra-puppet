@@ -4,3 +4,5 @@
 *.box
 
 *.private
+.rvmrc
+.blimpy.d
