@@ -33,6 +33,7 @@ node default {
 
       '/etc/php5/apache2/php.ini' :
         ensure => present,
+        notify => Service['apache2'],
         source => 'puppet:///modules/apache2/php.ini';
     }
 
