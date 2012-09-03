@@ -5,6 +5,7 @@
 node /^cucumber$/ {
     include base
     include haproxy
+    include apache2
 
     class {
       'postgres' :
