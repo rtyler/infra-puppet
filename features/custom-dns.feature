@@ -6,6 +6,6 @@ Feature: Jenkins hosts should use our internal DNS
 
   Scenario: Bootstrap a machine
     Given I have an empty Linux machine
-    And I have included the Jenkins DNS module
+    And I have included the Jenkins base module
     When I provision the host
     Then the Jenkins DNS server should be in the resolv.conf

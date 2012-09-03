@@ -1,5 +1,5 @@
-Given /^I have included the Jenkins DNS module$/ do
-  resources << 'include jenkins-dns'
+Given /^I have included the Jenkins base module$/ do
+  resources << 'include base'
 end
 
 Then /^the Jenkins DNS server should be in the resolv\.conf$/ do
