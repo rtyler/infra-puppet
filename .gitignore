@@ -6,3 +6,4 @@
 *.private
 .rvmrc
 .blimpy.d
+features/reports
