@@ -10,4 +10,11 @@ Before do
   # inside of `blimpy/cucumber` should run first
 
   FileUtils.ln_s(File.join(@original_dir, 'modules'), 'modules')
+
+  # Set some stupid Exec global configuration
+  nodes << """
+Exec {
+    path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ]
+}
+"""
 end
