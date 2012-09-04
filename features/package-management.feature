@@ -4,8 +4,6 @@ Feature: Manage packages
     * How often I update my local caches
     * What apt repos are allowed on the machine
 
-
-  @wip
   Scenario: Only periodically run "apt-get update"
 
     Instead of running `apt-get update` at the beginning of every Puppet run,

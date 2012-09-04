@@ -87,6 +87,12 @@ class base {
       value => 'no';
   }
 
+  cron {
+    'clean the repo-update cache' :
+      command => 'rm -f /tmp/repos-updated',
+      hour    => 0;
+  }
+
   firewall {
     '000 accept all icmp requests' :
       proto  => 'icmp',
@@ -114,10 +120,10 @@ class base::pre {
   # It's generally useful to make sure our package meta-data is always up to
   # date prior to running just about everything else
   if ($operatingsystem == 'Ubuntu') {
-    $command = 'apt-get update'
+    $command = 'apt-get update && touch /tmp/repos-updated'
   }
   elsif ($operatingsystem =~ /(RedHat|CentOS)/) {
-    $command = 'yum makecache'
+    $command = 'yum makecache && touch /tmp/repos-updated'
   }
   else {
     err('Unsupported platform!')
@@ -125,7 +131,8 @@ class base::pre {
 
   exec {
     'pre-update packages' :
-      command => $command;
+      command => $command,
+      unless  => 'test -f /tmp/repos-updated';
   }
 }
 
@@ -135,4 +142,4 @@ class base::post {
       action => 'drop';
   }
 }
-# vim: shiftwidth=4 expandtab tabstop=4
+# vim: shiftwidth=2 expandtab tabstop=2
