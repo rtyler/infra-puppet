@@ -2,7 +2,7 @@
 #   Root manifest to be run on spinach (Rackspace-donated build machine)
 #
 
-node /^spinach$/ {
+node default {
     include base
     include user-jieryn
     include ci-ssh-slave

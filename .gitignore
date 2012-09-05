@@ -4,3 +4,7 @@
 *.box
 
 *.private
+.rvmrc
+.blimpy.d
+features/reports
+tmp

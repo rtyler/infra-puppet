@@ -2,7 +2,7 @@
 #   Root manifest to be run on lettuce
 #
 
-node /^lettuce$/ {
+node default {
     include base
 
     include user-kbsingh

@@ -1,0 +1,21 @@
+
+Blimpy.fleet do |fleet|
+  manifest = ENV['MANIFEST'] || 'vagrant.pp'
+  manifest = "./manifests/#{manifest}"
+
+  unless File.exists?(manifest)
+    puts "Uh oh! It looks like #{manifest} doesn't exist!"
+    exit 1
+  end
+
+  fleet.add(:aws) do |ship|
+    ship.name = 'jenkins-infra'
+    ship.livery = Blimpy::Livery::Puppet.configure do |p|
+      p.manifest_path = manifest
+    end
+    ship.flavor = 'm1.large'
+    ship.ports = [22, 80]
+  end
+end
+
+# vim: ft=ruby
