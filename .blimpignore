@@ -1,3 +1,4 @@
 modules/mysql/spec
 modules/firewall/spec
 modules/stdlib/spec
+*.deb

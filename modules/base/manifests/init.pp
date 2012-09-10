@@ -6,13 +6,6 @@
 #   not be loaded on every machine, then it should go elsewhere
 
 class base {
-  include autoupdate
-  include jenkins-dns
-  include sshd
-  include sudo
-  include stdlib
-  include users-core
-
   # Unfortunately this module only supports Ubuntu
   if ($operatingsystem == 'Ubuntu') {
     include nagios::client
@@ -33,11 +26,18 @@ class base {
     'base::post' :
       stage => 'post';
 
-    'packages::git' :  ;
-    'packages::wget':  ;
-    'packages::ruby':  ;
-    'packages::hiera': ;
-    'packages::puppet': ;
+    ['autoupdate',
+     'base::denyhosts',
+     'jenkins-dns',
+     'sshd',
+     'sudo',
+     'stdlib',
+     'users-core',
+     'packages::git',
+     'packages::wget',
+     'packages::hiera',
+     'packages::ruby',
+     'packages::puppet'] : ;
 
     'ntp' :
       ensure   => running,
