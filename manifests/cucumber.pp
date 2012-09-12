@@ -17,10 +17,6 @@ node default {
         command => '/usr/sbin/ntpdate pool.ntp.org',
         minute  => 15;
 
-      "compress logs" :
-        command => 'cd /var/log/apache2 && ./compress-log.rb && cd mirrors.hudson-labs.org && ../compress-log.rb',
-        minute  => 5;
-
       'ping the mirrors' :
         command => '/usr/bin/mirrorprobe',
         minute  => 30;
