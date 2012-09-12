@@ -9,7 +9,7 @@ node /^lucid32$/ {
     ##      - add 'wiki2.jenkins-ci.org' to /etc/hosts as 127.0.0.1
     # include confluence
 
-    include groovy
+    include updates_jenkins-ci_org
 
     firewall {
       '100 accept inbound HTTP requests' :

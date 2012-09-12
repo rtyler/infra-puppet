@@ -1,0 +1,27 @@
+# MANAGED BY PUPPET
+# TODO: generate this from a template
+<VirtualHost *:8888 *:443>
+	ServerName updates.jenkins-ci.org
+
+	SSLEngine on
+
+	DocumentRoot /var/www/updates.jenkins-ci.org
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+	<Directory /var/www/updates.jenkins-ci.org>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride All
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	ErrorLog /var/log/apache2/error.log
+
+	# Possible values include: debug, info, notice, warn, error, crit,
+	# alert, emerg.
+	LogLevel warn
+
+	CustomLog "|/usr/sbin/rotatelogs /var/log/apache2/updates.jenkins-ci.org/access.log.%Y%m%d%H%M%S 604800" reverseproxy_combined
+</VirtualHost>
