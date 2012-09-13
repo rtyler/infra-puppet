@@ -5,7 +5,7 @@
 RewriteEngine on
 
 # stable releases have 1.x.y version numbers. Redirect them
-RewriteCond %{QUERY_STRING} ^version=([0-9]*)\.([0-9]*)\.([0-9]*)$
+RewriteCond %{QUERY_STRING} version=([0-9]*)\.([0-9]*)\.([0-9]*)
 RewriteRule ^([^/]*\.json(\.html)?)$ /stable/$1 [R=302,L]
 
 # HTTPS clients need to be served from HTTPS servers to avoid the error, so only send traffic to mirror for regular HTTP traffic
