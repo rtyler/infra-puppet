@@ -11,3 +11,6 @@ RewriteRule ^([^/]*\.json(\.html)?)$ /stable/$1 [R=302,L]
 # HTTPS clients need to be served from HTTPS servers to avoid the error, so only send traffic to mirror for regular HTTP traffic
 RewriteCond %{HTTPS} !=on
 RewriteRule (.*\.json(\.html)?)$ http://mirrors.jenkins-ci.org/updates/$1
+
+ReadmeName readme.html
+IndexIgnore readme.html

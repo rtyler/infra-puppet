@@ -11,6 +11,11 @@ class updates_jenkins-ci_org {
       ensure => directory,
       owner   => "www-data",
       group   => "www-data";
+    "/var/www/updates.jenkins-ci.org/readme.html" :
+      ensure  => present,
+      owner   => "root",
+      group   => "root",
+      source  => "puppet:///modules/updates_jenkins-ci_org/readme.html";
     "/var/www/updates.jenkins-ci.org/.htaccess" :
       ensure  => present,
       owner   => "root",
