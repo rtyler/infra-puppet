@@ -1,3 +1,7 @@
+#
+# Attempt at Puppet-managing Confluence
+#   Note that this isn't what's currently running wiki.jenkins-ci.org
+#
 class confluence {
     include mysql
     include apache2
