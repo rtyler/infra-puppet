@@ -7,7 +7,7 @@ class confluence-cache {
 
   # to co-exist with others, incoming HTTP requests hit Apache first
   apache2::virtualhost {
-    'wiki-fast.jenkins-ci.org' :
+    'wiki.jenkins-ci.org' :
       source => 'puppet:///modules/confluence-cache/wiki.jenkins-ci.org.conf';
   }
 
@@ -18,4 +18,10 @@ class confluence-cache {
   }
 
   # then it defers to Confluence, which is managed outside Puppet
+
+  # this file was used during test deployment
+  file {
+    '/etc/apache2/sites-enabled/wiki-fast.jenkins-ci.org':
+      ensure => absent;
+  }
 }
