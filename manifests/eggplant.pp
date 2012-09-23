@@ -4,6 +4,7 @@
 
 node default {
     include base
+    include confluence-cache
 
     firewall {
       '100 accept inbound HTTP requests' :
