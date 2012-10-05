@@ -23,7 +23,7 @@ node default {
       "compress old JIRA logs" :
         # compress log files that JIRA creates on the disk
         # TODO: ideally move this to the JIRA module
-        command => 'cd /srv/jira/current/logs; /usr/local/bin/atlassian-log-compress.rb',
+        command => '/usr/local/bin/atlassian-log-compress.rb /srv/jira/current/logs',
         hour    => 1,
         minute  => 0,
         weekday => 'Monday';
@@ -37,7 +37,7 @@ node default {
       "compress old Confluence logs" :
         # compress log files that Confluence creates on the disk
         # TODO: ideally move this to the confluence module
-        command => 'cd /srv/wiki/current/logs; /usr/local/bin/atlassian-log-compress.rb',
+        command => '/usr/local/bin/atlassian-log-compress.rb /srv/wiki/current/logs',
         hour    => 2,
         minute  => 0,
         weekday => 'Monday';
