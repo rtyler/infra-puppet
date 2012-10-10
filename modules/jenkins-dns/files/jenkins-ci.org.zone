@@ -54,7 +54,7 @@ maven2      3600    IN    CNAME    cucumber
 ci          3600    IN    CNAME    cucumber
 svn         3600    IN    CNAME    cucumber
 meetings    3600    IN    CNAME    cucumber
-git         3600    IN    CNAME    cabbage
+git         3600    IN    CNAME    spinach
 mirrors2    3600    IN    CNAME    lettuce
 ips         3600    IN    CNAME    lettuce
 nagios      3600    IN    CNAME    lettuce
