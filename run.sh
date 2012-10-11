@@ -13,6 +13,7 @@ fi
 HOSTNAME=`hostname -s`
 LOGFILE="puppet.`date "+%s"`.log"
 ERROR_FILE="last_run_failed"
+SUCCESS_FILE="last_run_succeeded"
 
 echo "==> Preparing to run ${HOSTNAME}.pp, Ctrl-C immediately to abort"
 sleep 5
@@ -28,4 +29,6 @@ git pull --rebase >> ${LOGFILE} 2>&1 && \
 
 if [ $? -ne 0 ]; then
     touch ${ERROR_FILE}
+else
+    touch ${SUCCESS_FILE}
 fi
