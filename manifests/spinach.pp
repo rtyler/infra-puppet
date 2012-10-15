@@ -8,6 +8,7 @@ node default {
     include ci-ssh-slave
 
   include gitrepo
+  include groovy
 
   gitrepo::repo {
     'all' :
