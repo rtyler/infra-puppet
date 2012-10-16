@@ -4,8 +4,10 @@
 # installed by gems if it's available
 export PATH=/var/lib/gems/1.8/bin:$PATH
 
+which puppet
+
 # Make sure we have some bare minimum versions bootstrapped
-if [ ! -f "/var/lib/gems/1.8/bin/puppet" ]; then
+if [ $? -ne 0 ]; then
   gem install puppet -v 2.7.18 --no-ri --no-rdoc
   gem install facter -v 1.6.10 --no-ri --no-rdoc
 fi
