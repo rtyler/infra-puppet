@@ -143,5 +143,12 @@ class base::post {
     '999 drop all other requests':
       action => 'drop';
   }
+
+  exec {
+    'kill puppet gems' :
+      unless  => 'gem list | grep puppet',
+      command => 'gem uninstall -x puppet facter',
+      path    => ['/var/lib/gems/1.8/bin', '/usr/local/bin', '/usr/bin', '/bin'];
+  }
 }
 # vim: shiftwidth=2 expandtab tabstop=2
