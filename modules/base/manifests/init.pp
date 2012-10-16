@@ -36,8 +36,7 @@ class base {
      'packages::git',
      'packages::wget',
      'packages::hiera',
-     'packages::ruby',
-     'packages::puppet'] : ;
+     'packages::ruby'] : ;
 
     'ntp' :
       ensure   => running,
