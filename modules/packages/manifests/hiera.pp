@@ -1,12 +1,12 @@
 class packages::hiera {
   package {
     'hiera' :
-      ensure   => present,
+      ensure   => absent,
       require  => Package['rubygems'],
       provider => 'gem';
 
     'hiera-gpg' :
-      ensure   => present,
+      ensure   => absent,
       require  => [
                   Package['rubygems'],
                   Package['gnupg'],

@@ -26,6 +26,9 @@ class base {
     'base::post' :
       stage => 'post';
 
+    'puppet' :
+      ensure => '2.7.19-1puppetlabs2';
+
     ['autoupdate',
      'base::denyhosts',
      'jenkins-dns',
