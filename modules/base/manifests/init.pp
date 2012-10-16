@@ -146,7 +146,7 @@ class base::post {
 
   exec {
     'kill puppet gems' :
-      unless  => 'gem list | grep puppet',
+      onlyif  => 'gem list | grep puppet',
       command => 'gem uninstall -x puppet facter',
       path    => ['/var/lib/gems/1.8/bin', '/usr/local/bin', '/usr/bin', '/bin'];
   }
