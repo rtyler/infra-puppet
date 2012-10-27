@@ -51,7 +51,9 @@ class ci-ssh-slave {
     package {
         'bundler':
             ensure   => 'installed',
-            provider => 'gem',
+            provider => 'gem';
+        'libxml2-dev':  # for Ruby apps that require nokogiri
+            ensure   => 'installed';
     }
 
     file {
