@@ -46,4 +46,10 @@ class ci-ssh-slave {
             type    => "rsa",
             name    => "hudson@cucumber";
     }
+
+    package {
+        'bundler':
+            ensure   => 'installed',
+            provider => 'gem',
+    }
 }
