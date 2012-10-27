@@ -52,4 +52,10 @@ class ci-ssh-slave {
             ensure   => 'installed',
             provider => 'gem',
     }
+
+    file {
+        # put RubyGems bin directory into PATH
+        "/etc/profile.d/gem.sh" :
+            source => 'puppet:///modules/ci-ssh-slave/gem.sh';
+    }
 }
