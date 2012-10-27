@@ -6,6 +6,7 @@
 
 class ci-ssh-slave {
     include pkg-svn
+    include packages::vncserver # for Xvnc support
 
     group {
         "jenkins" :
