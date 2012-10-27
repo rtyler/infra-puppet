@@ -8,7 +8,7 @@ class packages::vncserver {
 
     package {
         # on Ubuntu
-        '$tightvncserver' :
+        "$tightvncserver" :
             ensure => present,
             alias => "tightvncserver";
     }
