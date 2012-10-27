@@ -56,6 +56,8 @@ class ci-ssh-slave {
             ensure   => 'installed';
         'libxslt1-dev':  # for Ruby apps that require nokogiri
             ensure   => 'installed';
+        'libcurl4-openssl-dev': # for curb gem
+            ensure   => 'installed';
     }
 
     file {
