@@ -192,7 +192,7 @@ class nagios::server {
                   Service["nagios"],
                   Class['nagios::server::permissions']
         ],
-        ensure        => present,
+        ensure        => $ensure,
         contact_groups    => "core-admins",
         service_description   => "SSH",
         check_command     => "check_ssh_4",
