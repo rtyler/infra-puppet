@@ -13,6 +13,7 @@ class nagios::server::hosts {
     "lettuce" :
       full_name => "lettuce.jenkins-ci.org";
     "cabbage" :
+      ensure    => absent,
       full_name => "cabbage.jenkins-ci.org";
     "spinach" :
       full_name => "spinach.jenkins-ci.org";
