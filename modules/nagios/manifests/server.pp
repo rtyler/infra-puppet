@@ -120,13 +120,14 @@ class nagios::server {
   }
 
 
-  define basic-host($full_name, $os = 'ubuntu') {
+  define basic-host($full_name, $os = 'ubuntu', $ensure ='present') {
     if ($os == 'ubuntu') {
-      $disk_status = 'present'
+      $disk_status = $ensure
     }
     else {
       $disk_status = 'absent'
     }
+
     nagios::server::check-disk {
       $name :
         ensure => $disk_status;
@@ -134,7 +135,7 @@ class nagios::server {
 
     nagios_host {
       $full_name :
-        ensure     => present,
+        ensure     => $ensure,
         alias      => $name,
         contact_groups => "core-admins",
         check_command  => "check_ssh_4",
@@ -148,7 +149,7 @@ class nagios::server {
 
     nagios_hostextinfo {
       $full_name:
-        ensure => present,
+        ensure => $ensure,
         notify     => [
                   Service["nagios"],
                   Class['nagios::server::permissions']
@@ -166,7 +167,7 @@ class nagios::server {
       $ping_status = 'absent'
     }
     else {
-      $ping_status = 'present'
+      $ping_status = $ensure
     }
 
     nagios_service {
@@ -201,7 +202,7 @@ class nagios::server {
     }
 
     if ($os == 'ubuntu') {
-      $puppet_ensure = 'present'
+      $puppet_ensure = $ensure
     }
     else {
       $puppet_ensure = 'absent'
