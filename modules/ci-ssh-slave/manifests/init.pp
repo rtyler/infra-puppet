@@ -58,6 +58,8 @@ class ci-ssh-slave {
             ensure   => 'installed';
         'libcurl4-openssl-dev': # for curb gem
             ensure   => 'installed';
+        'libopenssl-ruby': # for net/https
+            ensure   => 'installed';
     }
 
     file {
