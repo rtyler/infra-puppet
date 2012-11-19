@@ -63,7 +63,7 @@ kale        3600    IN    CNAME    ec2-184-73-58-254.compute-1.amazonaws.com.
 repo        3600    IN    CNAME    jenkinsci.jfrog.org.      ; Artifactory hosted by JFrog
 links       3600    IN    CNAME    rhs.reddit.com.           ; /r/jenkinsci
 jekyll      3600    IN    CNAME    cucumber
-fallback    3600    IN    CNAME    spinach.jenkins-ci.org
+fallback    3600    IN    CNAME    spinach
 
 ; MX Records
 @          3600    IN    MX    0    cucumber
