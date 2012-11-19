@@ -3,9 +3,10 @@
 #
 
 node default {
-    include base
-    include user-jieryn
-    include ci-ssh-slave
+  include base
+  include user-jieryn
+  include ci-ssh-slave
+  include fallback_jenkins-ci_org
 
   include gitrepo
   include groovy
