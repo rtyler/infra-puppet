@@ -16,9 +16,15 @@ define apache2::virtualhost($source=undef,$content=undef) {
   }
 
   # directory to house log files
-  file { "/var/log/apache2/${name}":
-    ensure  => directory,
-    owner   => root,
-    mode  => 700
+  file {
+    "/var/log/apache2/${name}":
+      ensure  => directory,
+      owner   => root,
+      mode    => 700;
+    "/var/www/${name}" :
+      ensure => directory,
+      owner   => "www-data",
+      group   => "www-data",
+      mode    => 755;
   }
 }

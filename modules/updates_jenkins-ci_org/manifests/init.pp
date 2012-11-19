@@ -7,10 +7,6 @@ class updates_jenkins-ci_org {
   include apache2::log-rotation
 
   file {
-    "/var/www/updates.jenkins-ci.org" :
-      ensure => directory,
-      owner   => "www-data",
-      group   => "www-data";
     "/var/www/updates.jenkins-ci.org/readme.html" :
       ensure  => present,
       owner   => "root",

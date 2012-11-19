@@ -8,13 +8,6 @@ class fallback_jenkins-ci_org {
   include apache2
   include apache2::log-rotation
 
-  file {
-    "/var/www/fallback.jenkins-ci.org" :
-      ensure => directory,
-      owner   => "www-data",
-      group   => "www-data";
-  }
-
   apache2::virtualhost {
     'fallback.jenkins-ci.org' :
       content => template('apache2/standard_virtualhost.erb');
