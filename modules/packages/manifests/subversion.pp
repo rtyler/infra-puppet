@@ -3,7 +3,7 @@
 #   dependency
 #
 
-class pkg-svn {
+class packages::subversion {
     package {
         "subversion" :
             ensure  => installed;

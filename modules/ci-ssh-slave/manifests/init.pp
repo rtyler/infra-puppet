@@ -5,7 +5,7 @@
 #   This should help streamline setting up new build slaves
 
 class ci-ssh-slave {
-    include pkg-svn
+    include packages::subversion
     include packages::vncserver # for Xvnc support
 
     group {
