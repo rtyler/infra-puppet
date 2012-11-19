@@ -24,4 +24,4 @@ rsync -avz --delete-during --delete-excluded --prune-empty-dirs --include-from=<
   echo '+ */'
   # exclude everything else
   echo '- *'
-) . spinach.jenkins-ci.org:/var/www/fallback.jenkins-ci.org/
+) . fallback.jenkins-ci.org:/var/www/fallback.jenkins-ci.org/
