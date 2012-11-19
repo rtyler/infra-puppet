@@ -1,4 +1,4 @@
-define apache2::virtualhost($source) {
+define apache2::virtualhost($source=undef,$content=undef) {
   include apache2::functions
 
   file { "/etc/apache2/sites-available/${name}":
@@ -6,6 +6,7 @@ define apache2::virtualhost($source) {
     group   => root,
     mode  => 644,
     source  => $source,
+    content => $content,
     require => Package["apache2"],
     notify  => Exec["reload-apache2"],
   }
