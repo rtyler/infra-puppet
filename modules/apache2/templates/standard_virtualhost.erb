@@ -5,7 +5,8 @@
 <%
     name = @name.gsub('_','.')
 %>
-<VirtualHost *:8888>
+<VirtualHost *:8888 *:80>
+    # port 8888 is used on cucumber, port 80 on other normal places
 	ServerName <%= name %>
 
 	DocumentRoot /var/www/<%= name %>
