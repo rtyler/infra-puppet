@@ -7,14 +7,6 @@ class gitrepo {
 
   $gitrepo_dir="/var/www/git.jenkins-ci.org"
 
-  file {
-    $gitrepo_dir :
-      ensure  => directory,
-      owner   => 'www-data',
-      group   => 'www-data',
-      require => Class['apache2'];
-  }
-
   package {
     "gitweb" :
       ensure    => installed;
