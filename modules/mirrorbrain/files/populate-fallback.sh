@@ -1,4 +1,5 @@
 #!/bin/bash -ex
+# MANAGED BY PUPPET. DO NOT MODIFY
 #
 # put the recent files in the fallback mirror (and recent files alone)
 # OSUOSL mirror system has a problem in that its behavior is asynchronous,
