@@ -64,6 +64,7 @@ repo        3600    IN    CNAME    jenkinsci.jfrog.org.      ; Artifactory hoste
 links       3600    IN    CNAME    rhs.reddit.com.           ; /r/jenkinsci
 jekyll      3600    IN    CNAME    cucumber
 fallback    3600    IN    CNAME    spinach
+plugin-generator    3600 IN  CNAME jpi-create.jenkins.cloudbees.net.    ; hosted app on CloudBees RUN@cloud
 
 ; MX Records
 @          3600    IN    MX    0    cucumber
