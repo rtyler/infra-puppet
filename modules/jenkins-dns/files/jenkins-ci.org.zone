@@ -66,6 +66,7 @@ jekyll      3600    IN    CNAME    cucumber
 fallback    3600    IN    CNAME    spinach
 plugin-generator    3600 IN  CNAME jpi-create.jenkins.cloudbees.net.    ; hosted app on CloudBees RUN@cloud
 goto        3600    IN    CNAME    goto.jenkins.cloudbees.net.          ; hosted app on CloudBees RUN@cloud
+recipe      3600    IN    CNAME    recipe.jenkins.cloudbees.net.        ; hosted app on CloudBees RUN@cloud
 
 ; MX Records
 @          3600    IN    MX    0    cucumber
