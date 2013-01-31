@@ -71,6 +71,9 @@ class base {
     # fakeroot is handy for building .deb packages
     'fakeroot' :
       ensure => present;
+    # Can't live without tmux anymore :)
+    'tmux' :
+      ensure => present;
   }
 
   group {
