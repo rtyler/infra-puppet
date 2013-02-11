@@ -82,9 +82,10 @@ class ips {
       user    => "ips",
       ensure    => present,
       require   => File["/srv/ips/.ssh"],
-      key     => "AAAAB3NzaC1yc2EAAAABIwAAAQEArSave9EBJ2rP3Hm5PFyiOpfGsPhJwjqdyaVEwQruM0Fa8nWstla7cdSTSs/ClHn7I1uUzQvX+/+6m/HTVy/WIr0cIIxLDm8hXVLfCLddtvxnXx47fJY3ongasYJ4TarIGkMMX/Vg1JpP7XIkMczUSNRyeHg/bGfV+YCPFuSW+cj2M5yMOE1KyIVQQL/JZu7lu80Ara5+RWSITObdiHRpnNzvBdIyhkSCrG0N7QStIBnEaLU//K2AB5GbK/65+k7sklutcH18wSGridQCNJm4ODUxov+vVr2OH3oiv7gyHEE9TypRI9vS0HUmsD+moPq3O8y0xyP8xaJWkz2LKe8/5Q==",
+      # kohsuke@griffon.2013
+      key     => "AAAAB3NzaC1yc2EAAAADAQABAAABAQCzBy1GEihAxSgrsEANgCxYwxS8Yy0U7cKq/1MMtr4/IrW2m2rzDcr4a7ZG/p/XrchCMn5eIekq1dYHsB0hY81iJr7jMZi7XbQx/LohF833YhIRctALpNzPunqBxZvOUVDib/dfX6LuoZTOojI/W5UPYrzAjyrjKMQvF5Mo0LaZ6eN1LElVaGzWExqO7mNkOrJY3IVurPu81mK4E+59FHTuB/oIawHUlxjMgBFPGKZBmb0cyVyViEmY6E78bNcN+frdSxZ72gcK/J7l1gfGz6YNQX6hKA+3v2O+/6pHf282W2hy0u4nw2DTs5NrsTnG8koiivilXC3VbhgVmQnUFKx5",
       type    => "rsa",
-      name    => "kohsuke@unicorn.2010/ips";
+      name    => "kohsuke/ips";
   }
 
   include ips::repositories
