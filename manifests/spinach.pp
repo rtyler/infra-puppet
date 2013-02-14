@@ -7,6 +7,7 @@ node default {
   include user-jieryn
   include ci-ssh-slave
   include fallback_jenkins-ci_org
+  include boxes_jenkins-ci_org
 
   include gitrepo
   include groovy
