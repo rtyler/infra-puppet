@@ -5,6 +5,7 @@ class jira {
   file {
   [
     "/srv/jira/base",
+    "/srv/jira/base/bin",
     "/srv/jira/base/classes",
     "/srv/jira/base/conf",
     "/srv/jira/base/logs",
@@ -48,7 +49,24 @@ class jira {
     ;
   }
   jira::custom_subject {
-    ['issuecreated','issuecommented'] :
+    [
+      'issueassigned',
+      'issueclosed',
+      'issuecommentedited',
+      'issuecommented',
+      'issuecreated',
+      'issuedeleted',
+      'issuegenericevent',
+      'issuemoved',
+      'issuereopened',
+      'issueresolved',
+      'issueupdated',
+      'issueworklogdeleted',
+      'issueworklogged',
+      'issueworklogupdated',
+      'issueworkstarted',
+      'issueworkstopped'
+    ] :
   }
 }
 
