@@ -39,7 +39,7 @@ class jira {
     "/srv/jira/base/classes/templates/email",
     "/srv/jira/base/classes/templates/email/subject"
   ]:
-    ensure => "directory"
+    ensure => "directory",
     owner => "jira",
     group => "jira",
     mode => 755
