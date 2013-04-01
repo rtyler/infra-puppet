@@ -3,9 +3,6 @@
 #
 class jira {
   file {
-  "/srv/jira/base/bin/setenv.sh":
-    source => "puppet:///modules/jira/subject.vm"
-    ;
   [
     "/srv/jira/base",
     "/srv/jira/base/classes",
@@ -20,6 +17,9 @@ class jira {
     group => "jira",
     mode => 755
     ;
+  "/srv/jira/base/bin/setenv.sh":
+    source => "puppet:///modules/jira/setenv.sh"
+    ;
   "/srv/jira/base/conf/server.xml":
     source => "puppet:///modules/jira/server.xml"
     ;
@@ -33,8 +33,16 @@ class jira {
   # set up custom e-mail subject
   #
   file {
-  "/srv/jira/base/classes/templates/email/subject":
+  [
+    "/srv/jira/base/classes",
+    "/srv/jira/base/classes/templates",
+    "/srv/jira/base/classes/templates/email",
+    "/srv/jira/base/classes/templates/email/subject"
+  ]:
     ensure => "directory"
+    owner => "jira",
+    group => "jira",
+    mode => 755
     ;
   "/srv/jira/base/classes/templates/email/subject/subject.vm":
     source => "puppet:///modules/jira/subject.vm"
