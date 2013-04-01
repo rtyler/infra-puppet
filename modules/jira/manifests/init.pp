@@ -34,7 +34,6 @@ class jira {
   #
   file {
   [
-    "/srv/jira/base/classes",
     "/srv/jira/base/classes/templates",
     "/srv/jira/base/classes/templates/email",
     "/srv/jira/base/classes/templates/email/subject"
