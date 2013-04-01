@@ -6,10 +6,15 @@ class jira {
   "/srv/jira/base/bin/setenv.sh":
     source => "puppet:///modules/jira/subject.vm"
     ;
-  "/srv/jira/base/classes":  # added to classpath
-    ensure => "directory"
-    ;
-  ["/srv/jira/base/logs","/srv/jira/base/webapps","/srv/jira/base/work","/srv/jira/base/temp"]:
+  [
+    "/srv/jira/base",
+    "/srv/jira/base/classes",
+    "/srv/jira/base/conf",
+    "/srv/jira/base/logs",
+    "/srv/jira/base/webapps",
+    "/srv/jira/base/work",
+    "/srv/jira/base/temp"
+  ]:
     ensure => "directory",
     owner => "jira",
     group => "jira",
