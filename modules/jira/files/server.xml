@@ -137,6 +137,12 @@
           <Resource name="UserTransaction" auth="Container" type="javax.transaction.UserTransaction"
                     factory="org.objectweb.jotm.UserTransactionFactory" jotm.timeout="60"/>
           <Manager pathname=""/>
+
+          <!-- allow /srv/jira/base/classes to override -->
+          <Loader
+                  className="org.apache.catalina.loader.VirtualWebappLoader"
+                  searchExternalFirst="true"
+                  virtualClasspath="${catalina.base}/classes" />
         </Context>
 
       </Host>
