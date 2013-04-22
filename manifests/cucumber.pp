@@ -126,6 +126,12 @@ node default {
         port   => 636,
         action => 'accept';
 
+      '106 accept inbound LDAPS request from hosted Artifactory by JFrog (third IP)' :
+        proto  => 'tcp',
+        source => '54.236.124.56',
+        port   => 636,
+        action => 'accept';
+
       # normally nobody listens on this port, but when we need to find the source IP address
       # JFrog is using to connect us, run 'stone -d -d localhost:636 9636' and watch the log
       '106 debugging the LDAPS connection (necessary to report source IP address)' :
