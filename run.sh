@@ -29,6 +29,8 @@ git pull --rebase >> ${LOGFILE} 2>&1 && \
  git submodule update --init >> ${LOGFILE} 2>&1 && \
  puppet apply --modulepath=modules --verbose manifests/${HOSTNAME}.pp >> ${LOGFILE} 2>&1
 
+ln -sf ${LOGFILE} puppet.latest.log
+
 if [ $? -ne 0 ]; then
     touch ${ERROR_FILE}
 else
