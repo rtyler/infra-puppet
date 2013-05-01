@@ -28,6 +28,11 @@ class jira {
     ensure => "link",
     target => "../../current/conf/web.xml"
     ;
+  "/etc/init.d/jira":
+    # TODO: run "update-rc.d jira defaults" when this file change
+    source => "puppet:///modules/jira/jira.init",
+    mode => 755
+    ;
   }
 
   #
