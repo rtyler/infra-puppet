@@ -1,4 +1,5 @@
 #!/bin/sh -e
+# ================ THIS FILE IS MANAGED BY PUPPET: DO NOT MODIFY ==================
 # JIRA startup script
 #chkconfig: 2345 80 05
 #description: JIRA
@@ -14,6 +15,8 @@ BASE=/srv/jira/current
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
 # Tomcat installation
 export CATALINA_BASE=/srv/jira/base
+# where to create PID file?
+export CATALINA_PID=/srv/jira/jira.pid
 
 case "$1" in
   # Start command
