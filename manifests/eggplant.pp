@@ -6,6 +6,7 @@ node default {
     include base
     include atlassian
     include jira
+    include confluence
     include confluence-cache
 
     firewall {
