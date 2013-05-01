@@ -23,6 +23,7 @@ case "$1" in
   start)
     echo "Starting $APP"
     /bin/su -m $USER -c "cd $BASE/logs && $BASE/bin/startup.sh &> /dev/null"
+    echo 5 > /proc/`cat $CATALINA_PID`/oom_adj
     ;;
   # Stop command
   stop)
