@@ -13,6 +13,8 @@ USER=wiki
 BASE=/srv/wiki/current
 # Location of Java JDK
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
+# Tomcat installation
+export CATALINA_BASE=/srv/wiki/base
 # where to create PID file?
 export CATALINA_PID=/srv/wiki/wiki.pid
 
