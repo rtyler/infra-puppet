@@ -19,10 +19,10 @@ class confluence {
     mode => 755
     ;
   "/srv/wiki/base/bin/setenv.sh":
-    source => "puppet:///modules/wiki/setenv.sh"
+    source => "puppet:///modules/confluence/setenv.sh"
     ;
   "/srv/wiki/base/conf/server.xml":
-    source => "puppet:///modules/wiki/server.xml"
+    source => "puppet:///modules/confluence/server.xml"
     ;
   "/srv/wiki/base/conf/web.xml":
     ensure => "link",
