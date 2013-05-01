@@ -1,4 +1,5 @@
-!/bin/sh -e
+#!/bin/sh -e
+# ================ THIS FILE IS MANAGED BY PUPPET: DO NOT MODIFY ==================
 # Confluence startup script
 #chkconfig: 2345 80 05
 #description: Confluence
@@ -12,12 +13,15 @@ USER=wiki
 BASE=/srv/wiki/current
 # Location of Java JDK
 export JAVA_HOME=/usr/lib/jvm/java-6-sun
+# where to create PID file?
+export CATALINA_PID=/srv/wiki/wiki.pid
 
 case "$1" in
   # Start command
   start)
     echo "Starting $APP"
     /bin/su -m $USER -c "cd $BASE/logs && $BASE/bin/startup.sh &> /dev/null"
+    echo 5 > /proc/`cat $CATALINA_PID`/oom_adj
     ;;
   # Stop command
   stop)
