@@ -1,0 +1,14 @@
+#!/bin/sh
+# parse the command given and validate that it's one of the commands we explicitly allow
+
+# this parses the command into $1, $2, ...
+set -- $SSH_ORIGINAL_COMMAND
+
+cmd="/home/commands/commands/$1"
+shift
+
+if [ -x "$cmd" ]; then
+    exec "$cmd" "$@"
+else
+    echo Unknown command: $SSH_ORIGINAL_COMMAND
+fi
