@@ -10,6 +10,9 @@ FORGE
       puppetlabs/stdlib (>= 0.1.6)
     puppetlabs/stdlib (4.1.0)
     ripienaar/concat (0.2.0)
+    rtyler/puppet (0.0.1)
+      puppetlabs/apt (>= 0.0.4)
+      puppetlabs/stdlib (>= 3.0.0)
 
 GIT
   remote: git://github.com/jenkinsci/puppet-postgres.git
@@ -24,15 +27,6 @@ GIT
   sha: ae7b29c678c258cdbf5d4bb76a398ad19e40c36a
   specs:
     sshd (1.0.0)
-
-GIT
-  remote: git://github.com/rtyler/puppet-puppet.git
-  ref: master
-  sha: 3400421db79e3906520d63c5dca055ccdfef7c59
-  specs:
-    puppet (0.0.1)
-      puppetlabs/apt (>= 0.0.4)
-      puppetlabs/stdlib (>= 3.0.0)
 
 PATH
   remote: ./local-modules/apache2
@@ -211,13 +205,13 @@ DEPENDENCIES
   nginx (>= 0)
   packages (>= 0)
   postgres (>= 0)
-  puppet (>= 0)
   puppetlabs/apt (>= 0)
   puppetlabs/firewall (>= 0)
   puppetlabs/mysql (>= 0)
   puppetlabs/ntp (>= 0)
   puppetlabs/stdlib (>= 0)
   ripienaar/concat (>= 0)
+  rtyler/puppet (>= 0)
   sshd (>= 0)
   sudo (>= 0)
   updates_jenkins-ci_org (>= 0)
