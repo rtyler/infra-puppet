@@ -22,7 +22,7 @@ node default {
     }
 
     cron {
-      "compress old JIRA logs" :
+      'compress old JIRA logs' :
         # compress log files that JIRA creates on the disk
         # TODO: ideally move this to the JIRA module
         command => '/usr/local/bin/atlassian-log-compress.rb /srv/jira/current/logs',
@@ -30,13 +30,14 @@ node default {
         minute  => 0,
         weekday => 'Monday';
 
-      "delete old JIRA temp files" :
-        # JIRA JVM creates temporary files that it doesn't always clean up on its own
+      'delete old JIRA temp files' :
+        # JIRA JVM creates temporary files that it doesn't always clean up on
+        # its own
         command => 'find /srv/jira/current/temp/ -mtime +30 -print  | xargs rm',
         hour    => 0,
         minute  => 30;
 
-      "compress old Confluence logs" :
+      'compress old Confluence logs' :
         # compress log files that Confluence creates on the disk
         # TODO: ideally move this to the confluence module
         command => '/usr/local/bin/atlassian-log-compress.rb /srv/wiki/current/logs',

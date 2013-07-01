@@ -1,6 +1,10 @@
+#
+# The users-core class contains all the users who should exist on every machine
+# in the entire Jenkins cluster.
+#
 class users-core {
     group {
-        "infraadmin" :
+        'infraadmin' :
             ensure  => present;
     }
 

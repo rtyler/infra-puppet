@@ -1,6 +1,7 @@
 require 'puppet-lint/tasks/puppet-lint'
 
 PuppetLint.configuration.send('disable_names_containing_dash')
+PuppetLint.configuration.send('disable_80chars')
 
 
 def ignored_modules

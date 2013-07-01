@@ -13,7 +13,7 @@ node default {
     }
 
     cron {
-      "time sync" :
+      'time sync' :
         command => '/usr/sbin/ntpdate pool.ntp.org',
         minute  => 15;
 
@@ -132,8 +132,9 @@ node default {
         port   => 636,
         action => 'accept';
 
-      # normally nobody listens on this port, but when we need to find the source IP address
-      # JFrog is using to connect us, run 'stone -d -d localhost:636 9636' and watch the log
+      # normally nobody listens on this port, but when we need to find the
+      # source IP address JFrog is using to connect us, run 'stone -d -d
+      # localhost:636 9636' and watch the log
       '106 debugging the LDAPS connection (necessary to report source IP address)' :
         proto  => 'tcp',
         port   => 9636,

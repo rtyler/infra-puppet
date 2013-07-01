@@ -6,32 +6,32 @@
 class haproxy {
 
   package {
-    "haproxy" :
+    'haproxy' :
       ensure => installed;
   }
 
   file {
-    "/etc/haproxy" :
+    '/etc/haproxy' :
       ensure  => directory,
-      owner   => "haproxy",
-      group   => "haproxy",
-      require => Package["haproxy"];
+      owner   => 'haproxy',
+      group   => 'haproxy',
+      require => Package['haproxy'];
 
-    "/etc/default/haproxy" :
+    '/etc/default/haproxy' :
       ensure  => present,
-      owner   => "root",
-      group   => "root",
-      require => Package["haproxy"],
+      owner   => 'root',
+      group   => 'root',
+      require => Package['haproxy'],
       notify  => Service['haproxy'],
-      source  => "puppet:///modules/haproxy/haproxy-defaults";
+      source  => 'puppet:///modules/haproxy/haproxy-defaults';
 
-    "/etc/haproxy/haproxy.cfg" :
+    '/etc/haproxy/haproxy.cfg' :
       ensure  => present,
-      owner   => "haproxy",
-      group   => "haproxy",
+      owner   => 'haproxy',
+      group   => 'haproxy',
       notify  => Service['haproxy'],
       require => File['/etc/haproxy'],
-      source  => "puppet:///modules/haproxy/haproxy.cfg";
+      source  => 'puppet:///modules/haproxy/haproxy.cfg';
   }
 
   service {

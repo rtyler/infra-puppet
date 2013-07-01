@@ -1,31 +1,31 @@
 class mirrorbrain::cron {
     cron {
-        "mirrorprobe" :
-            command => "mirrorprobe",
+        'mirrorprobe' :
+            ensure  => present,
+            command => 'mirrorprobe',
             user    => root,
-            minute  => 30,
-            ensure  => present;
+            minute  => 30;
 
-        "mb scan" :
-            command => "mb scan --quiet --jobs 4 --al",
+        'mb scan' :
+            ensure  => present,
+            command => 'mb scan --quiet --jobs 4 --al',
             user    => root,
-            minute  => 45,
-            ensure  => present;
+            minute  => 45;
 
-        "mb vacuum" :
-            command => "mb db vacuum",
+        'mb vacuum' :
+            ensure  => present,
+            command => 'mb db vacuum',
             user    => root,
             minute  => 30,
             hour    => 1,
-            weekday => Monday,
-            ensure  => present;
+            weekday => Monday;
 
-        "geoip-lite-update" :
-            command => "geoip-lite-update",
+        'geoip-lite-update' :
+            ensure  => present,
+            command => 'geoip-lite-update',
             user    => root,
             minute  => 45,
             hour    => 4,
-            weekday => Tuesday,
-            ensure  => present;
+            weekday => Tuesday;
     }
 }
