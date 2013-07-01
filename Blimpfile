@@ -6,36 +6,65 @@ def self.rhel?
 end
 
 begin
-  Blimpy.fleet do |fleet|
-    manifest = ENV['MANIFEST'] || 'vagrant.pp'
 
-    if rhel?
-      manifest = 'kale.pp'
-    end
+  # Test many things at once in HERO MODE
+  if ENV['HEROMODE']
 
-    manifest = "./manifests/#{manifest}"
+    Blimpy.fleet do |fleet|
+      ['spinach', 'cabbage', 'cucumber'].each do |machine|
+        fleet.add(:aws) do |ship|
+          ship.name = "jenkins-infra-#{machine}"
+          ship.livery = Blimpy::Livery::Puppet.configure do |p|
+            p.manifest_path = "./manifests/#{machine}.pp"
+          end
+          ship.flavor = 'm1.large'
+          ship.ports = [22, 80]
+          ship.region = 'us-west-2'
+          ship.username = 'ubuntu'
 
-    unless File.exists?(manifest)
-      puts "Uh oh! It looks like #{manifest} doesn't exist!"
-      exit 1
-    end
-
-    fleet.add(:aws) do |ship|
-      ship.name = 'jenkins-infra'
-      ship.livery = Blimpy::Livery::Puppet.configure do |p|
-        p.manifest_path = manifest
+          # Kale is a RHEL machine and has special needs
+          if machine == 'kale'
+            ship.image_id = 'ami-8a25a9ba' # RHEL 6.3 in US West 2
+            ship.username = 'root'
+          end
+        end
       end
-      ship.flavor = 'm1.large'
-      ship.ports = [22, 80]
-      ship.region = 'us-west-2'
-      ship.username = 'ubuntu'
+    end
+
+  else
+
+    Blimpy.fleet do |fleet|
+      manifest = ENV['MANIFEST'] || 'vagrant.pp'
 
       if rhel?
-        ship.name = "#{ship.name}-rhel"
-        ship.image_id = 'ami-8a25a9ba' # RHEL 6.3 in US West 2
-        ship.username = 'root'
+        manifest = 'kale.pp'
+      end
+
+      manifest = "./manifests/#{manifest}"
+
+      unless File.exists?(manifest)
+        puts "Uh oh! It looks like #{manifest} doesn't exist!"
+        exit 1
+      end
+
+      fleet.add(:aws) do |ship|
+        ship.name = 'jenkins-infra'
+        ship.livery = Blimpy::Livery::Puppet.configure do |p|
+          p.manifest_path = manifest
+        end
+        ship.flavor = 'm1.large'
+        ship.ports = [22, 80]
+        ship.region = 'us-west-2'
+        ship.username = 'ubuntu'
+
+        if rhel?
+          ship.name = "#{ship.name}-rhel"
+          ship.image_id = 'ami-8a25a9ba' # RHEL 6.3 in US West 2
+          ship.username = 'root'
+        end
       end
     end
+
   end
 rescue Exception => e
   puts e
