@@ -1,12 +1,12 @@
+require 'puppet-lint/tasks/puppet-lint'
+
+PuppetLint.configuration.send('disable_names_containing_dash')
 
 
-def each_manifest(&block)
-  Dir.glob("manifests/*.pp") do |filename|
-    yield filename
-  end
+def ignored_modules
   ##
   ## We're going to ignore all the submodules, since we don't really care how
-  #crappy their code is
+  ## crappy their code is
   ignores = []
   regex = /(".*?")/
   File.open('.gitmodules').each_line do |line|
@@ -15,11 +15,20 @@ def each_manifest(&block)
       ignores << matches[1].gsub('"', '')
     end
   end
+  return ignores
+end
 
-  puts "Linting modules"
+PuppetLint.configuration.ignore_paths = ignored_modules.map { |p| "#{p}/**/*.pp" }
+
+
+def each_manifest(&block)
+  Dir.glob("manifests/*.pp") do |filename|
+    yield filename
+  end
+
   Dir.glob("modules/**/*.pp") do |filename|
     found = false
-    ignores.each do |ignore|
+    ignored_modules.each do |ignore|
       if filename.start_with? ignore
         found = true
         break
@@ -30,17 +39,6 @@ def each_manifest(&block)
       yield filename
     end
   end
-end
-
-desc "Run puppet-lint on all manifests"
-task :lint do
-  puts "Linting manifests"
-  puts "-----------------"
-
-  each_manifest do |filename|
-    sh "puppet-lint --with-filename '#{filename}'"
-  end
-  puts "-----------------"
 end
 
 
