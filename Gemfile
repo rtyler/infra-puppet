@@ -4,6 +4,7 @@ gem "rake"
 gem "puppet"
 gem "puppet-module"
 gem "puppet-lint"
+gem 'librarian-puppet'
 
 group :development do
   gem "vagrant", '~> 1.0'
