@@ -1,5 +1,17 @@
 #!/bin/sh
 
+LOGFILE="puppet.`date "+%s"`.log"
+
+echo
+echo "==> Generating log file: ${LOGFILE}"
+
+
+# Redirect stdout ( > ) into a named pipe ( >() ) running "tee"
+exec > >(tee ${LOGFILE})
+# Without this, only stdout would be captured - i.e. your
+# log file would not contain any error messages.
+exec 2>&1
+
 # Forcing the gems path to take priority so we can use the Puppet/Facter
 # installed by gems if it's available
 export PATH=/var/lib/gems/1.8/bin:$PATH
@@ -12,8 +24,14 @@ if [ $? -ne 0 ]; then
   gem install facter -v 1.6.10 --no-ri --no-rdoc
 fi
 
+which librarian-puppet
+
+# Install librarian-puppet if we don't have it
+if [ $? -ne 0 ]; then
+  gem install librarian-puppet --no-ri --no-rdoc
+fi
+
 HOSTNAME=`hostname -s`
-LOGFILE="puppet.`date "+%s"`.log"
 ERROR_FILE="last_run_failed"
 SUCCESS_FILE="last_run_succeeded"
 
@@ -22,12 +40,10 @@ sleep 5
 
 rm -f ${ERROR_FILE}
 
-echo
-echo "==> Generating log file: ${LOGFILE}"
-
-git pull --rebase >> ${LOGFILE} 2>&1 && \
- git submodule update --init >> ${LOGFILE} 2>&1 && \
- puppet apply --modulepath=modules --verbose manifests/${HOSTNAME}.pp >> ${LOGFILE} 2>&1
+git pull --rebase && \
+ git submodule update --init && \
+ librarian-puppet && \
+ puppet apply --modulepath=modules --verbose manifests/${HOSTNAME}.pp
 
 ln -sf ${LOGFILE} puppet.latest.log
 
