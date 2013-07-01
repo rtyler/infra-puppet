@@ -34,7 +34,182 @@ GIT
       puppetlabs/apt (>= 0.0.4)
       puppetlabs/stdlib (>= 3.0.0)
 
+PATH
+  remote: ./local-modules/apache2
+  specs:
+    apache2 (0.0.1)
+
+PATH
+  remote: ./local-modules/atlassian
+  specs:
+    atlassian (0.0.1)
+
+PATH
+  remote: ./local-modules/autoupdate
+  specs:
+    autoupdate (0.0.1)
+
+PATH
+  remote: ./local-modules/base
+  specs:
+    base (0.0.1)
+
+PATH
+  remote: ./local-modules/boxes_jenkins-ci_org
+  specs:
+    boxes_jenkins-ci_org (0.0.1)
+
+PATH
+  remote: ./local-modules/ci-ssh-slave
+  specs:
+    ci-ssh-slave (0.0.1)
+
+PATH
+  remote: ./local-modules/confluence
+  specs:
+    confluence (0.0.1)
+
+PATH
+  remote: ./local-modules/confluence-cache
+  specs:
+    confluence-cache (0.0.1)
+
+PATH
+  remote: ./local-modules/confluence-new
+  specs:
+    confluence-new (0.0.1)
+
+PATH
+  remote: ./local-modules/fallback_jenkins-ci_org
+  specs:
+    fallback_jenkins-ci_org (0.0.1)
+
+PATH
+  remote: ./local-modules/gitrepo
+  specs:
+    gitrepo (0.0.1)
+
+PATH
+  remote: ./local-modules/groovy
+  specs:
+    groovy (0.0.1)
+
+PATH
+  remote: ./local-modules/haproxy
+  specs:
+    haproxy (0.0.1)
+
+PATH
+  remote: ./local-modules/ips
+  specs:
+    ips (0.0.1)
+
+PATH
+  remote: ./local-modules/jenkins-dns
+  specs:
+    jenkins-dns (0.0.1)
+
+PATH
+  remote: ./local-modules/jira
+  specs:
+    jira (0.0.1)
+
+PATH
+  remote: ./local-modules/mirrorbrain
+  specs:
+    mirrorbrain (0.0.1)
+
+PATH
+  remote: ./local-modules/nagios
+  specs:
+    nagios (0.0.1)
+
+PATH
+  remote: ./local-modules/nginx
+  specs:
+    nginx (0.0.1)
+
+PATH
+  remote: ./local-modules/packages
+  specs:
+    packages (0.0.1)
+
+PATH
+  remote: ./local-modules/sudo
+  specs:
+    sudo (0.0.1)
+
+PATH
+  remote: ./local-modules/updates_jenkins-ci_org
+  specs:
+    updates_jenkins-ci_org (0.0.1)
+
+PATH
+  remote: ./local-modules/user-abayer
+  specs:
+    user-abayer (0.0.1)
+
+PATH
+  remote: ./local-modules/user-aheritier
+  specs:
+    user-aheritier (0.0.1)
+
+PATH
+  remote: ./local-modules/user-commands
+  specs:
+    user-commands (0.0.1)
+
+PATH
+  remote: ./local-modules/user-jieryn
+  specs:
+    user-jieryn (0.0.1)
+
+PATH
+  remote: ./local-modules/user-kbsingh
+  specs:
+    user-kbsingh (0.0.1)
+
+PATH
+  remote: ./local-modules/user-kohsuke
+  specs:
+    user-kohsuke (0.0.1)
+
+PATH
+  remote: ./local-modules/user-mindless
+  specs:
+    user-mindless (0.0.1)
+
+PATH
+  remote: ./local-modules/user-tyler
+  specs:
+    user-tyler (0.0.1)
+
+PATH
+  remote: ./local-modules/users-core
+  specs:
+    users-core (0.0.1)
+
 DEPENDENCIES
+  apache2 (>= 0)
+  atlassian (>= 0)
+  autoupdate (>= 0)
+  base (>= 0)
+  boxes_jenkins-ci_org (>= 0)
+  ci-ssh-slave (>= 0)
+  confluence (>= 0)
+  confluence-cache (>= 0)
+  confluence-new (>= 0)
+  fallback_jenkins-ci_org (>= 0)
+  gitrepo (>= 0)
+  groovy (>= 0)
+  haproxy (>= 0)
+  ips (>= 0)
+  jenkins-dns (>= 0)
+  jira (>= 0)
+  mirrorbrain (>= 0)
+  nagios (>= 0)
+  nginx (>= 0)
+  packages (>= 0)
   postgres (>= 0)
   puppet (>= 0)
   puppetlabs/apt (>= 0)
@@ -44,4 +219,15 @@ DEPENDENCIES
   puppetlabs/stdlib (>= 0)
   ripienaar/concat (>= 0)
   sshd (>= 0)
+  sudo (>= 0)
+  updates_jenkins-ci_org (>= 0)
+  user-abayer (>= 0)
+  user-aheritier (>= 0)
+  user-commands (>= 0)
+  user-jieryn (>= 0)
+  user-kbsingh (>= 0)
+  user-kohsuke (>= 0)
+  user-mindless (>= 0)
+  user-tyler (>= 0)
+  users-core (>= 0)
 
