@@ -42,7 +42,7 @@ rm -f ${ERROR_FILE}
 
 git pull --rebase && \
  git submodule update --init && \
- librarian-puppet && \
+ librarian-puppet install && \
  puppet apply --modulepath=modules --verbose manifests/${HOSTNAME}.pp
 
 ln -sf ${LOGFILE} puppet.latest.log
