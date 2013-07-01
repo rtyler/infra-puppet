@@ -8,3 +8,5 @@
 .blimpy.d
 features/reports
 tmp
+.tmp/
+modules/

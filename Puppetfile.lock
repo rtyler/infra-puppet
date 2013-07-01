@@ -1,0 +1,47 @@
+FORGE
+  remote: http://forge.puppetlabs.com
+  specs:
+    puppetlabs/apt (1.1.0)
+      puppetlabs/stdlib (>= 2.2.1)
+    puppetlabs/firewall (0.3.1)
+    puppetlabs/mysql (0.7.1)
+      puppetlabs/stdlib (>= 2.2.1)
+    puppetlabs/ntp (0.3.0)
+      puppetlabs/stdlib (>= 0.1.6)
+    puppetlabs/stdlib (4.1.0)
+    ripienaar/concat (0.2.0)
+
+GIT
+  remote: git://github.com/jenkinsci/puppet-postgres.git
+  ref: master
+  sha: 2f1c240476c93d69bc58b6b44653f82e2b7c8c78
+  specs:
+    postgres (0.0.3)
+
+GIT
+  remote: git://github.com/jenkinsci/puppet-sshd.git
+  ref: master
+  sha: ae7b29c678c258cdbf5d4bb76a398ad19e40c36a
+  specs:
+    sshd (1.0.0)
+
+GIT
+  remote: git://github.com/rtyler/puppet-puppet.git
+  ref: master
+  sha: 3400421db79e3906520d63c5dca055ccdfef7c59
+  specs:
+    puppet (0.0.1)
+      puppetlabs/apt (>= 0.0.4)
+      puppetlabs/stdlib (>= 3.0.0)
+
+DEPENDENCIES
+  postgres (>= 0)
+  puppet (>= 0)
+  puppetlabs/apt (>= 0)
+  puppetlabs/firewall (>= 0)
+  puppetlabs/mysql (>= 0)
+  puppetlabs/ntp (>= 0)
+  puppetlabs/stdlib (>= 0)
+  ripienaar/concat (>= 0)
+  sshd (>= 0)
+
