@@ -35,44 +35,44 @@ ns2         3600    IN    A    140.211.15.121
 ;-----------------------------------
 
 ; CNAME Records
-www         3600    IN    CNAME    @
+www         300    IN    CNAME    @
 issues      3600    IN    CNAME    eggplant
 newissues   3600    IN    CNAME    cabbage
 wiki        3600    IN    CNAME    eggplant
 wiki2       3600    IN    CNAME    cabbage
-updates     3600    IN    CNAME    cucumber
-downloads   3600    IN    CNAME    cucumber
-fisheye     3600    IN    CNAME    cucumber
-l10n        3600    IN    CNAME    cucumber
-javadoc     3600    IN    CNAME    cucumber
-mirrors     3600    IN    CNAME    cucumber
-pkg         3600    IN    CNAME    cucumber
-usage       3600    IN    CNAME    cucumber
-stacktrace  3600    IN    CNAME    cucumber
-sorcerer    3600    IN    CNAME    cucumber
-stats       3600    IN    CNAME    cucumber
-maven       3600    IN    CNAME    cucumber
-maven2      3600    IN    CNAME    cucumber
-ci          3600    IN    CNAME    cucumber
-svn         3600    IN    CNAME    cucumber
-meetings    3600    IN    CNAME    cucumber
+updates     300    IN    CNAME    cucumber
+downloads   300    IN    CNAME    cucumber
+fisheye     300    IN    CNAME    cucumber
+l10n        300    IN    CNAME    cucumber
+javadoc     300    IN    CNAME    cucumber
+mirrors     300    IN    CNAME    cucumber
+pkg         300    IN    CNAME    cucumber
+usage       300    IN    CNAME    cucumber
+stacktrace  300    IN    CNAME    cucumber
+sorcerer    300    IN    CNAME    cucumber
+stats       300    IN    CNAME    cucumber
+maven       300    IN    CNAME    cucumber
+maven2      300    IN    CNAME    cucumber
+ci          300    IN    CNAME    cucumber
+svn         300    IN    CNAME    cucumber
+meetings    300    IN    CNAME    cucumber
+javanet2    300    IN    CNAME    cucumber
+jekyll      300    IN    CNAME    cucumber
 git         3600    IN    CNAME    spinach
 boxes       3600    IN    CNAME    spinach
 mirrors2    3600    IN    CNAME    lettuce
 ips         3600    IN    CNAME    lettuce
 nagios      3600    IN    CNAME    lettuce
-javanet2    3600    IN    CNAME    cucumber
 kale        3600    IN    CNAME    ec2-184-73-58-254.compute-1.amazonaws.com.
 repo        3600    IN    CNAME    jenkinsci.jfrog.org.      ; Artifactory hosted by JFrog
 links       3600    IN    CNAME    rhs.reddit.com.           ; /r/jenkinsci
-jekyll      3600    IN    CNAME    cucumber
 fallback    3600    IN    CNAME    spinach
 plugin-generator    3600 IN  CNAME jpi-create.jenkins.cloudbees.net.    ; hosted app on CloudBees RUN@cloud
 goto        3600    IN    CNAME    goto.jenkins.cloudbees.net.          ; hosted app on CloudBees RUN@cloud
 recipe      3600    IN    CNAME    recipe.jenkins.cloudbees.net.        ; hosted app on CloudBees RUN@cloud
 
 ; MX Records
-@          3600    IN    MX    0    cucumber
+@          300    IN    MX    0    cucumber
 lists      3600    IN    MX    0    smtp1.osuosl.org.
 lists      3600    IN    MX    0    smtp2.osuosl.org.
 lists      3600    IN    MX    0    smtp3.osuosl.org.
