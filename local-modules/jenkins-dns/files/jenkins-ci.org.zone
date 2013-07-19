@@ -17,6 +17,8 @@ eggplant    3600    IN    A    140.211.15.101
 
 ; Primary at Contegix
 cucumber    3600    IN    A    63.246.20.93
+; Primary at Contegix' new datacenter
+gherkin     3600    IN    A    199.193.196.24
 
 ; VM at Rackspace
 spinach     3600    IN    A    173.203.60.151
