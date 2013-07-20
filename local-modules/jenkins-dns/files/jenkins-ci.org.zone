@@ -57,7 +57,7 @@ ci          300    IN    CNAME    cucumber
 svn         300    IN    CNAME    cucumber
 meetings    300    IN    CNAME    cucumber
 javanet2    300    IN    CNAME    cucumber
-jekyll      300    IN    CNAME    cucumber
+jekyll      3600    IN    CNAME    jenkinsci.github.io
 git         3600    IN    CNAME    spinach
 boxes       3600    IN    CNAME    spinach
 mirrors2    3600    IN    CNAME    lettuce
