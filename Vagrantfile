@@ -5,9 +5,12 @@ Vagrant::Config.run do |config|
   if ENV['REDHAT'] == '1'
     config.vm.box     = 'centos-6-x86_64'
     config.vm.box_url = 'http://dl.dropbox.com/u/1627760/centos-6.0-x86_64.box'
+  elsif ENV['LUCID'] == '1'
+    config.vm.box     = "lucid64"
+    config.vm.box_url = "http://files.vagrantup.com/lucid64.box"
   else
-    config.vm.box     = "lucid32"
-    config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
+    config.vm.box     = "precise64"
+    config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   end
 
   # Forward a port from the guest to the host, which allows for outside
@@ -27,6 +30,6 @@ Vagrant::Config.run do |config|
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "manifests"
     puppet.module_path    = "modules"
-    puppet.manifest_file  = "vagrant.pp"
+    puppet.manifest_file  = ENV['MANIFEST'] || "vagrant.pp"
   end
 end
