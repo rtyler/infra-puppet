@@ -7,7 +7,6 @@ gem "puppet-lint"
 gem 'librarian-puppet'
 
 group :development do
-  gem "vagrant", '~> 1.0'
   gem 'blimpy', '~> 0.6.2'
   gem 'blimpy-cucumber', '>= 0.0.6'
   gem 'cucumber'
