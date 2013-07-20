@@ -42,7 +42,6 @@ class base {
      'packages::ruby'] : ;
 
     'ntp' :
-      ensure   => running,
       servers  => ['pool.ntp.org iburst'],
       autoupdate => true;
   }
