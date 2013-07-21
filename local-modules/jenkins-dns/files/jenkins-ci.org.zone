@@ -57,6 +57,7 @@ ci          300    IN    CNAME    gherkin
 svn         300    IN    CNAME    gherkin
 meetings    300    IN    CNAME    gherkin
 javanet2    300    IN    CNAME    gherkin
+ldap        300    IN    CNAME    gherkin
 jekyll      3600    IN    CNAME    jenkinsci.github.io
 git         3600    IN    CNAME    spinach
 boxes       3600    IN    CNAME    spinach
