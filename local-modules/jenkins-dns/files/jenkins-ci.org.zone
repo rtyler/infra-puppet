@@ -10,7 +10,7 @@ JENKINS-CI.ORG.    3600    IN    SOA    ns1.jenkins-ci.org. tyler.monkeypox.org.
                 )
 
 ; A Records
-@           3600    IN    A    63.246.20.93
+@           3600    IN    A    199.193.196.24
 
 ; VM at OSUOSL
 eggplant    3600    IN    A    140.211.15.101
