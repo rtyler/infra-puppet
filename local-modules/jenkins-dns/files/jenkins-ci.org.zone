@@ -16,7 +16,7 @@ JENKINS-CI.ORG.    3600    IN    SOA    ns1.jenkins-ci.org. tyler.monkeypox.org.
 eggplant    3600    IN    A    140.211.15.101
 
 ; Primary at Contegix
-cucumber     3600    IN    A    199.193.196.24·
+cucumber     3600    IN    A    199.193.196.24
 ; Primary at Contegix' new datacenter
 gherkin     3600    IN    A    199.193.196.24
 
