@@ -16,7 +16,7 @@ JENKINS-CI.ORG.    3600    IN    SOA    ns1.jenkins-ci.org. tyler.monkeypox.org.
 eggplant    3600    IN    A    140.211.15.101
 
 ; Primary at Contegix
-cucumber    3600    IN    A    63.246.20.93
+cucumber     3600    IN    A    63.246.20.93
 ; Primary at Contegix' new datacenter
 gherkin     3600    IN    A    199.193.196.24
 
@@ -40,23 +40,23 @@ issues      3600    IN    CNAME    eggplant
 newissues   3600    IN    CNAME    cabbage
 wiki        3600    IN    CNAME    eggplant
 wiki2       3600    IN    CNAME    cabbage
-updates     300    IN    CNAME    cucumber
-downloads   300    IN    CNAME    cucumber
-fisheye     300    IN    CNAME    cucumber
-l10n        300    IN    CNAME    cucumber
-javadoc     300    IN    CNAME    cucumber
-mirrors     300    IN    CNAME    cucumber
-pkg         300    IN    CNAME    cucumber
-usage       300    IN    CNAME    cucumber
-stacktrace  300    IN    CNAME    cucumber
-sorcerer    300    IN    CNAME    cucumber
-stats       300    IN    CNAME    cucumber
-maven       300    IN    CNAME    cucumber
-maven2      300    IN    CNAME    cucumber
-ci          300    IN    CNAME    cucumber
-svn         300    IN    CNAME    cucumber
-meetings    300    IN    CNAME    cucumber
-javanet2    300    IN    CNAME    cucumber
+updates     300    IN    CNAME    gherkin
+downloads   300    IN    CNAME    gherkin
+fisheye     300    IN    CNAME    gherkin
+l10n        300    IN    CNAME    gherkin
+javadoc     300    IN    CNAME    gherkin
+mirrors     300    IN    CNAME    gherkin
+pkg         300    IN    CNAME    gherkin
+usage       300    IN    CNAME    gherkin
+stacktrace  300    IN    CNAME    gherkin
+sorcerer    300    IN    CNAME    gherkin
+stats       300    IN    CNAME    gherkin
+maven       300    IN    CNAME    gherkin
+maven2      300    IN    CNAME    gherkin
+ci          300    IN    CNAME    gherkin
+svn         300    IN    CNAME    gherkin
+meetings    300    IN    CNAME    gherkin
+javanet2    300    IN    CNAME    gherkin
 jekyll      3600    IN    CNAME    jenkinsci.github.io
 git         3600    IN    CNAME    spinach
 boxes       3600    IN    CNAME    spinach
@@ -72,7 +72,7 @@ goto        3600    IN    CNAME    goto.jenkins.cloudbees.net.          ; hosted
 recipe      3600    IN    CNAME    recipe.jenkins.cloudbees.net.        ; hosted app on CloudBees RUN@cloud
 
 ; MX Records
-@          300    IN    MX    0    cucumber
+@          300    IN    MX    0    gherkin
 lists      3600    IN    MX    0    smtp1.osuosl.org.
 lists      3600    IN    MX    0    smtp2.osuosl.org.
 lists      3600    IN    MX    0    smtp3.osuosl.org.
