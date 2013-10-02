@@ -21,6 +21,6 @@ class updates_jenkins-ci_org {
 
   apache2::virtualhost {
     'updates.jenkins-ci.org' :
-    source => 'puppet:///modules/updates_jenkins-ci_org/updates.jenkins-ci.org';
+    source => 'puppet:///modules/updates_jenkins-ci_org/site.conf';
   }
 }

@@ -8,7 +8,7 @@ class confluence-cache {
   # to co-exist with others, incoming HTTP requests hit Apache first
   apache2::virtualhost {
     'wiki.jenkins-ci.org' :
-      source => 'puppet:///modules/confluence-cache/wiki.jenkins-ci.org.conf';
+      source => 'puppet:///modules/confluence-cache/site.conf';
   }
 
   # then nginx handles cache
