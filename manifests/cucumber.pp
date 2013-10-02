@@ -5,6 +5,7 @@ node default {
     include base
     include haproxy
     include apache2
+    include jenkins-ci_org
     include updates_jenkins-ci_org
 
     class {
