@@ -99,6 +99,11 @@ PATH
     ips (0.0.1)
 
 PATH
+  remote: ./local-modules/jenkins-ci_org
+  specs:
+    jenkins-ci_org (0.0.1)
+
+PATH
   remote: ./local-modules/jenkins-dns
   specs:
     jenkins-dns (0.0.1)
@@ -198,6 +203,7 @@ DEPENDENCIES
   groovy (>= 0)
   haproxy (>= 0)
   ips (>= 0)
+  jenkins-ci_org (>= 0)
   jenkins-dns (>= 0)
   jira (>= 0)
   mirrorbrain (>= 0)
