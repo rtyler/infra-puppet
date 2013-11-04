@@ -13,6 +13,16 @@
           <!-- Logger is deprecated in Tomcat 5.5. Logging configuration for Confluence is specified in confluence/WEB-INF/classes/log4j.properties -->
           <Manager pathname="" />
         </Context>
+
+        <!-- Tomcat manager is used to invalidate sessions. This helps fighting with ongoing spams -->
+        <Context path="/tomcat-manager" docBase="/srv/wiki/tomcat-manager.war" privileged="true" unpackWARs="false">
+          <Realm className="org.apache.catalina.realm.JNDIRealm"
+                 connectionURL="ldap://jenkins-ci.org:389"
+                 userPattern="cn={0},ou=people,dc=jenkins-ci,dc=org"
+                 roleBase="ou=groups,dc=jenkins-ci,dc=org"
+                 roleName="cn"
+                 roleSearch="(member={0})"/>
+        </Context>
       </Host>
     </Engine>
   </Service>

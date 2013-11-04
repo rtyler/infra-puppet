@@ -28,6 +28,9 @@ class confluence {
     ensure => "link",
     target => "../../current/conf/web.xml"
     ;
+  "/srv/wiki/tomcat-manager.war":
+    source => "puppet:///modules/confluence/tomcat-manager.war"
+    ;
   "/etc/init.d/confluence":
     # TODO: run "update-rc.d confluence defaults" when this file change
     source => "puppet:///modules/confluence/confluence.init",
