@@ -22,6 +22,12 @@ case "$1" in
   # Start command
   start)
     echo "Starting $APP (check /tmp/confluence.start.log)"
+
+    # Tomcat isn't smart enough to handle stale PID file, so we do it for Tomcat
+    if [ -f "$CATALINA_PID" -a ! -d /proc/$(cat "$CATALINA_PID") ]; then
+      rm "$CATALINA_PID"
+    fi
+
     /bin/su -m $USER -c "cd $BASE/logs && $BASE/bin/startup.sh &> /tmp/confluence.start.log"
     echo 5 > /proc/`cat $CATALINA_PID`/oom_adj
     ;;
