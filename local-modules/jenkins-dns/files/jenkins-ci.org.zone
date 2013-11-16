@@ -82,3 +82,12 @@ lists      3600    IN    MX    0    smtp4.osuosl.org.
 ; NS Records
 @           3600    IN    NS    ns1
 @           3600    IN    NS    ns2
+
+; SPF
+;    199.193.196.24     (cucumber)
+;    140.211.15.*       (eggplant and its subnet)
+;    173.203.60.151     (spinach)
+;    140.211.166.128/25 (OSUOSL mail relays)
+;    
+@ 3600 IN  TXT "v=spf1 mx ip4:199.193.196.24 ip4:140.211.15.0/24 ip4:173.203.60.151 ip4:140.211.166.128/25 ~all"
+@ 3600 IN  SPF "v=spf1 mx ip4:199.193.196.24 ip4:140.211.15.0/24 ip4:173.203.60.151 ip4:140.211.166.128/25 ~all"
