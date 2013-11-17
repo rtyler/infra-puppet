@@ -40,7 +40,8 @@ sleep 5
 
 rm -f ${ERROR_FILE}
 
-git pull --rebase && \
+git reset --hard HEAD && \
+git pull && \
  git submodule update --init && \
  librarian-puppet install && \
  puppet apply --modulepath=modules --verbose manifests/${HOSTNAME}.pp
