@@ -96,7 +96,7 @@ lists      3600    IN    MX    0    smtp4.osuosl.org.
 @ 3600 IN  SPF "v=spf1 mx ip4:199.193.196.24 ip4:140.211.15.0/24 ip4:173.203.60.151 ip4:140.211.166.128/25 ~all"
 
 ; DKIM
-cucumber._domainkey     5M IN TXT ("v=DKIM1;p="
+cucumber._domainkey     1W IN TXT ("v=DKIM1;p="
     "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzGI3F6ZZemke1oeZLfdl"
     "WT6bNz71CHIF74XFPkzJvPrKfCIa50KVV1FLdAbvBFFhtZB9soQphMg1g8JVvCCc"
     "Jykf8QAnr0/zGy2CZoHGfqYem1SUgMd//jOQ4PIgypfBXHYPeFOFcKg2seIyd75Y"
@@ -105,7 +105,7 @@ cucumber._domainkey     5M IN TXT ("v=DKIM1;p="
     "3KxxIkvGTBs4BK9SIC3lY90xV5eqOlehLL9ZUYndtiQfABp2tfQkitG59N4FEfUB"
     "vwIDAQAB"
     )
-eggplant._domainkey     5M IN TXT ("v=DKIM1;p="
+eggplant._domainkey     1W IN TXT ("v=DKIM1;p="
     "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsBwtlRrZE7oYs5y3FKjt"
     "/gXl4QR7LqdBmmQXX+l5pYE0VbTaweUlnNfSkV72sZchTikQ7X15hNgQ+hW/99tU"
     "WGnXlAC2r444Ggl9xoFVxKhSIbkRVRszzIe5axo4BQENZ/cj7Mw8BwsB8mESG29K"
