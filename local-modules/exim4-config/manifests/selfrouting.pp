@@ -3,8 +3,8 @@
 #
 #
 
-class exim4_config::selfrouting {
-  include exim4_config::functions;
+class exim4-config::selfrouting {
+  include exim4-config::functions
 
   file { "/etc/exim4/update-exim4.conf.conf":
     owner   => root,
