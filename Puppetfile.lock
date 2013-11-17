@@ -74,6 +74,11 @@ PATH
     confluence-new (0.0.1)
 
 PATH
+  remote: ./local-modules/exim4-config
+  specs:
+    exim4-config (0.0.1)
+
+PATH
   remote: ./local-modules/fallback_jenkins-ci_org
   specs:
     fallback_jenkins-ci_org (0.0.1)
@@ -198,6 +203,7 @@ DEPENDENCIES
   confluence (>= 0)
   confluence-cache (>= 0)
   confluence-new (>= 0)
+  exim4-config (>= 0)
   fallback_jenkins-ci_org (>= 0)
   gitrepo (>= 0)
   groovy (>= 0)
