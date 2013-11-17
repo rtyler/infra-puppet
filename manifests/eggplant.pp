@@ -9,6 +9,9 @@ node default {
     include confluence
     include confluence-cache
 
+    include exim4-config::osuoslrelay
+    exim4-config::dkim {'eggplant': ; }
+
     firewall {
       '100 accept inbound HTTP requests' :
         proto  => 'tcp',

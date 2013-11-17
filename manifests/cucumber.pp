@@ -8,6 +8,9 @@ node default {
     include jenkins-ci_org
     include updates_jenkins-ci_org
 
+    include exim4-config::selfrouting
+    exim4-config::dkim {'cucumber': ; }
+
     class {
       'postgres' :
         version => '8.4';
@@ -151,12 +154,6 @@ node default {
         proto  => 'tcp',
         port   => 47278,
         action => 'accept';
-    }
-
-    include exim4-config::selfrouting
-    exim4-config::dkim {
-    'cucumber':
-        ;
     }
 }
 Exec {
