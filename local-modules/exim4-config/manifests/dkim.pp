@@ -1,7 +1,8 @@
 #
 # Configures exim4 with outbound signing of e-mails with DKIM
 #
-
+# once the key is generated, it has to be added to jenkins-ci.org.zone file
+#
 # 'name' must match the domain key selector and the portion of the key file
 define exim4-config::dkim {
   include exim4-config::functions

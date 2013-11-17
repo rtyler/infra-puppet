@@ -105,3 +105,12 @@ cucumber._domainkey     5M IN TXT ("v=DKIM1;p="
     "3KxxIkvGTBs4BK9SIC3lY90xV5eqOlehLL9ZUYndtiQfABp2tfQkitG59N4FEfUB"
     "vwIDAQAB"
     )
+eggplant._domainkey     5M IN TXT ("v=DKIM1;p="
+    "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsBwtlRrZE7oYs5y3FKjt"
+    "/gXl4QR7LqdBmmQXX+l5pYE0VbTaweUlnNfSkV72sZchTikQ7X15hNgQ+hW/99tU"
+    "WGnXlAC2r444Ggl9xoFVxKhSIbkRVRszzIe5axo4BQENZ/cj7Mw8BwsB8mESG29K"
+    "YtKeMkXfLuBkWuUZ/56pu1eOOfZl4iMLiQnP7UNpAlX4L1/Le3bIaTWZUrsk/MwE"
+    "pwULsW0VB3sghu4K+Kdos1AyGP2NwkQL3CCzpwm1TaBaC0rb0sQ0m62JgPe3NzOt"
+    "U3NGXKNnpLRuhYNFU46bW/6ZVF0NskessArYAsbY54cMHTzhpvkC6b2hs5x+ps0J"
+    "3QIDAQAB"
+    )
