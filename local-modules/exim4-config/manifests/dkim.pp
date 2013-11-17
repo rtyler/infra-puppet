@@ -11,7 +11,8 @@ define exim4-config::dkim {
     creates => "/etc/exim4/dkim-$name.key",
     cwd     => "/etc/exim4",
     command => "openssl genrsa -out dkim-$name.key 2048    \
-                && chmod 600 dkim-$name.key    \
+                && chgrp Debian-exim dkim-$name.key    \
+                && chmod 640 dkim-$name.key    \
                 && openssl rsa -in dkim-$name.key -out dkim-$name.pub -pubout -outform PEM",
     notify  => Exec['reload-exim4']
   }
