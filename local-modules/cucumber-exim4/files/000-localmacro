@@ -1,0 +1,5 @@
+# define additional macro for exim4
+# see ".ifdef"s in /etc/exim4/conf.d for where these variables are used.
+DKIM_DOMAIN=jenkins-ci.org
+DKIM_SELECTOR=cucumber
+DKIM_PRIVATE_KEY=/etc/exim4/dkim-cucumber.key

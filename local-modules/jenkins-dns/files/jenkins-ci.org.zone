@@ -94,3 +94,14 @@ lists      3600    IN    MX    0    smtp4.osuosl.org.
 ;   when modifying, use http://www.kitterman.com/spf/validate.html to test
 @ 3600 IN  TXT "v=spf1 mx ip4:199.193.196.24 ip4:140.211.15.0/24 ip4:173.203.60.151 ip4:140.211.166.128/25 ~all"
 @ 3600 IN  SPF "v=spf1 mx ip4:199.193.196.24 ip4:140.211.15.0/24 ip4:173.203.60.151 ip4:140.211.166.128/25 ~all"
+
+; DKIM
+cucumber._domainkey     5M IN TXT ("v=DKIM1;p="
+    "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzGI3F6ZZemke1oeZLfdl"
+    "WT6bNz71CHIF74XFPkzJvPrKfCIa50KVV1FLdAbvBFFhtZB9soQphMg1g8JVvCCc"
+    "Jykf8QAnr0/zGy2CZoHGfqYem1SUgMd//jOQ4PIgypfBXHYPeFOFcKg2seIyd75Y"
+    "cR0DOWXCF1UO5K/nezfPT9RB5vBW4mXV5dn8TUwdvsu1ApQKWQj3dLYpMNlVqAgw"
+    "dc7dCifqAWvhfxrRaPzG/4aSgpwxqYt4d6NV3Jl0MB9nnBeWK3JzmPxkXwaO1D8e"
+    "3KxxIkvGTBs4BK9SIC3lY90xV5eqOlehLL9ZUYndtiQfABp2tfQkitG59N4FEfUB"
+    "vwIDAQAB"
+    )
