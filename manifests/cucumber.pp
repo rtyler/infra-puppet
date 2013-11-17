@@ -152,6 +152,12 @@ node default {
         port   => 47278,
         action => 'accept';
     }
+
+    include exim4-config::selfrouting
+    exim4-config::dkim {
+    'cucumber':
+        ;
+    }
 }
 Exec {
     path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ]
