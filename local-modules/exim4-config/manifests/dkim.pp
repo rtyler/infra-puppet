@@ -12,7 +12,7 @@ define exim4-config::dkim {
     cwd     => "/etc/exim4",
     command => "openssl genrsa -out dkim-$name.key 2048    \
                 && chmod 600 dkim-$name.key    \
-                && openssl rsa -in dkim-$name.key -out dkim-$name.pub -pubout -outform PEM"
+                && openssl rsa -in dkim-$name.key -out dkim-$name.pub -pubout -outform PEM",
     notify  => Exec['reload-exim4']
   }
 
