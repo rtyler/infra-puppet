@@ -29,7 +29,7 @@ Vagrant::Config.run do |config|
 
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "manifests"
-    puppet.module_path    = "modules"
+    puppet.module_path    = ["modules","local-modules"]
     puppet.manifest_file  = ENV['MANIFEST'] || "vagrant.pp"
   end
 end
