@@ -4,10 +4,13 @@
 #
 
 class exim4_config::selfrouting {
-    file { "/etc/exim4/update-exim4.conf.conf":
-        owner   => root,
-        group   => root,
-        mode    => 644,
-        source  => "puppet:///modules/exim4-config/selfrouting/update-exim4.conf.conf"
-    }
+  include exim4_config::functions;
+
+  file { "/etc/exim4/update-exim4.conf.conf":
+    owner   => root,
+    group   => root,
+    mode    => 644,
+    source  => "puppet:///modules/exim4-config/selfrouting/update-exim4.conf.conf",
+    notify  => Exec['reload-exim4']
+  }
 }
