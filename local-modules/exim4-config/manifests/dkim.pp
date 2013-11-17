@@ -6,6 +6,16 @@
 define exim4-config::dkim {
   include exim4-config::functions
 
+  exec {
+  "generate-dkim-key":
+    creates => "/etc/exim4/dkim-$name.key",
+    cwd     => "/etc/exim4",
+    command => "openssl genrsa -out dkim-$name.key 2048    \
+                && chmod 600 dkim-$name.key    \
+                && openssl rsa -in dkim-$name.key -out dkim-$name.pub -pubout -outform PEM"
+    notify  => Exec['reload-exim4']
+  }
+
   file { "/etc/exim4/conf.d/main/000-dkim":
     owner   => root,
     group   => root,
